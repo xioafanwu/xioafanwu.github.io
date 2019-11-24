@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://xioafanwu.github.io</id>
+    <title>Gridea</title>
+    <updated>2019-11-24T08:48:23.160Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://xioafanwu.github.io"/>
+    <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://xioafanwu.github.io/images/avatar.png</logo>
+    <icon>https://xioafanwu.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2019, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[VEHICLE DWNAMICS, STABILITY, AND CONTROL]]></title>
+        <id>https://xioafanwu.github.io/post/vehicle-dwnamics-stability-and-control</id>
+        <link href="https://xioafanwu.github.io/post/vehicle-dwnamics-stability-and-control">
+        </link>
+        <updated>2019-11-24T08:45:35.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="目录">目录</h1>
+<ul>
+<li>前言</li>
+<li>作者</li>
+</ul>
+<ol>
+<li>导论：基本车辆</li>
+<li>刚体运动学</li>
+<li>运动的稳定性：概念和分析</li>
+<li>充气轮胎力的产生</li>
+<li>拖车稳定性分析</li>
+<li>汽车</li>
+<li>两轮和倾斜车</li>
+<li>稳定性</li>
+<li>空气动力学和航空器的稳定性</li>
+<li>轨道车辆动力学</li>
+<li>车辆动力学控制</li>
+</ol>
+<h1 id="5拖车稳定性">5.拖车稳定性</h1>
+<h2 id="导语">导语</h2>
+<p>​        本章将会分析和反战几种拖车的数学模型，所有的模型都很简单，可以提供一个理解方程公式技术比如拉普拉斯变换和牛顿方程的机会。另外，这些拖车模型展示了许多和汽车动力性和稳定性相关的概念，这些将会在后续章节右更复杂的运用。</p>
+<p>​        可能很多人都跟随过汽车或者卡车拖曳拖车，而拖车在被风吹一阵或拖车突然变道后会来回摆动，这表明挂车不是很稳定，人们很好奇挂车在稍微不同的情况下是否可能不稳定。</p>
+<p>只有很少不幸的人拖车表现出不稳定的行为，当这种情况发生时，通常是超过临界速度时，结果通常导致严重的交通事故，导致观察者和牵引车中的驾驶员的受伤。对于普通人很难理解为什么大多数拖车都没有问题但是还是有一些变得没有明显原因得变得不稳定。即使时相对简单的模型也可以阐明这种危险现象。</p>
+<p>​        除了对拖车的稳定性右内在的兴趣之外，这些模型将会阐明许多技术概念将会在研究动力性和问你的那个姓时</p>
+<p>再次运用例如第六章的汽车和第八章中的脚轮安装在摩托车、汽车和飞机起落架上的稳定性。</p>
+<p>本章将会从最简单的拖车模型开始，慢慢增加额外的影响因素最后推出关于拖车如何稳定的结论。也可能为不稳定的拖车引入临界速度这一重要思想。不幸地是，除了拖车之外，还有许多车辆在首次超过某个特定速度之前就保持稳定。一个简单的模型将会阐明这种现象。</p>
+<h2 id="51-单自由度模型">5.1 单自由度模型</h2>
+<p>​        在这个例子中，将开发在大型车辆后方拖曳拖车的模型。在这种情况下使用惯性坐标系而不是之心坐标系是合理的，因为无论拖车做什么，都假定牵引车沿惯性空间中的直线路径以恒定速度运动。因此，可以将与牵引车等速移动或固定在与牵扯的路径对齐的地面上的坐标系视为惯性坐标系。</p>
+<p>​        如图5.1所示，拖车中心线与牵引车路径之间的夹角<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>完全描述了拖车的运动，这被认为是在平面运动中运动的刚体。当单个位置变量（例如<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>）及其导数足以描述系统的动力学时，则称该系统具有单个自由度。</p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/11/24/BGEWAMnR3TIhHO7.png" alt="quicker_f0135bbf-29fb-40e8-9704-699060a449c6.png"></figure>
+<center>图5.1 拖车单自由度模型</center>
+<p>​        假设拖车是在结点处无摩擦地枢转的刚体。车轮的质量包括在拖车的总质量中。假定拖车的工作就像没有悬架一样，因此可以平面运动。尽管挂车重心在地面上的高度确实会影响实际的挂车，特别是那些具有悬架系统的挂车，但该简单模型基本上假设所有力和加速度都位于地面上。本例中的新方面是考虑了充气轮胎与路面的相互作用。在第4章中，对轮胎-道路相互作用的讨论超出了当前目的所必需的范围。这里，仅将转弯系数的基本概念用于分析。</p>
+<p>​        图5.1是本章要研究的最简单的拖车模型的草图。即使拖车在挂结处有来自车身的侧向力，也假定牵引车以恒定的前进速度U移动且没有侧向速度。拖车被认为在挂钩处无摩擦地枢转。这意味着挂接装置不会对挂车施加任何力矩（尽管在挂接点处会有横向力）。</p>
+<p>​        参数包括a和b，重心到挂接点和车轴的距离，挂车质量m，质心惯性矩<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>I</mi><mi>C</mi></msub></mrow><annotation encoding="application/x-tex">I_{C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07153em;">C</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>以及车轮的轨迹和恒定的牵引速度U。描述拖车运动的单自由度变量试角度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>,这意味着编写挂车的动力学方程所需的所有速度和加速度都可以用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>及其时间导数表示。</p>
+<p>​        为了找到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>的动力学方程，必须考虑另一变量，即作用于两个轮胎的地面力。图5.2显示了单个轮胎以速度U滚动，并受到侧向力F的作用。</p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/11/24/57rm39pHWVaNvef.png" alt="quicker_eb10a2dd-a69c-45db-bd57-d019a9aae821.png"></figure>
+<center>图5.2 转弯系数的定义</center>]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>https://xioafanwu.github.io/post/hello-gridea</id>
+        <link href="https://xioafanwu.github.io/post/hello-gridea">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="http://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>
