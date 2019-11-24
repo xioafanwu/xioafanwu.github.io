@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
-    <title>Gridea</title>
-    <updated>2019-11-24T08:48:23.160Z</updated>
+    <title>LSG</title>
+    <updated>2019-11-24T12:30:50.725Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://xioafanwu.github.io/images/avatar.png</logo>
     <icon>https://xioafanwu.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2019, Gridea</rights>
+    <rights>All rights reserved 2019, LSG</rights>
     <entry>
-        <title type="html"><![CDATA[VEHICLE DWNAMICS, STABILITY, AND CONTROL]]></title>
+        <title type="html"><![CDATA[VEHICLE DWNAMICS, STABILITY, AND CONTROL 5.1]]></title>
         <id>https://xioafanwu.github.io/post/vehicle-dwnamics-stability-and-control</id>
         <link href="https://xioafanwu.github.io/post/vehicle-dwnamics-stability-and-control">
         </link>
