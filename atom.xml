@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
     <title>LSG</title>
-    <updated>2019-12-01T13:50:13.473Z</updated>
+    <updated>2019-12-04T01:54:18.826Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
@@ -10,6 +10,135 @@
     <logo>https://xioafanwu.github.io/images/avatar.png</logo>
     <icon>https://xioafanwu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, LSG</rights>
+    <entry>
+        <title type="html"><![CDATA[EXCEL Home（一）]]></title>
+        <id>https://xioafanwu.github.io/post/excel-homwyi</id>
+        <link href="https://xioafanwu.github.io/post/excel-homwyi">
+        </link>
+        <updated>2019-12-03T14:12:42.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="公式差错和错误屏蔽">公式差错和错误屏蔽</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">错误值</th>
+<th style="text-align:center">原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">######</td>
+<td style="text-align:center">列宽不够或日期为负值</td>
+</tr>
+<tr>
+<td style="text-align:center">#VALUE!</td>
+<td style="text-align:center">参数类型错误</td>
+</tr>
+<tr>
+<td style="text-align:center">#DIV/01</td>
+<td style="text-align:center">除数为零</td>
+</tr>
+<tr>
+<td style="text-align:center">#NAME?</td>
+<td style="text-align:center">字符串不可识别</td>
+</tr>
+<tr>
+<td style="text-align:center">#N/A</td>
+<td style="text-align:center">查询对象不存在</td>
+</tr>
+<tr>
+<td style="text-align:center">#REF!</td>
+<td style="text-align:center">单元格引用无效</td>
+</tr>
+<tr>
+<td style="text-align:center">#NUM!</td>
+<td style="text-align:center">无效数值参数</td>
+</tr>
+<tr>
+<td style="text-align:center">#NULL!</td>
+<td style="text-align:center">无效的交叉引用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="合并单元格保留内容">合并单元格保留内容</h2>
+<ul>
+<li>作用：筛选<br>
+<img src="https://i.loli.net/2019/12/02/GkR4TJCgtUwiEKO.png" alt="quicker_97c80801-08bf-479e-9035-6b65962516d0.png"></li>
+<li>复制合并单元格之后的样式<br>
+<img src="https://i.loli.net/2019/12/02/QWBFbH5P6mlfRT8.png" alt="quicker_116e59d0-fb84-47eb-9455-38dc5658f510.png"></li>
+<li>填充-覆盖合并单元格的样式</li>
+</ul>
+<h2 id="在线获取数据源">在线获取数据源</h2>
+<ol>
+<li>数据-获取数据-自网站-输入URL</li>
+<li>刷新数据：数据-全部刷新</li>
+<li>自动刷新
+<ol>
+<li>选中数据-属性-设置自动刷新</li>
+</ol>
+</li>
+</ol>
+<h2 id="power-pivot分析数据">power pivot分析数据</h2>
+<ol>
+<li>加载项-加载power pivot功能</li>
+<li>自定义功能区加入power pivot</li>
+<li>pivot可以生成数据透视图和数据透视表</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[python mooc 6.5——jieba库安装使用]]></title>
+        <id>https://xioafanwu.github.io/post/python-mooc-65-jieba-ku-an-zhuang-shi-yong</id>
+        <link href="https://xioafanwu.github.io/post/python-mooc-65-jieba-ku-an-zhuang-shi-yong">
+        </link>
+        <updated>2019-12-02T14:37:30.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>安装命令行输入 pip install jieba</li>
+<li>使用
+<ul>
+<li>jieba.lcut(s):精确模式，返回一个列表类型的分词结果，没有冗余</li>
+<li>jieba.lct(s.cut_all=True):返回一个列表类型的数据，存在冗余</li>
+<li>jieba.lct_for_search(s):搜索引擎模式，返回一个列表类的分词结果，存在冗余</li>
+</ul>
+</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[python mooc 6.3——字典类型及操作]]></title>
+        <id>https://xioafanwu.github.io/post/python-mooc-63-zi-dian-lei-xing-ji-cao-zuo</id>
+        <link href="https://xioafanwu.github.io/post/python-mooc-63-zi-dian-lei-xing-ji-cao-zuo">
+        </link>
+        <updated>2019-12-01T13:50:45.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>字典的定义
+<ul>
+<li>字典是键值对的集合，键值对之间无序</li>
+</ul>
+</li>
+<li>字典的创建
+<ul>
+<li>大括号{}和dict</li>
+<li>键值用冒号表示</li>
+<li>d={&quot;中国&quot;:北京,&quot;美国&quot;:&quot;华盛顿&quot;,&quot;法国&quot;:&quot;巴黎&quot;}</li>
+</ul>
+</li>
+<li>字典处理函数和方法
+<ul>
+<li>del d[k]:删除字典d中键k对应的数据值</li>
+<li>k in d:判断键k是否在字典d中</li>
+<li>d.keys():返回字典d中所有的键的信息</li>
+<li>d.values():返回字典d中所有的值信息</li>
+<li>d.items():返回字典d中所有的键值对</li>
+<li>d.get(k,<default>):键k存在返回相应值，不存在返回默认值</li>
+<li>d.pop(k,<default>):键k存在取出相应值，不存在返回默认值</li>
+<li>d.popitem():随机从字典d中取出一个键值对</li>
+<li>d.clear:删除所有键值对</li>
+<li>len(d):返回字典d的元素个数</li>
+</ul>
+</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[python mooc 6.2——序列类型及操作]]></title>
         <id>https://xioafanwu.github.io/post/python-mooc-62-xu-lie-lei-xing-ji-cao-zuo</id>
