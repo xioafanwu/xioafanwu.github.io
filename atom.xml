@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
     <title>LSG</title>
-    <updated>2019-12-04T14:42:10.581Z</updated>
+    <updated>2019-12-05T15:18:49.907Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
@@ -11,7 +11,116 @@
     <icon>https://xioafanwu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, LSG</rights>
     <entry>
-        <title type="html"><![CDATA[python 数据分析 0.0]]></title>
+        <title type="html"><![CDATA[《 利用Python进行数据分析》（一）]]></title>
+        <id>https://xioafanwu.github.io/post/lessless-li-yong-python-jin-xing-shu-ju-fen-xi-greatergreater-yi</id>
+        <link href="https://xioafanwu.github.io/post/lessless-li-yong-python-jin-xing-shu-ju-fen-xi-greatergreater-yi">
+        </link>
+        <updated>2019-12-05T15:17:06.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>本节介绍了Python用来进行数据分析的几个常用库：Numpy、pandas、matplotlib以及IPython交互式环境</p>
+</blockquote>
+<h2 id="重要的python库">重要的Python库</h2>
+<h3 id="numpy">NumPy</h3>
+<ol>
+<li>科学计算基础包</li>
+<li>多位数组对象ndarray</li>
+<li>数组数学运算</li>
+<li>读写硬盘上的数组类型数据集</li>
+<li>线性代数 傅立叶变换</li>
+<li>将C C++集成到Python的工具</li>
+</ol>
+<h3 id="pandas">pandas</h3>
+<ol>
+<li>处理结构化数据</li>
+<li>对象 DataFrame-二维表结构</li>
+<li>兼具数组计算和关系型数据库的数据处理功能</li>
+<li>索引 重塑 切片聚合等数据子集操作</li>
+</ol>
+<h3 id="matplotlib">matplotlib</h3>
+<ol>
+<li>绘制二维数据图表</li>
+<li>和IPython结合交互式绘图环境</li>
+</ol>
+<h3 id="ipython">IPython</h3>
+<ol>
+<li>交互式环境</li>
+<li>分布式计算基础架构</li>
+</ol>
+<h3 id="jupyter">Jupyter</h3>
+<ol>
+<li>用于编写、测试、调试Python代码的强化shell</li>
+</ol>
+<h3 id="scikit-learn">scikit-learn</h3>
+<ol>
+<li>通用机器学习工具包</li>
+<li>子模块
+<ul>
+<li>分类：SVM、近邻、随机森林、逻辑回归</li>
+<li>回归</li>
+<li>聚类</li>
+<li>降维</li>
+<li>选型</li>
+<li>预处理</li>
+</ul>
+</li>
+</ol>
+<h3 id="scipy">SciPy</h3>
+<ol>
+<li>
+<p>标准问题域包集合</p>
+</li>
+<li>
+<p>子模块</p>
+<ul>
+<li>
+<p>数值积分 微分方程</p>
+</li>
+<li>
+<p>矩阵分解</p>
+</li>
+<li>
+<p>信号处理</p>
+</li>
+<li>
+<p>稀疏矩阵、稀疏系统求解器</p>
+</li>
+<li>
+<p>常用数学函数</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="statsmodels">statsmodels</h3>
+<ol>
+<li>一个统计分析包</li>
+<li>子模块
+<ul>
+<li>回归模型</li>
+<li>方差分析</li>
+<li>时间序列分析</li>
+<li>非参数方法</li>
+<li>统计模型结果可视化</li>
+</ul>
+</li>
+</ol>
+<h3 id="一些论坛和帮助网站">一些论坛和帮助网站</h3>
+<ul>
+<li>pydata</li>
+<li>pystatsmodels</li>
+<li>numpy-discussion</li>
+<li>scipy-user</li>
+<li>http://github.com/pydata/pydata-book</li>
+</ul>
+<h3 id="常用命名模块命名惯例">常用命名模块命名惯例</h3>
+<p>import numpy as np<br>
+import matplotlib.pyplot as plt<br>
+import pandas as pd<br>
+import seaborn as sns<br>
+import statsmodels as sm</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[python mooc 数据分析 0.0]]></title>
         <id>https://xioafanwu.github.io/post/python-shu-ju-fen-xi-00</id>
         <link href="https://xioafanwu.github.io/post/python-shu-ju-fen-xi-00">
         </link>
@@ -526,39 +635,6 @@
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable side="right"><mlabeledtr><mtd><mtext>(5.15)</mtext></mtd><mtd><mrow><mrow><mo fence="true">(</mo><mi>I</mi><mi>c</mi><mo>+</mo><mi>m</mi><msup><mi>a</mi><mn>2</mn></msup><mo fence="true">)</mo></mrow><mover accent="true"><mi>θ</mi><mo>¨</mo></mover><mo>+</mo><mfrac><mrow><mi>C</mi><mi>α</mi><mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><msup><mo>)</mo><mn>2</mn></msup></mrow><mi>U</mi></mfrac><mover accent="true"><mi>θ</mi><mo>˙</mo></mover><mo>+</mo><msub><mi>C</mi><mi>α</mi></msub><mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>)</mo><mi>θ</mi><mo>=</mo><mn>0</mn></mrow></mtd></mlabeledtr></mtable><annotation encoding="application/x-tex">\left(I{c}+m a^{2}\right) \ddot{\theta}+\frac{C{\alpha}(a+b)^{2}}{U} \dot{\theta}+C_{\alpha}(a+b) \theta=0 \tag{5.15}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.28131em;vertical-align:-0.35001em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord"><span class="mord mathdefault">c</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">m</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9313em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;">¨</span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">U</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">b</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9313em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.055550000000000016em;">˙</span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.0037em;">α</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span><span class="tag"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">5</span><span class="mord">.</span><span class="mord">1</span><span class="mord">5</span></span><span class="mord">)</span></span></span></span></span></span></p>
 <p>​        该方程为第3中中讨论的n阶方程的n=2形式。另外，它也可以是二阶方程组（方程3.7）的形式，但是在这种情况下，只有一个广义坐标，只有一个方程，所涉及的矩阵实际上只是标量。对于多个自由度，拉格朗日方程式将产生方程式3.7形式的方程式。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[轮胎模型]]></title>
-        <id>https://xioafanwu.github.io/post/lun-tai-mo-xing</id>
-        <link href="https://xioafanwu.github.io/post/lun-tai-mo-xing">
-        </link>
-        <updated>2019-11-25T09:41:46.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="1幂指数统一轮胎模型">1.幂指数统一轮胎模型</h2>
-<ul>
-<li>适用场景：稳态侧滑、纵滑或者联合工况；非稳态情况选计算轮胎纵向力、侧向力和回正力矩。</li>
-<li>特点
-<ul>
-<li>一次数据可以用于不同路面，只需要改变路面附着特性参数</li>
-<li>可表达各种垂向载荷的轮胎特性</li>
-</ul>
-</li>
-</ul>
-<h2 id="2魔术公式轮胎模型">2.魔术公式轮胎模型</h2>
-<ul>
-<li>特点
-<ul>
-<li>用一套公式表达出轮胎各向力学特性，拟合参数少</li>
-<li>曲线拟合公式忠的参数，拟合精度高</li>
-<li>非线性函数</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-swift轮胎模型">3. SWIFT轮胎模型</h2>
-<ul>
-<li>适用场景：转弯纵滑联合工况；小波长、大滑移幅度下的中频输入</li>
-</ul>
-<h2 id="4dugoff模型">4.Dugoff模型</h2>
 ]]></content>
     </entry>
 </feed>
