@@ -6,7 +6,7 @@
 <meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <meta HTTP-EQUIV="expires" CONTENT="0"> 
-<title>《 利用Python进行数据分析》（一） | LSG</title>	
+<title>新能源汽车大数据分析 （一） | LSG</title>	
 
 <link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
 <script type="text/javascript">
@@ -56,7 +56,7 @@ window.onload=getCSS();
 			
 		<header id="header" class="site-header" 
 		
-		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(https://xioafanwu.github.io/post-images/lessless-li-yong-python-jin-xing-shu-ju-fen-xi-greatergreater-yi.png)"
+		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(https://xioafanwu.github.io/post-images/xin-neng-yuan-qi-che-da-shu-ju-fen-xi-yi.png)"
 		
 		>
 			<div class="site-branding">
@@ -144,10 +144,10 @@ window.onload=getCSS();
 	
 	                      
 		<div class="entry-content">
-			<h1 class="wow swing entry-title">《 利用Python进行数据分析》（一）</h1>
+			<h1 class="wow swing entry-title">新能源汽车大数据分析 （一）</h1>
 <div class="entry-meta">
 <div class="wow bounce">
-	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2019-12-05 23:17:06" itemprop="datePublished" pubdate="">2019-12-05</time></i>
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2019-12-09 14:57:16" itemprop="datePublished" pubdate="">2019-12-09</time></i>
 	          </div>
 			
 </span>
@@ -155,122 +155,124 @@ window.onload=getCSS();
 		</div>
                   
 			<div class="wow slideInLeft entry-summary song">
-				<blockquote>
-<p>本节介绍了Python用来进行数据分析的几个常用库：Numpy、pandas、matplotlib以及IPython交互式环境</p>
-</blockquote>
-<h2 id="重要的python库">重要的Python库</h2>
-<h3 id="numpy">NumPy</h3>
+				<h2 id="大数据简介">大数据简介</h2>
+<h3 id="大数据的产生与发展">大数据的产生与发展</h3>
+<p>人类社会的数据产生方式的三个阶段。</p>
 <ol>
-<li>科学计算基础包</li>
-<li>多位数组对象ndarray</li>
-<li>数组数学运算</li>
-<li>读写硬盘上的数组类型数据集</li>
-<li>线性代数 傅立叶变换</li>
-<li>将C C++集成到Python的工具</li>
+<li>运营式阶段：人为地构建数据库，数据随运营活动产生，被动的产生。比如：超市、银行。</li>
+<li>用户原创内容阶段：博客 微博社交网络，用户主动产生数据</li>
+<li>感知式阶段：感知监控设备，自动产生数据。</li>
+<li>大数据技术
+<ol>
+<li>Mapreduce：并行处理技术</li>
+<li>云计算 分布式文件存储系统</li>
+<li>Spark</li>
 </ol>
-<h3 id="pandas">pandas</h3>
-<ol>
-<li>处理结构化数据</li>
-<li>对象 DataFrame-二维表结构</li>
-<li>兼具数组计算和关系型数据库的数据处理功能</li>
-<li>索引 重塑 切片聚合等数据子集操作</li>
-</ol>
-<h3 id="matplotlib">matplotlib</h3>
-<ol>
-<li>绘制二维数据图表</li>
-<li>和IPython结合交互式绘图环境</li>
-</ol>
-<h3 id="ipython">IPython</h3>
-<ol>
-<li>交互式环境</li>
-<li>分布式计算基础架构</li>
-</ol>
-<h3 id="jupyter">Jupyter</h3>
-<ol>
-<li>用于编写、测试、调试Python代码的强化shell</li>
-</ol>
-<h3 id="scikit-learn">scikit-learn</h3>
-<ol>
-<li>通用机器学习工具包</li>
-<li>子模块
-<ul>
-<li>分类：SVM、近邻、随机森林、逻辑回归</li>
-<li>回归</li>
-<li>聚类</li>
-<li>降维</li>
-<li>选型</li>
-<li>预处理</li>
-</ul>
 </li>
 </ol>
-<h3 id="scipy">SciPy</h3>
+<h3 id="大数据的概念与特征">大数据的概念与特征</h3>
 <ol>
-<li>
-<p>标准问题域包集合</p>
+<li>大数据定义
+<ol>
+<li>3V定义：规模性 多样性 高速性</li>
+<li>利用常用软件不能及时处理的数据集</li>
+</ol>
 </li>
-<li>
-<p>子模块</p>
-<ul>
-<li>
-<p>数值积分 微分方程</p>
-</li>
-<li>
-<p>矩阵分解</p>
-</li>
-<li>
-<p>信号处理</p>
-</li>
-<li>
-<p>稀疏矩阵、稀疏系统求解器</p>
-</li>
-<li>
-<p>常用数学函数</p>
-</li>
-</ul>
+<li>大数据特征
+<ol>
+<li>规模性：数量大 PB</li>
+<li>多样性：数据种类，结构非结构 图片 音频</li>
+<li>高速性</li>
+<li>价值性：通过规模效益整合低价值密度的数据为高价值信息</li>
+<li>易变性：不规则和模糊不清</li>
+<li>不确定性</li>
+</ol>
 </li>
 </ol>
-<h3 id="statsmodels">statsmodels</h3>
+<h3 id="大数据的价值与挑战">大数据的价值与挑战</h3>
 <ol>
-<li>一个统计分析包</li>
-<li>子模块
-<ul>
-<li>回归模型</li>
-<li>方差分析</li>
-<li>时间序列分析</li>
-<li>非参数方法</li>
-<li>统计模型结果可视化</li>
-</ul>
+<li>大数据价值
+<ol>
+<li>挖掘细分市场</li>
+<li>精准营销</li>
+<li>提升决策水平</li>
+</ol>
+</li>
+<li>大数据挑战
+<ol>
+<li>大数据集成
+<ol>
+<li>广泛的异构性
+<ol>
+<li>数据类型从结构化数据转向结构化 半结构化 非结构化融合</li>
+<li>数据源 产生方式变化</li>
+<li>数据存储方式的变化</li>
+</ol>
+</li>
+<li>数据质量
+<ol>
+<li>数据清洗</li>
+</ol>
 </li>
 </ol>
-<h3 id="一些论坛和帮助网站">一些论坛和帮助网站</h3>
-<ul>
-<li>pydata</li>
-<li>pystatsmodels</li>
-<li>numpy-discussion</li>
-<li>scipy-user</li>
-<li>http://github.com/pydata/pydata-book</li>
-</ul>
-<h3 id="常用命名模块命名惯例">常用命名模块命名惯例</h3>
-<p>import numpy as np<br>
-import matplotlib.pyplot as plt<br>
-import pandas as pd<br>
-import seaborn as sns<br>
-import statsmodels as sm</p>
+</li>
+<li>大数据分析
+<ol>
+<li>传统数据分析流程：数据库存储结构化数据，构建数据仓库，根据需要构建数据立方体联机分析处理</li>
+<li>大数据分析挑战
+<ol>
+<li>数据处理的实时性</li>
+<li>动态变化环境中索引设计</li>
+<li>先验知识缺乏</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>大数据隐私问题
+<ol>
+<li>隐形数据的暴露：数据获取和基础集成</li>
+<li>数据公开与隐私保护的矛盾</li>
+<li>数据动态性</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="车辆大数据与应用">车辆大数据与应用</h2>
+<h3 id="汽车行业大数据应用">汽车行业大数据应用</h3>
+<ol>
+<li>车企数据挖掘：精准营销 扩大用户群</li>
+<li>车企：用户管理 提高售后服务 个性化服务</li>
+<li>汽车厂商：收集用户反馈</li>
+<li>应用于其他配套服务行业：保险公司</li>
+<li>用于无人驾驶</li>
+</ol>
+<h3 id="新能源汽车大数据应用">新能源汽车大数据应用</h3>
+<ol>
+<li>安全预警和管理：电池运行 充电 检修监测</li>
+<li>车辆运行管理和统计：整车性能统计分析 电池组性能统计分析 车辆运营统计分析</li>
+<li>车辆技术分析
+<ol>
+<li>电池SOC估计</li>
+<li>续航里程估计</li>
+<li>动力电池系统运行管理</li>
+<li>充电桩运营</li>
+</ol>
+</li>
+</ol>
 
 							</div>
 	<div class="wow bounceInDown vt-post-tags">
  
-				<a href="https://xioafanwu.github.io/tag/hud56EXOZ" rel="tag">python</a>	
+				<a href="https://xioafanwu.github.io/tag/ZJJjECf9a" rel="tag">大数据分析</a>	
 				 
 					</div>						
 <nav class="navigation3 post-navigation3" role="navigation">
 		
 		<div class="nav-links3">
       
-		<div class="wow bounceInLeft nav-previous3"><a href="https://xioafanwu.github.io/post/wu-ren-jia-shi-che-liang-chang-yong-gan-zhi-chuan-gan-qi-er" rel="prev"> 无人驾驶车辆常用感知传感器（二）</a></div>
 		 
-		 
-		<div class="wow bounceInRight nav-next3"><a href="https://xioafanwu.github.io/post/python-shu-ju-fen-xi-00" rel="next"> python mooc 数据分析 0.0</a></div>
+		<div class="wow bounceInRight nav-next3"><a href="https://xioafanwu.github.io/post/wu-ren-jia-shi-che-liang-chang-yong-gan-zhi-chuan-gan-qi-er" rel="next"> 无人驾驶车辆常用感知传感器（二）</a></div>
 		
 		</div>
 	</nav>
