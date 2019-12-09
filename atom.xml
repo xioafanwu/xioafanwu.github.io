@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
     <title>LSG</title>
-    <updated>2019-12-09T07:36:48.484Z</updated>
+    <updated>2019-12-09T08:10:35.239Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
@@ -10,6 +10,126 @@
     <logo>https://xioafanwu.github.io/images/avatar.png</logo>
     <icon>https://xioafanwu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, LSG</rights>
+    <entry>
+        <title type="html"><![CDATA[《利用Python进行数据分析》（二）]]></title>
+        <id>https://xioafanwu.github.io/post/lesslessli-yong-python-jin-xing-shu-ju-fen-xi-greatergreater-er</id>
+        <link href="https://xioafanwu.github.io/post/lesslessli-yong-python-jin-xing-shu-ju-fen-xi-greatergreater-er">
+        </link>
+        <updated>2019-12-09T08:09:06.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="ipython基础">IPython基础</h2>
+<h3 id="tab补全功能">Tab补全功能</h3>
+<ol>
+<li>
+<p>补全变量</p>
+</li>
+<li>
+<p>补全函数</p>
+</li>
+<li>
+<p>对象的方法和属性</p>
+<pre><code class="language-python">In [3]: b = [1, 2, 3]
+
+In [4]: b.&lt;Tab&gt;
+b.append  b.count   b.insert  b.reverse
+b.clear   b.extend  b.pop     b.sort
+b.copy    b.index   b.remove
+</code></pre>
+</li>
+<li>
+<p>补全模块</p>
+</li>
+</ol>
+<h3 id="自省">自省</h3>
+<ol>
+<li>在变量前后使用？ 显示对象信息</li>
+<li>对象可以是函数或实例方法</li>
+<li>？？ 显示函数源码</li>
+</ol>
+<h3 id="run命令">%run命令</h3>
+<ol>
+<li>%run 文件名.py</li>
+</ol>
+<h3 id="中断运行的代码">中断运行的代码</h3>
+<ol>
+<li>运行时按ctrl-c</li>
+</ol>
+<h3 id="从剪贴板执行程序">从剪贴板执行程序</h3>
+<ol>
+<li>%paste</li>
+<li>%cpaste函数</li>
+</ol>
+<h3 id="ipython的魔术命令">IPython的魔术命令</h3>
+<ol>
+<li>%timeit：测量python语句执行时间</li>
+<li>%magic：查看所有魔术命令</li>
+<li>%debug：出现异常进入调试模式</li>
+<li>%reset：删除命令空间变量和名字</li>
+<li>%who：显示命令空间的变量</li>
+</ol>
+<h2 id="python语法基础">Python语法基础</h2>
+<h3 id="变量和参数引用">变量和参数引用</h3>
+<ol>
+<li>赋值能将数据复制</li>
+</ol>
+<pre><code>In [8]: a = [1, 2, 3]
+In [9]: b = a
+In [10]: a.append(4)
+In [11]: b
+Out[11]: [1, 2, 3, 4]
+</code></pre>
+<h3 id="动态引用-强类型">动态引用 强类型</h3>
+<ol>
+<li>isinstance：检查对象类型</li>
+<li>is 判断类型是否相同</li>
+</ol>
+<pre><code>In [23]: a = 5; b = 4.5
+In [24]: isinstance(a, (int, float))
+Out[24]: True
+In [25]: isinstance(b, (int, float))
+Out[25]: True
+</code></pre>
+<h3 id="引入">引入</h3>
+<ol>
+<li>从同目录下访问其他python文件</li>
+</ol>
+<h3 id="可变与不可变对象">可变与不可变对象</h3>
+<ol>
+<li>列表、字典、NumPy数组都是可变的</li>
+<li>字符串 元祖不可变</li>
+</ol>
+<h3 id="字符串">字符串</h3>
+<ol>
+<li>字符串不可修改</li>
+<li>字符串可以list转化为序列</li>
+<li>\转义 加r表示字符就是本身</li>
+<li>format方法</li>
+</ol>
+<h3 id="日期和时间">日期和时间</h3>
+<ol>
+<li>datetime模块</li>
+<li>对象的差产生datetime.timedelta</li>
+</ol>
+<h3 id="pass">Pass</h3>
+<ul>
+<li>非操作语句</li>
+<li>不需要任何动作可以使用</li>
+</ul>
+<pre><code>if x &lt; 0:
+    print('negative!')
+elif x == 0:
+    # TODO: put something smart here
+    pass
+else:
+    print('positive!')
+</code></pre>
+<h3 id="三元表达式">三元表达式</h3>
+<pre><code>In [126]: x = 5
+
+In [127]: 'Non-negative' if x &gt;= 0 else 'Negative'
+Out[127]: 'Non-negative'
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[新能源汽车大数据分析 （一）]]></title>
         <id>https://xioafanwu.github.io/post/xin-neng-yuan-qi-che-da-shu-ju-fen-xi-yi</id>
@@ -977,56 +1097,6 @@ import statsmodels as sm</p>
 <li>ls.reserve:将列表ls中元素反转</li>
 </ul>
 </li>
-</ul>
-</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[python mooc 6.1——集合类型及操作]]></title>
-        <id>https://xioafanwu.github.io/post/python-61</id>
-        <link href="https://xioafanwu.github.io/post/python-61">
-        </link>
-        <updated>2019-11-27T15:09:20.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="组合数据类型">组合数据类型</h1>
-<h2 id="集合类型和操作">集合类型和操作</h2>
-<ol>
-<li>集合的定义
-<ul>
-<li>set()</li>
-<li>{}定义</li>
-</ul>
-</li>
-<li>集合特点
-<ul>
-<li>无序</li>
-<li>不重复</li>
-</ul>
-</li>
-<li>集合操作
-<ul>
-<li>S|T：返回新集合，包含S和T中所有元素</li>
-<li>S-T：返回新集合，包含在S不在T中元素</li>
-<li>S&amp;T：返回新集合，S和T中都有的元素</li>
-<li>S^T：返回新集合，包含S和T不相同元素</li>
-<li>S&lt;=T：判断S和T的子集关系，返回True或False</li>
-<li>S|=T:更新集合，包含S和T所有元素</li>
-<li>S-=T：更新集合</li>
-</ul>
-</li>
-<li>集合处理方法
-<ul>
-<li>S.add:增加新元素</li>
-<li>S.disadd:去除新元素</li>
-<li>S.remove:去除元素，没有报错</li>
-<li>S.copy:复制S的一个副本</li>
-<li>len(S):返回S元素个数</li>
-<li>x in S:判断S是否有x元素</li>
-</ul>
-</li>
-<li>应用场景
-<ul>
-<li>数据去重</li>
 </ul>
 </li>
 </ol>

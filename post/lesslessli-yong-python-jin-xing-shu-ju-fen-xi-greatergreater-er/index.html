@@ -6,7 +6,7 @@
 <meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <meta HTTP-EQUIV="expires" CONTENT="0"> 
-<title>新能源汽车大数据分析 （一） | LSG</title>	
+<title>《利用Python进行数据分析》（二） | LSG</title>	
 
 <link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
 <script type="text/javascript">
@@ -56,7 +56,7 @@ window.onload=getCSS();
 			
 		<header id="header" class="site-header" 
 		
-		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(https://xioafanwu.github.io/post-images/xin-neng-yuan-qi-che-da-shu-ju-fen-xi-yi.png)"
+		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(https://xioafanwu.github.io/post-images/lesslessli-yong-python-jin-xing-shu-ju-fen-xi-greatergreater-er.png)"
 		
 		>
 			<div class="site-branding">
@@ -144,10 +144,10 @@ window.onload=getCSS();
 	
 	                      
 		<div class="entry-content">
-			<h1 class="wow swing entry-title">新能源汽车大数据分析 （一）</h1>
+			<h1 class="wow swing entry-title">《利用Python进行数据分析》（二）</h1>
 <div class="entry-meta">
 <div class="wow bounce">
-	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2019-12-09 14:57:16" itemprop="datePublished" pubdate="">2019-12-09</time></i>
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2019-12-09 16:09:06" itemprop="datePublished" pubdate="">2019-12-09</time></i>
 	          </div>
 			
 </span>
@@ -155,126 +155,131 @@ window.onload=getCSS();
 		</div>
                   
 			<div class="wow slideInLeft entry-summary song">
-				<h2 id="大数据简介">大数据简介</h2>
-<h3 id="大数据的产生与发展">大数据的产生与发展</h3>
-<p>人类社会的数据产生方式的三个阶段。</p>
+				<h2 id="ipython基础">IPython基础</h2>
+<h3 id="tab补全功能">Tab补全功能</h3>
 <ol>
-<li>运营式阶段：人为地构建数据库，数据随运营活动产生，被动的产生。比如：超市、银行。</li>
-<li>用户原创内容阶段：博客 微博社交网络，用户主动产生数据</li>
-<li>感知式阶段：感知监控设备，自动产生数据。</li>
-<li>大数据技术
-<ol>
-<li>Mapreduce：并行处理技术</li>
-<li>云计算 分布式文件存储系统</li>
-<li>Spark</li>
-</ol>
+<li>
+<p>补全变量</p>
+</li>
+<li>
+<p>补全函数</p>
+</li>
+<li>
+<p>对象的方法和属性</p>
+<pre><code class="language-python">In [3]: b = [1, 2, 3]
+
+In [4]: b.&lt;Tab&gt;
+b.append  b.count   b.insert  b.reverse
+b.clear   b.extend  b.pop     b.sort
+b.copy    b.index   b.remove
+</code></pre>
+</li>
+<li>
+<p>补全模块</p>
 </li>
 </ol>
-<h3 id="大数据的概念与特征">大数据的概念与特征</h3>
+<h3 id="自省">自省</h3>
 <ol>
-<li>大数据定义
+<li>在变量前后使用？ 显示对象信息</li>
+<li>对象可以是函数或实例方法</li>
+<li>？？ 显示函数源码</li>
+</ol>
+<h3 id="run命令">%run命令</h3>
 <ol>
-<li>3V定义：规模性 多样性 高速性</li>
-<li>利用常用软件不能及时处理的数据集</li>
+<li>%run 文件名.py</li>
 </ol>
-</li>
-<li>大数据特征
+<h3 id="中断运行的代码">中断运行的代码</h3>
 <ol>
-<li>规模性：数量大 PB</li>
-<li>多样性：数据种类，结构非结构 图片 音频</li>
-<li>高速性</li>
-<li>价值性：通过规模效益整合低价值密度的数据为高价值信息</li>
-<li>易变性：不规则和模糊不清</li>
-<li>不确定性</li>
+<li>运行时按ctrl-c</li>
 </ol>
-</li>
-</ol>
-<h3 id="大数据的价值与挑战">大数据的价值与挑战</h3>
+<h3 id="从剪贴板执行程序">从剪贴板执行程序</h3>
 <ol>
-<li>大数据价值
+<li>%paste</li>
+<li>%cpaste函数</li>
+</ol>
+<h3 id="ipython的魔术命令">IPython的魔术命令</h3>
 <ol>
-<li>挖掘细分市场</li>
-<li>精准营销</li>
-<li>提升决策水平</li>
+<li>%timeit：测量python语句执行时间</li>
+<li>%magic：查看所有魔术命令</li>
+<li>%debug：出现异常进入调试模式</li>
+<li>%reset：删除命令空间变量和名字</li>
+<li>%who：显示命令空间的变量</li>
 </ol>
-</li>
-<li>大数据挑战
+<h2 id="python语法基础">Python语法基础</h2>
+<h3 id="变量和参数引用">变量和参数引用</h3>
 <ol>
-<li>大数据集成
+<li>赋值能将数据复制</li>
+</ol>
+<pre><code>In [8]: a = [1, 2, 3]
+In [9]: b = a
+In [10]: a.append(4)
+In [11]: b
+Out[11]: [1, 2, 3, 4]
+</code></pre>
+<h3 id="动态引用-强类型">动态引用 强类型</h3>
 <ol>
-<li>广泛的异构性
+<li>isinstance：检查对象类型</li>
+<li>is 判断类型是否相同</li>
+</ol>
+<pre><code>In [23]: a = 5; b = 4.5
+In [24]: isinstance(a, (int, float))
+Out[24]: True
+In [25]: isinstance(b, (int, float))
+Out[25]: True
+</code></pre>
+<h3 id="引入">引入</h3>
 <ol>
-<li>数据类型从结构化数据转向结构化 半结构化 非结构化融合</li>
-<li>数据源 产生方式变化</li>
-<li>数据存储方式的变化</li>
+<li>从同目录下访问其他python文件</li>
 </ol>
-</li>
-<li>数据质量
+<h3 id="可变与不可变对象">可变与不可变对象</h3>
 <ol>
-<li>数据清洗</li>
+<li>列表、字典、NumPy数组都是可变的</li>
+<li>字符串 元祖不可变</li>
 </ol>
-</li>
-</ol>
-</li>
-<li>大数据分析
+<h3 id="字符串">字符串</h3>
 <ol>
-<li>传统数据分析流程：数据库存储结构化数据，构建数据仓库，根据需要构建数据立方体联机分析处理</li>
-<li>大数据分析挑战
+<li>字符串不可修改</li>
+<li>字符串可以list转化为序列</li>
+<li>\转义 加r表示字符就是本身</li>
+<li>format方法</li>
+</ol>
+<h3 id="日期和时间">日期和时间</h3>
 <ol>
-<li>数据处理的实时性</li>
-<li>动态变化环境中索引设计</li>
-<li>先验知识缺乏</li>
+<li>datetime模块</li>
+<li>对象的差产生datetime.timedelta</li>
 </ol>
-</li>
-</ol>
-</li>
-<li>大数据隐私问题
-<ol>
-<li>隐形数据的暴露：数据获取和基础集成</li>
-<li>数据公开与隐私保护的矛盾</li>
-<li>数据动态性</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="车辆大数据与应用">车辆大数据与应用</h2>
-<h3 id="汽车行业大数据应用">汽车行业大数据应用</h3>
-<ol>
-<li>车企数据挖掘：精准营销 扩大用户群</li>
-<li>车企：用户管理 提高售后服务 个性化服务</li>
-<li>汽车厂商：收集用户反馈</li>
-<li>应用于其他配套服务行业：保险公司</li>
-<li>用于无人驾驶</li>
-</ol>
-<h3 id="新能源汽车大数据应用">新能源汽车大数据应用</h3>
-<ol>
-<li>安全预警和管理：电池运行 充电 检修监测</li>
-<li>车辆运行管理和统计：整车性能统计分析 电池组性能统计分析 车辆运营统计分析</li>
-<li>车辆技术分析
-<ol>
-<li>电池SOC估计</li>
-<li>续航里程估计</li>
-<li>动力电池系统运行管理</li>
-<li>充电桩运营</li>
-</ol>
-</li>
-</ol>
+<h3 id="pass">Pass</h3>
+<ul>
+<li>非操作语句</li>
+<li>不需要任何动作可以使用</li>
+</ul>
+<pre><code>if x &lt; 0:
+    print('negative!')
+elif x == 0:
+    # TODO: put something smart here
+    pass
+else:
+    print('positive!')
+</code></pre>
+<h3 id="三元表达式">三元表达式</h3>
+<pre><code>In [126]: x = 5
+
+In [127]: 'Non-negative' if x &gt;= 0 else 'Negative'
+Out[127]: 'Non-negative'
+</code></pre>
 
 							</div>
 	<div class="wow bounceInDown vt-post-tags">
  
-				<a href="https://xioafanwu.github.io/tag/ZJJjECf9a" rel="tag">大数据分析</a>	
+				<a href="https://xioafanwu.github.io/tag/hud56EXOZ" rel="tag">python</a>	
 				 
 					</div>						
 <nav class="navigation3 post-navigation3" role="navigation">
 		
 		<div class="nav-links3">
       
-		<div class="wow bounceInLeft nav-previous3"><a href="https://xioafanwu.github.io/post/lesslessli-yong-python-jin-xing-shu-ju-fen-xi-greatergreater-er" rel="prev"> 《利用Python进行数据分析》（二）</a></div>
 		 
-		 
-		<div class="wow bounceInRight nav-next3"><a href="https://xioafanwu.github.io/post/wu-ren-jia-shi-che-liang-chang-yong-gan-zhi-chuan-gan-qi-er" rel="next"> 无人驾驶车辆常用感知传感器（二）</a></div>
+		<div class="wow bounceInRight nav-next3"><a href="https://xioafanwu.github.io/post/xin-neng-yuan-qi-che-da-shu-ju-fen-xi-yi" rel="next"> 新能源汽车大数据分析 （一）</a></div>
 		
 		</div>
 	</nav>
