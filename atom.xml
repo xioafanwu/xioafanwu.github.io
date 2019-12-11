@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
     <title>LSG</title>
-    <updated>2019-12-10T02:55:29.199Z</updated>
+    <updated>2019-12-11T07:49:17.204Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
@@ -10,6 +10,308 @@
     <logo>https://xioafanwu.github.io/images/avatar.png</logo>
     <icon>https://xioafanwu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, LSG</rights>
+    <entry>
+        <title type="html"><![CDATA[无人驾驶环境感知技术（二）]]></title>
+        <id>https://xioafanwu.github.io/post/wu-ren-jia-shi-huan-jing-gan-zhi-ji-zhu-er</id>
+        <link href="https://xioafanwu.github.io/post/wu-ren-jia-shi-huan-jing-gan-zhi-ji-zhu-er">
+        </link>
+        <updated>2019-12-11T07:48:06.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="交通信号灯与交通标志检测">交通信号灯与交通标志检测</h3>
+<h4 id="识别方法">识别方法</h4>
+<ol>
+<li>基于色彩特征
+<ul>
+<li>适用于背景简单场景，环境复杂，虚警率高</li>
+</ul>
+</li>
+<li>基于形状特征
+<ul>
+<li>需要建立形状特征规则，不灵活</li>
+</ul>
+</li>
+<li>基于模板匹配
+<ul>
+<li>建立不同样式的交通信号灯模板</li>
+</ul>
+</li>
+</ol>
+<h4 id="交通灯识别系统结构">交通灯识别系统结构</h4>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/12/11/Sq8UNDMQFBjzIle.png" alt="quicker_78d915fa-9456-4d0c-b2da-6fa0d0ccf9f4.png"></figure>
+<ol>
+<li>图像采集模块</li>
+<li>图像预处理模块
+<ol>
+<li>彩色空间转换</li>
+<li>彩色分割</li>
+<li>噪声去除</li>
+<li>区域标记</li>
+</ol>
+</li>
+<li>识别模块
+<ol>
+<li>离线训练样本得到分类器</li>
+<li>在线识别</li>
+</ol>
+</li>
+<li>跟踪模块</li>
+</ol>
+<h4 id="识别算法">识别算法</h4>
+<ol>
+<li>
+<p>RGB颜色空间到HSV颜色空间的转化</p>
+<ul>
+<li>RGB空间三个彩色分量具有相关性，不利于彩色分割</li>
+<li>HSV空间包含三个分分量（色调、饱和度、明度）</li>
+</ul>
+</li>
+<li>
+<p>阈值分割法</p>
+<ol>
+<li>
+<p>在HSV彩色空间设定阈值，与图像像素HSV各个分量进行比较</p>
+</li>
+<li>
+<p>阈值的选取</p>
+<ol>
+<li>大量数据统计</li>
+<li>考虑到不同气候环境、光线下会影响交通信号灯HSV各分量，进行微调</li>
+</ol>
+</li>
+<li>
+<p>检测结果</p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/12/11/lTdownzGDa3m957.png" alt="quicker_64b00038-0b14-4a76-adda-20e642277fe8.png"></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="形态学处理">形态学处理</h4>
+<ol>
+<li>
+<p>目的：去除二值化图像的噪声影响，方便感兴趣区域的建立和目标识别后的校验</p>
+</li>
+<li>
+<p>方法：腐蚀和膨胀运算</p>
+</li>
+<li>
+<p>腐蚀</p>
+<ul>
+<li>
+<p>使用一个宽m,高n的矩形作为模板，像素x置于模板的中心，根据模板的大小，遍历所有被模板覆盖的其他像素，修改像素x的值为所有像素中最小的值。从而将图像外围的突出点加以腐蚀。表现在图像上为黑色区域增大，白色区域减少。</p>
+</li>
+<li>
+<p>腐蚀结果</p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2019/12/11/kY5iIufd1emgTqv.png" alt="quicker_871efc36-f123-45b3-9db2-7dce412a5f51.png"></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>膨胀</p>
+<ul>
+<li>
+<p>膨胀操作与腐蚀操作相反，是将图像的轮廓加以膨胀。操作方法与腐蚀操作类似，也是拿一个矩形模板，对图像的每个像素做遍历处理。不同之处在于修改像素的值不是所有像素中最小的值，而是最大的值。</p>
+</li>
+<li>
+<p>结果</p>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2019/12/11/2c8L3PtMwYiq1oH.png" alt="quicker_7f0207b9-b237-4d43-a9a9-522e5604a6b8.png"></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>形态学处理结果</p>
+<figure data-type="image" tabindex="5"><img src="https://i.loli.net/2019/12/11/xnbzV7GcEA2MZDm.png" alt="quicker_b9386d84-796e-4e61-9e3c-5dac06695337.png"></figure>
+</li>
+</ol>
+<h4 id="基于几何形状检测">基于几何形状检测</h4>
+<ul>
+<li>阈值分割，不满足阈值要求设为0</li>
+<li>轮廓查找，计算轮廓点集最外的矩形框</li>
+<li>采用矩形框的细长比特征筛选矩形框</li>
+</ul>
+<h4 id="基于颜色和形状检测">基于颜色和形状检测</h4>
+<ul>
+<li>通过对交通信号灯面积和长宽比的统计，获得交通信号灯灯泡的面积的上限为50，下限为10，交通灯的圆形度≥0.6。</li>
+<li>在对图像进行颜色分割处理后，用交通灯的面积和交通灯的圆形度进一步筛选，并将符合阈值要求的交通灯区域采用矩形框形式画出来</li>
+</ul>
+<h3 id="交通标志检测">交通标志检测</h3>
+<h4 id="深度学习方法介绍">深度学习方法介绍</h4>
+<ol>
+<li>
+<p>人工神经网络</p>
+<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2019/12/11/7grQKdE8TISjpeN.png" alt="quicker_0e370b92-be41-49d0-a95c-9ad60b20d2eb.png"></figure>
+<ol>
+<li>
+<p>分布式并行信息处理算法数学模型</p>
+</li>
+<li>
+<p>节点相互连接</p>
+</li>
+<li>
+<p>节点代表一种输出函数——激励函数</p>
+</li>
+<li>
+<p>节点之间的连接代表对于通过该连接信号的加权值——权重</p>
+</li>
+<li>
+<p>网络本身是一种对自然界某种算法或函数的逼近</p>
+</li>
+<li>
+<p>神经网络的训练</p>
+<figure data-type="image" tabindex="7"><img src="https://i.loli.net/2019/12/11/CMTyoFj31XdYPi8.png" alt="quicker_93245e0c-f3d0-4dcc-b82d-50a1bf36504f.png"></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>深度学习</p>
+<ol>
+<li>多级非线性变换层级机器学习方法</li>
+<li>多种深度学习框架
+<ol>
+<li>深度神经网络</li>
+<li>卷积神经网络</li>
+<li>深度置信网络</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>卷积神经网络（CNN）</p>
+<ol>
+<li>
+<p>构成</p>
+<figure data-type="image" tabindex="8"><img src="https://i.loli.net/2019/12/11/KTWnbv3C74FMSsx.png" alt="quicker_2819300b-998a-41c0-ac1f-9fd199c6865a.png"></figure>
+</li>
+<li>
+<p>卷积层</p>
+<ol>
+<li>
+<p>卷积核大小</p>
+</li>
+<li>
+<p>卷积核数量</p>
+<ol>
+<li>一个卷积核提取某一种特征</li>
+<li>多个卷积核提取多重特征</li>
+<li>不同卷积核将提取到不同的特征数据</li>
+</ol>
+</li>
+<li>
+<p>步长</p>
+<ol>
+<li>
+<p>卷积核在输入数据上每次滑动的像素数</p>
+<figure data-type="image" tabindex="9"><img src="https://i.loli.net/2019/12/11/3WvosJip2cKV7u8.png" alt="quicker_dcf4a879-aea0-4a44-99ed-7c3982872af0.png"></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>补零</p>
+<ol>
+<li>由于卷积核的大小不一定被输入数据的维度大小所整除，因此卷积核可能不能完全覆盖边界元素，采用补零操作防止信息丢失。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>池化层</p>
+<ol>
+<li>通常在两个相邻的卷积层之间插入池化层操作</li>
+<li>减少参数量，防止过拟合；</li>
+<li>保持局部线性变换的不变性</li>
+</ol>
+</li>
+<li>
+<p>全连接层</p>
+<ol>
+<li>卷积层提取了细化的特征，细到人眼看不出来的程度，全连接层就是将学习到的特征整合起来，形成可以实现分类的数据。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="基于深度学习的交通限速标志检测">基于深度学习的交通限速标志检测</h4>
+<ol>
+<li>
+<p>输入输出</p>
+<ol>
+<li>输入就是交通限速标志图片</li>
+<li>输出就是类别标签</li>
+</ol>
+</li>
+<li>
+<p>数据预处理</p>
+<ol>
+<li>数据获取</li>
+<li>数据标记</li>
+<li>数据增强
+<ol>
+<li>对原图像裁剪，放大，变形，翻转，调整色调，增加数据量，提高模型泛化能力，避免过拟合</li>
+</ol>
+</li>
+<li>数据划分
+<ol>
+<li>划分为训练集和测试集</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>建立模型</p>
+<figure data-type="image" tabindex="10"><img src="https://i.loli.net/2019/12/11/PUiYexaEgJbLNy2.png" alt=""></figure>
+</li>
+<li>
+<p>训练模型</p>
+<ol>
+<li>
+<p>初始化所有的参数（卷积核的参数和偏置，全连接层的权重和偏置）</p>
+</li>
+<li>
+<p>手动设置超参数（学习率，迭代次数，迭代轮数等）开始训练</p>
+</li>
+<li>
+<p>若最终模型不收敛或精度不够，调整超参数设置，重新训练</p>
+</li>
+<li>
+<p>前向传播</p>
+<ol>
+<li>
+<p>定义损失函数</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>J</mi><mo>(</mo><mi>W</mi><mo separator="true">,</mo><mi>b</mi><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><mn>50</mn></mfrac><msubsup><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mn>50</mn></msubsup><msup><mrow><mo fence="true">(</mo><msub><mi>y</mi><mtext>predicted</mtext></msub><mo>−</mo><mi>y</mi><mo fence="true">)</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">J(W, b)=\frac{1}{50} \sum_{n=1}^{50}\left(y_{\text {predicted}}-y\right)^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.299008em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">predicted</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+</ol>
+</li>
+<li>
+<p>反向传播</p>
+<ol>
+<li>BP算法</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Word添加参考文献引用]]></title>
+        <id>https://xioafanwu.github.io/post/word-tian-jia-can-kao-wen-xian-yin-yong</id>
+        <link href="https://xioafanwu.github.io/post/word-tian-jia-can-kao-wen-xian-yin-yong">
+        </link>
+        <updated>2019-12-10T13:05:32.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="参考文献标准格式">参考文献标准格式</h2>
+<ol>
+<li>知网/万方支持导出参考文献</li>
+<li>百度学术-引用-复制标准格式</li>
+</ol>
+<h2 id="引用参考文献">引用参考文献</h2>
+<ol>
+<li>开始-编号格式-[]，给参考文献编号</li>
+<li>在需要标注的位置-交叉引用<br>
+<img src="https://i.loli.net/2019/12/10/bySZKv5RJI8wP6h.png" alt="quicker_7d9a295e-57d1-42ca-ace1-b62657229f55.png"></li>
+<li>上标<br>
+<img src="https://i.loli.net/2019/12/10/JpDUMV3gEzSO8cB.png" alt="quicker_36597b66-f1fa-47b0-92e6-f22dcf1e7dc8.png"></li>
+<li>完成</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[无人驾驶车辆环境感知技术  （一）]]></title>
         <id>https://xioafanwu.github.io/post/wu-ren-jia-shi-che-liang-huan-jing-gan-zhi-ji-zhu-yi</id>
@@ -1205,60 +1507,6 @@ import statsmodels as sm</p>
 <li>加载项-加载power pivot功能</li>
 <li>自定义功能区加入power pivot</li>
 <li>pivot可以生成数据透视图和数据透视表</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[python mooc 6.5——jieba库安装使用]]></title>
-        <id>https://xioafanwu.github.io/post/python-mooc-65-jieba-ku-an-zhuang-shi-yong</id>
-        <link href="https://xioafanwu.github.io/post/python-mooc-65-jieba-ku-an-zhuang-shi-yong">
-        </link>
-        <updated>2019-12-02T14:37:30.000Z</updated>
-        <content type="html"><![CDATA[<ol>
-<li>安装命令行输入 pip install jieba</li>
-<li>使用
-<ul>
-<li>jieba.lcut(s):精确模式，返回一个列表类型的分词结果，没有冗余</li>
-<li>jieba.lct(s.cut_all=True):返回一个列表类型的数据，存在冗余</li>
-<li>jieba.lct_for_search(s):搜索引擎模式，返回一个列表类的分词结果，存在冗余</li>
-</ul>
-</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[python mooc 6.3——字典类型及操作]]></title>
-        <id>https://xioafanwu.github.io/post/python-mooc-63-zi-dian-lei-xing-ji-cao-zuo</id>
-        <link href="https://xioafanwu.github.io/post/python-mooc-63-zi-dian-lei-xing-ji-cao-zuo">
-        </link>
-        <updated>2019-12-01T13:50:45.000Z</updated>
-        <content type="html"><![CDATA[<ol>
-<li>字典的定义
-<ul>
-<li>字典是键值对的集合，键值对之间无序</li>
-</ul>
-</li>
-<li>字典的创建
-<ul>
-<li>大括号{}和dict</li>
-<li>键值用冒号表示</li>
-<li>d={&quot;中国&quot;:北京,&quot;美国&quot;:&quot;华盛顿&quot;,&quot;法国&quot;:&quot;巴黎&quot;}</li>
-</ul>
-</li>
-<li>字典处理函数和方法
-<ul>
-<li>del d[k]:删除字典d中键k对应的数据值</li>
-<li>k in d:判断键k是否在字典d中</li>
-<li>d.keys():返回字典d中所有的键的信息</li>
-<li>d.values():返回字典d中所有的值信息</li>
-<li>d.items():返回字典d中所有的键值对</li>
-<li>d.get(k,<default>):键k存在返回相应值，不存在返回默认值</li>
-<li>d.pop(k,<default>):键k存在取出相应值，不存在返回默认值</li>
-<li>d.popitem():随机从字典d中取出一个键值对</li>
-<li>d.clear:删除所有键值对</li>
-<li>len(d):返回字典d的元素个数</li>
-</ul>
-</li>
 </ol>
 ]]></content>
     </entry>
