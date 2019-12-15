@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
     <title>LSG</title>
-    <updated>2019-12-15T07:54:24.181Z</updated>
+    <updated>2019-12-15T08:00:00.678Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
@@ -102,6 +102,16 @@
 <li>当状态变化缓慢时，加大步长以减少计算时间</li>
 <li>当状态变化很快时，减小步长以提高积分精度</li>
 </ul>
+</li>
+<li>
+<p>Simulink提供的积分算法</p>
+<ol>
+<li>ode5：Dormand-Prince法</li>
+<li>ode4：RK4，四阶龙格-库塔法</li>
+<li>ode3：Bogacki-Shampine法</li>
+<li>ode2：改进欧拉法</li>
+<li>ode1：前向欧拉法</li>
+</ol>
 </li>
 </ol>
 ]]></content>
