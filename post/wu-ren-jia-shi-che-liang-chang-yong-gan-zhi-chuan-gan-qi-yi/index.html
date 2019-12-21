@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>无人驾驶车辆常用感知传感器（一） | LSG</title>
 <meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1576913522131">
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1576915540322">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://xioafanwu.github.io">
-  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1576913522131" alt="">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1576915540322" alt="">
   </a>
   <h1 class="site-title">
     LSG
@@ -80,7 +80,7 @@
                 2019-12-04
               </span>
               <span>
-                4 min read
+                5 min read
               </span>
               
                 <a href="https://xioafanwu.github.io/tag/TOXjoYI1p" class="post-tag">
@@ -93,7 +93,10 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h3 id="激光雷达">激光雷达</h3>
+                <blockquote>
+<p>无人驾驶车辆常用的环境感知传感器包括：激光雷达、微波雷达、视觉、超声波传感器。各种传感器的适用范围不一样。激光雷达适用于环境复杂的城市环境；毫米波雷达适用与高速公路情况下；视觉传感器比较灵活；超声波传感器检测距离短通常用于车身两侧。本文主要介绍了激光雷达和毫米波的相关知识。包括激光雷达的原理、分类和一些性能。以SICK LMS 5U为例介绍了二维雷达的数据接口和数据报文分析。以HDL-64ES2为例介绍了三维激光雷达的主要参数指标。另外，还介绍了激光雷达的标定过程。激光雷达标定主要分为内参数标定和外参数标定，内参标定即内部激光器与雷达自身坐标系的转换在出厂前就已完成。外参标定指的是雷达坐标系到车身坐标系的转换。主要确定的是坐标系转换的旋转矩阵和平移矩阵。用纸箱法求解超定方程。</p>
+</blockquote>
+<h2 id="激光雷达">激光雷达</h2>
 <ol>
 <li>
 <p>概述</p>
@@ -146,7 +149,7 @@
 </ol>
 </li>
 </ol>
-<h4 id="二维激光雷达-sick-lms-511">二维激光雷达 SICK LMS 511</h4>
+<h3 id="二维激光雷达-sick-lms-511">二维激光雷达 SICK LMS 511</h3>
 <ol>
 <li>
 <p>数据接口</p>
@@ -169,7 +172,7 @@
 </ul>
 </li>
 </ol>
-<h4 id="三维激光雷达-hdl-64e-s2">三维激光雷达 HDL-64E S2</h4>
+<h3 id="三维激光雷达-hdl-64e-s2">三维激光雷达 HDL-64E S2</h3>
 <ol>
 <li>参数指标
 <ul>
@@ -187,7 +190,7 @@
 </ul>
 </li>
 </ol>
-<h4 id="激光雷达的标定">激光雷达的标定</h4>
+<h3 id="激光雷达的标定">激光雷达的标定</h3>
 <ol>
 <li>
 <p>内参标定</p>
@@ -238,15 +241,11 @@
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li>
-<ul>
 <li><a href="#%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE">激光雷达</a>
 <ul>
 <li><a href="#%E4%BA%8C%E7%BB%B4%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE-sick-lms-511">二维激光雷达 SICK LMS 511</a></li>
 <li><a href="#%E4%B8%89%E7%BB%B4%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE-hdl-64e-s2">三维激光雷达 HDL-64E S2</a></li>
 <li><a href="#%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E6%A0%87%E5%AE%9A">激光雷达的标定</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
