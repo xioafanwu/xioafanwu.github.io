@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
     <title>LSG</title>
-    <updated>2019-12-16T10:38:02.003Z</updated>
+    <updated>2019-12-21T07:32:07.337Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
@@ -10,6 +10,171 @@
     <logo>https://xioafanwu.github.io/images/avatar.png</logo>
     <icon>https://xioafanwu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, LSG</rights>
+    <entry>
+        <title type="html"><![CDATA[无人驾驶绪论]]></title>
+        <id>https://xioafanwu.github.io/post/wu-ren-jia-shi-xu-lun</id>
+        <link href="https://xioafanwu.github.io/post/wu-ren-jia-shi-xu-lun">
+        </link>
+        <updated>2019-12-21T07:26:14.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>本章介绍了无人驾驶车辆的应用前景，包括在未来智能交通领域的发展以及在矿区、园区等特定场景的运用和在国防事业中无人驾驶的优势和应用场景。其中介绍了无人驾驶根据监控、控制、工况和失效行为人分为0-5六个等级。另外，还介绍了经典以及扩展的无人驾驶车辆系统结构，经典结构包括：感知层、任务规划层、行为执行层和运动规划层。拓展的结构引入了决策层（3D高精度地图）和引入人工智能的无人驾驶车辆结构。</p>
+</blockquote>
+<h2 id="无人驾驶车辆的应用前景">无人驾驶车辆的应用前景</h2>
+<h3 id="无人驾驶车辆在智能交通中的应用">无人驾驶车辆在智能交通中的应用</h3>
+<ol>
+<li>
+<p>为什么要求只能驾驶技术</p>
+<ul>
+<li>公路等级提高</li>
+<li>车辆保有量增加</li>
+<li>车速大幅度提高</li>
+<li>对人们驾驶技术要求越来越高</li>
+</ul>
+</li>
+<li>
+<p>自动驾驶分级<br>
+<img src="https://tva2.sinaimg.cn/large/00705hvsgy1ga4dmopdarj312c0fq7gi.jpg" alt="image"></p>
+<ol>
+<li>L0无自动驾驶</li>
+<li>L1辅助驾驶：驾驶员控制横向或纵向的家是任务</li>
+<li>L2部分自动驾驶：驾驶员持续检测驾驶任务和驾驶环境</li>
+<li>有条件自动驾驶：不需要持续检测驾驶任务，但是需要能够随时恢复控制，eg:ACC自适应巡航控制</li>
+<li>高度自动驾驶：一定条件下不需要驾驶员纯在</li>
+<li>完全自动驾驶</li>
+</ol>
+<blockquote>
+<p>智能网联汽车定义：搭载先进车载传感器、控制器、执行器等装置，融合现代通信和网络技术，具备复杂环境感知、智能化决策、自动化控制功能，使车辆与外部节点间实现信息共享与控制协同，实现“零伤亡、零拥堵”，达到安全、高效、经济行驶的下一代汽车</p>
+</blockquote>
+</li>
+<li>
+<p>无人驾驶和车联网</p>
+<ol>
+<li>指车与车（V2V）、车与路面基础设施（V2I）、车与人（V2P）、车与传感设备的交互，实现车辆与公众网络通信的动态移动通信系统</li>
+</ol>
+</li>
+<li>
+<p>无人驾驶与智能交通系统</p>
+<ol>
+<li>什么是只能交通系统
+<ol>
+<li>将先进信息技术、通信技术、传感技术和控制技术以及计算机技术有效集成与用于整个交通运输管理系统，从而建立起一种大范围全方位发挥作用的实时准确高效的运输和管理系统</li>
+</ol>
+</li>
+<li>作用
+<ol>
+<li>信息的收集、处理发布、交换、分析、利用，为交通参与者提供多样性服务</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="无人驾驶车辆在矿区-园区等区域的应用">无人驾驶车辆在矿区、园区等区域的应用</h3>
+<ol>
+<li>局部封闭场所，地图信息已知且环境信息相对简单，实现无人驾驶功能并不复杂</li>
+<li>停车场</li>
+<li>园区</li>
+<li>矿区</li>
+</ol>
+<h3 id="无人驾驶车辆在国防安全领域的应用">无人驾驶车辆在国防安全领域的应用</h3>
+<ol>
+<li>预警侦察、未爆弹药处理、战场救护</li>
+<li>无人作战平台</li>
+</ol>
+<h2 id="无人驾驶车辆结构组成">无人驾驶车辆结构组成</h2>
+<ol>
+<li>
+<p>总体结构</p>
+<ol>
+<li>对原有车型加装执行机构、感知设备等进行无人驾驶功能改装</li>
+<li>全抛弃原有车辆外型，从实现无人驾驶功能的角度出发设计车辆外型，从而创造出全新车型</li>
+</ol>
+</li>
+<li>
+<p>经典软件结构</p>
+<figure data-type="image" tabindex="1"><img src="https://tvax3.sinaimg.cn/large/00705hvsly1ga4cqhutbbj309606sq3f.jpg" alt="image"></figure>
+<ol>
+<li>感知融合层</li>
+<li>任务规划层：形成到达下一监测点的可行路径</li>
+<li>行为执行层：根据根据规划层和感知层的信息，产生局部任务</li>
+<li>运动规划层：根据执行层的运动目标生成相应运动轨迹</li>
+</ol>
+</li>
+<li>
+<p>引入决策层的系统</p>
+<figure data-type="image" tabindex="2"><img src="https://tvax3.sinaimg.cn/large/00705hvsgy1ga4cy0bxr5j30fa0hb76f.jpg" alt="image"></figure>
+<ol>
+<li>加入车联网和3D高精度地图</li>
+</ol>
+</li>
+<li>
+<p>引入人工智能的系统</p>
+<figure data-type="image" tabindex="3"><img src="https://tvax2.sinaimg.cn/large/00705hvsgy1ga4cyrcoltj30e10ew761.jpg" alt="image"></figure>
+</li>
+<li>
+<p>入门结构</p>
+<figure data-type="image" tabindex="4"><img src="https://tva3.sinaimg.cn/large/00705hvsgy1ga4d7vmea2j30f30b7jsn.jpg" alt="image"></figure>
+</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[无人驾驶车辆路径跟踪]]></title>
+        <id>https://xioafanwu.github.io/post/wu-ren-jia-shi-che-liang-lu-jing-gen-zong</id>
+        <link href="https://xioafanwu.github.io/post/wu-ren-jia-shi-che-liang-lu-jing-gen-zong">
+        </link>
+        <updated>2019-12-17T02:57:07.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="阿克曼转向车辆运动学">阿克曼转向车辆运动学</h2>
+<h3 id="车辆运动学模型">车辆运动学模型</h3>
+<figure data-type="image" tabindex="1"><img src="https://tva2.sinaimg.cn/large/00705hvsly1g9zi3cov0dj30lv0a2tam.jpg" alt="image"></figure>
+<figure data-type="image" tabindex="2"><img src="https://tva3.sinaimg.cn/large/00705hvsly1g9zi49zu31j30ke09dabn.jpg" alt="image"></figure>
+<figure data-type="image" tabindex="3"><img src="https://tva4.sinaimg.cn/large/00705hvsly1g9zjbooj3jj30ky091q4g.jpg" alt="image"></figure>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mo fence="true">[</mo><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mover accent="true"><mi>X</mi><mo>˙</mo></mover><mi mathvariant="normal">r</mi></msub></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mover accent="true"><mi>Y</mi><mo>˙</mo></mover><mi mathvariant="normal">r</mi></msub></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mover accent="true"><mi>φ</mi><mo>˙</mo></mover></mstyle></mtd></mtr></mtable><mo fence="true">]</mo></mrow><mo>=</mo><mrow><mo fence="true">[</mo><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>cos</mi><mo>⁡</mo><mi>φ</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>sin</mi><mo>⁡</mo><mi>φ</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr></mtable><mo fence="true">]</mo></mrow><msub><mi>v</mi><mi mathvariant="normal">r</mi></msub><mo>+</mo><mrow><mo fence="true">[</mo><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd></mtr></mtable><mo fence="true">]</mo></mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\left[\begin{array}{c}{\dot{X}_{\mathrm{r}}} \\ {\dot{Y}_{\mathrm{r}}} \\ {\dot{\varphi}}\end{array}\right]=\left[\begin{array}{c}{\cos \varphi} \\ {\sin \varphi} \\ {0}\end{array}\right] v_{\mathrm{r}}+\left[\begin{array}{l}{0} \\ {0} \\ {1}\end{array}\right] \omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.7603800000000005em;vertical-align:-1.6301900000000007em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎣</span></span></span><span style="top:-4.05002em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎡</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55002em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.13019em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9201900000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span><span style="top:-3.25233em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.055550000000000016em;">˙</span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">r</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-2.9298099999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9201900000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span><span style="top:-3.25233em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.13889em;">˙</span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">r</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-1.7298099999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">φ</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.055550000000000016em;">˙</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.6301900000000007em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎦</span></span></span><span style="top:-4.05002em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎤</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55002em;"><span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.60004em;vertical-align:-1.55002em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎣</span></span></span><span style="top:-4.05002em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎡</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55002em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mop">cos</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">φ</span></span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mop">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">φ</span></span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎦</span></span></span><span style="top:-4.05002em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎤</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55002em;"><span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">r</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:3.60004em;vertical-align:-1.55002em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎣</span></span></span><span style="top:-4.05002em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎡</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55002em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">0</span></span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">0</span></span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎦</span></span></span><span style="top:-4.05002em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎤</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55002em;"><span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span></span></span></span></p>
+</blockquote>
+<h2 id="阿克曼转向车辆路径跟踪算法">阿克曼转向车辆路径跟踪算法</h2>
+<h3 id="纯跟踪算法">纯跟踪算法</h3>
+<ol>
+<li>
+<p>用一条圆弧将车辆当前位置和目标位置连接起来，这条圆弧就是期望车辆行驶的路径，它与车辆当前的航向满足相切关系</p>
+</li>
+<li>
+<p>得到车辆转弯半径</p>
+<figure data-type="image" tabindex="4"><img src="https://tva1.sinaimg.cn/large/00705hvsly1g9ziezgdstj30ii09j0ul.jpg" alt="image"></figure>
+<figure data-type="image" tabindex="5"><img src="C:%5CUsers%5Cxiaofan%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191217103218213.png" alt="image-20191217103218213"></figure>
+</li>
+<li>
+<p>内外车轮转角</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>sin</mi><mo>⁡</mo><mi>α</mi><mo>=</mo><mfrac><mrow><msub><mi>x</mi><mi>G</mi></msub><mo>−</mo><msub><mi>x</mi><mi>v</mi></msub></mrow><mi>L</mi></mfrac></mrow><annotation encoding="application/x-tex">\sin \alpha=\frac{x_{G}-x_{v}}{L}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66786em;vertical-align:0em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.163636em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8186359999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">L</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.410305em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">G</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mo>=</mo><mfrac><msup><mi>L</mi><mn>2</mn></msup><mrow><mn>2</mn><mrow><mo fence="true">(</mo><msub><mi>x</mi><mi>G</mi></msub><mo>−</mo><msub><mi>x</mi><mi>v</mi></msub><mo fence="true">)</mo></mrow></mrow></mfrac></mrow><annotation encoding="application/x-tex">R=\frac{L^{2}}{2\left(x_{G}-x_{v}\right)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.53792em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01792em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="minner mtight"><span class="mopen mtight delimcenter" style="top:0em;"><span class="mtight">(</span></span><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">G</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mclose mtight delimcenter" style="top:0em;"><span class="mtight">)</span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>tan</mi><mo>⁡</mo><msub><mi>δ</mi><mi>i</mi></msub></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>L</mi><mi mathvariant="normal">/</mi><mrow><mo fence="true">[</mo><mo>−</mo><mi>B</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>+</mo><msup><mi>L</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mn>2</mn><mrow><mo fence="true">(</mo><msub><mi>x</mi><mi>G</mi></msub><mo>−</mo><msub><mi>x</mi><mi>v</mi></msub><mo fence="true">)</mo></mrow><mo fence="true">]</mo></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>tan</mi><mo>⁡</mo><msub><mi>δ</mi><mi>o</mi></msub></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>L</mi><mi mathvariant="normal">/</mi><mrow><mo fence="true">[</mo><mi>B</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>+</mo><msup><mi>L</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mn>2</mn><mrow><mo fence="true">(</mo><msub><mi>x</mi><mi>G</mi></msub><mo>−</mo><msub><mi>x</mi><mi>v</mi></msub><mo fence="true">)</mo></mrow><mo fence="true">]</mo></mrow></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned} \tan \delta_{i} &amp;=L /\left[-B / 2+L^{2} / 2\left(x_{G}-x_{v}\right)\right] \\ \tan \delta_{o} &amp;=L /\left[B / 2+L^{2} / 2\left(x_{G}-x_{v}\right)\right] \end{aligned}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.048216em;vertical-align:-1.274108em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.774108em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop">tan</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.385892em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop">tan</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.274108em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.774108em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mord">/</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">[</span></span><span class="mord">−</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">G</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">]</span></span></span></span></span><span style="top:-2.385892em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mord">/</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">[</span></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">G</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">]</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.274108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+</blockquote>
+</li>
+</ol>
+<h3 id="stanley-算法">Stanley 算法</h3>
+<figure data-type="image" tabindex="6"><img src="https://tva3.sinaimg.cn/large/00705hvsly1g9zj4oqo8nj30k208cgmw.jpg" alt="image"></figure>
+<ol>
+<li>
+<p>消除距离偏差的前轮偏角控制量</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>δ</mi><mi>d</mi></msub><mo>=</mo><mi>arctan</mi><mo>⁡</mo><mfrac><mrow><mi>k</mi><mi>d</mi></mrow><mi>v</mi></mfrac></mrow><annotation encoding="application/x-tex">\delta_{d}=\arctan \frac{k d}{v}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2251079999999999em;vertical-align:-0.345em;"></span><span class="mop">arctan</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mathdefault mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+</blockquote>
+</li>
+<li>
+<p>消除角度偏差的前轮偏角控制量</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>δ</mi><mi>ψ</mi></msub><mo>=</mo><mi>ψ</mi></mrow><annotation encoding="application/x-tex">\delta_{\psi}=\psi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">ψ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">ψ</span></span></span></span></p>
+</blockquote>
+</li>
+<li>
+<p>最终控制量</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>δ</mi><mo>=</mo><msub><mi>δ</mi><mi>ψ</mi></msub><mo>+</mo><msub><mi>δ</mi><mi>d</mi></msub><mo>=</mo><mi>ψ</mi><mo>+</mo><mi>arctan</mi><mo>⁡</mo><mfrac><mrow><mi>k</mi><mi>d</mi></mrow><mi>v</mi></mfrac></mrow><annotation encoding="application/x-tex">\delta=\delta_{\psi}+\delta_{d}=\psi+\arctan \frac{k d}{v}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">ψ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">ψ</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.2251079999999999em;vertical-align:-0.345em;"></span><span class="mop">arctan</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mathdefault mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+</blockquote>
+</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[无人驾驶车辆路径规划]]></title>
         <id>https://xioafanwu.github.io/post/wu-ren-jia-shi-che-liang-lu-jing-gui-hua</id>
@@ -1937,256 +2102,6 @@ S ['Steven']
 <li>利用毫米波雷达检测到车辆的大体位置，将检测到的车辆坐标投影变换到图像上，确定车辆感兴趣区域</li>
 <li>选用Adaboost分类算法对车辆模型的类Haar特征进行训练，快速得到车辆的粗分类结果，即获取车辆感兴趣区域内疑似车辆候选块</li>
 <li>利用支持向量机（SVM）对HOG特征进行训练，实现车辆的有效检测</li>
-</ol>
-</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Word添加参考文献引用]]></title>
-        <id>https://xioafanwu.github.io/post/word-tian-jia-can-kao-wen-xian-yin-yong</id>
-        <link href="https://xioafanwu.github.io/post/word-tian-jia-can-kao-wen-xian-yin-yong">
-        </link>
-        <updated>2019-12-10T13:05:32.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="参考文献标准格式">参考文献标准格式</h2>
-<ol>
-<li>知网/万方支持导出参考文献</li>
-<li>百度学术-引用-复制标准格式</li>
-</ol>
-<h2 id="引用参考文献">引用参考文献</h2>
-<ol>
-<li>开始-编号格式-[]，给参考文献编号</li>
-<li>在需要标注的位置-交叉引用<br>
-<img src="https://i.loli.net/2019/12/10/bySZKv5RJI8wP6h.png" alt="quicker_7d9a295e-57d1-42ca-ace1-b62657229f55.png"></li>
-<li>上标<br>
-<img src="https://i.loli.net/2019/12/10/JpDUMV3gEzSO8cB.png" alt="quicker_36597b66-f1fa-47b0-92e6-f22dcf1e7dc8.png"></li>
-<li>完成</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[无人驾驶车辆环境感知技术  （一）]]></title>
-        <id>https://xioafanwu.github.io/post/wu-ren-jia-shi-che-liang-huan-jing-gan-zhi-ji-zhu-yi</id>
-        <link href="https://xioafanwu.github.io/post/wu-ren-jia-shi-che-liang-huan-jing-gan-zhi-ji-zhu-yi">
-        </link>
-        <updated>2019-12-10T02:51:07.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="结构化道路车道线检测">结构化道路车道线检测</h3>
-<h4 id="结构化道路常用基本假设">结构化道路常用基本假设</h4>
-<ol>
-<li>道路形状假设
-<ol>
-<li>回旋形、直线、抛物线模型</li>
-<li>一般假设：用具有梯度特征的像素组成道路轮廓</li>
-</ol>
-</li>
-<li>道路平坦和宽度假设
-<ol>
-<li>假设宽度变化缓慢</li>
-<li>假设道路平坦，利用摄像机标定信息，逆变换得到去除图像的透视效果，进行障碍物检测和道路检测</li>
-</ol>
-</li>
-<li>道路特征一致性假设
-<ol>
-<li>路面区域具有一致的特征：灰度特征、颜色特征，非区域没有这种特征</li>
-<li>聚类方法检测路面区域</li>
-</ol>
-</li>
-<li>感兴趣区域假设
-<ol>
-<li>根据物理约束和连续性约束，简化相邻帧的时间相关性</li>
-<li>前一帧已经完成感兴趣区域检测</li>
-</ol>
-</li>
-</ol>
-<h4 id="车道线检测">车道线检测</h4>
-<ol>
-<li>
-<p>动态处理措施</p>
-<ol>
-<li>图像的每一帧，搜索区域只限定在包括车道线的动态区域</li>
-<li>车道线边界点定义为灰度值变化最大超过阈值的点</li>
-<li>边界点过多采用直线你和取近似车道线</li>
-</ol>
-</li>
-<li>
-<p>车道线检测两步：边界点搜索；边界点拟合</p>
-</li>
-<li>
-<p>边界点搜索</p>
-<ol>
-<li>
-<p>算法流程</p>
-<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/12/09/AiPUHchgb2soMKl.png" alt="quicker_4ec8e19d-392c-40a2-8cd6-60331af48fba.png"></figure>
-</li>
-<li>
-<p>具体实现</p>
-<ol>
-<li>
-<p>图像灰度化</p>
-<ul>
-<li>
-<p>RGB混合</p>
-</li>
-<li>
-<p>计算灰度值灰度值=0.3R+0.59G+0.11B</p>
-<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/12/09/twh8fGKqjuU1JlA.png" alt="quicker_643bfd9c-f7c5-4d16-b3a2-f372138cf058.png"></figure>
-</li>
-</ul>
-</li>
-<li>
-<p>图像滤波</p>
-<ol>
-<li>
-<p>目的：降噪</p>
-<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2019/12/09/54qyW86CY1bJIRE.png" alt="quicker_1d6d6791-586b-46bb-9642-978ddfade723.png"></figure>
-</li>
-<li>
-<p>滤波算法</p>
-<ol>
-<li>
-<p>线性平滑</p>
-<ol>
-<li>
-<p>用邻值代替每个像素点的灰度值，3x3、5x5均值滤波器</p>
-<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2019/12/09/Zm3C2wkOqhjUDMc.png" alt="quicker_687fce1d-bf42-40bb-9b91-36cd410e62d3.png"></figure>
-</li>
-<li>
-<p>缺点：模糊了图像的边缘和细节</p>
-<figure data-type="image" tabindex="5"><img src="https://i.loli.net/2019/12/09/DBnVjAevHfmk9GK.png" alt="quicker_48bccddc-1713-4ad3-9aa3-9a05de6d7d41.png"></figure>
-</li>
-</ol>
-</li>
-<li>
-<p>非线性滤波</p>
-<ol>
-<li>
-<p>取一个阈值，当像素灰度值与领域平均值之间的差值大于阈值时以均值代替，小于阈值用元像素灰度值</p>
-</li>
-<li>
-<p>缺点：边缘点失真，但保留了细节</p>
-<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2019/12/09/GKLpnMhk68QPRUA.png" alt="quicker_31ef5608-14b0-4c12-a2a6-c3e87fe1e699.png"></figure>
-</li>
-</ol>
-</li>
-<li>
-<p>自适应平滑</p>
-<ol>
-<li>有一个适应的目标，目标不同自适应处理方法也不同</li>
-<li>保留了细节不模糊边缘</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>边缘增强</p>
-<ol>
-<li>
-<p>为什么要增强</p>
-<ol>
-<li>边缘信息反映形状特征</li>
-<li>边缘包含内在信息</li>
-<li>反映局部特征不连续</li>
-<li>为下一步道路检测做准备</li>
-</ol>
-</li>
-<li>
-<p>增强方法</p>
-<ol>
-<li>
-<p>Prewitt算子</p>
-<figure data-type="image" tabindex="7"><img src="https://i.loli.net/2019/12/10/oOBcjXTAMzfaVnL.png" alt="quicker_675cddd8-9aa8-4b39-bb19-b8d11e015961.png"></figure>
-</li>
-<li>
-<p>Sobel算子</p>
-<figure data-type="image" tabindex="8"><img src="https://i.loli.net/2019/12/10/rVQPgwBpCb46vkG.png" alt="quicker_0e65fcd4-f54f-48d7-9c13-bd7adb65207e.png"></figure>
-</li>
-<li>
-<p>Laplace算子</p>
-<figure data-type="image" tabindex="9"><img src="https://i.loli.net/2019/12/10/aE82pQAkZgmLXHd.png" alt="quicker_e238ac5f-f392-41ff-92a9-87e4784c8cfe.png"></figure>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>图像二值化</p>
-<ol>
-<li>
-<p>目的：利用图像某些特征定量定性分析</p>
-</li>
-<li>
-<p>灰度值二值化方法</p>
-<ol>
-<li>
-<p>设定二值化阈值</p>
-</li>
-<li>
-<p>大于阈值灰度值设为255，小于设为0</p>
-</li>
-<li>
-<p>阈值选择方法</p>
-<ol>
-<li>
-<p>固定阈值法</p>
-<figure data-type="image" tabindex="10"><img src="https://i.loli.net/2019/12/10/CABVZLtzqhfvP5J.png" alt="quicker_83a23184-a686-4aa0-9291-06506dccca6b.png"></figure>
-</li>
-<li>
-<p>迭代阈值法</p>
-<ol>
-<li>计算出图像中像素的最大值记为Zmax，图像中像素中的最小值记为Zmin。</li>
-<li>求取Zmax和Zmin的平均值，T0=（Zmax+Zmin）/2。</li>
-<li>计算图像中像素值小于T0的像素的平均值，记为Z0。计算图像中像素值大于T0的像素的平均值，记为Zb.</li>
-<li>求取Z0和Zb的平均值T</li>
-<li>若|T0-T|=0，则最终阈值为T，否则令T=T0，回到第2步</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>边缘搜索流程</p>
-<figure data-type="image" tabindex="11"><img src="https://i.loli.net/2019/12/10/3s8LNMAfyUOZl9d.png" alt="quicker_62a2e78e-065c-4f4f-8ecd-e6b354fcc0b5.png"></figure>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>边缘线拟合</p>
-<ol>
-<li>
-<p>Hough变换</p>
-<ol>
-<li>
-<p>将研究对象从空间中的图像空间转化为参数空间的对应的参考点</p>
-<figure data-type="image" tabindex="12"><img src="https://i.loli.net/2019/12/10/iN3o8lbs2EIKdMU.png" alt="quicker_48231600-2813-4174-bc84-8d96a8be8660.png"></figure>
-</li>
-<li>
-<p>一个点变化为一条正弦曲线</p>
-<figure data-type="image" tabindex="13"><img src="https://i.loli.net/2019/12/10/IPrFJgKRy6vXSzj.png" alt="quicker_8a32fd66-94e0-4274-9c13-61f7570aafaf.png"></figure>
-</li>
-<li>
-<p>曲线交点对应直线</p>
-<figure data-type="image" tabindex="14"><img src="https://i.loli.net/2019/12/10/PVkKYfWum1SDiry.png" alt="quicker_e557b4d7-2242-495d-b5fe-c7d006668aeb.png"></figure>
-</li>
-<li>
-<p>投票统计</p>
-<figure data-type="image" tabindex="15"><img src="https://i.loli.net/2019/12/10/w1YNVeJ2lHmkGgy.png" alt="quicker_002c5fb3-e907-4424-acae-7e48151a9faf.png"></figure>
-</li>
-<li>
-<p>融合先验知识</p>
-<ol>
-<li>ROI区域：只对感兴趣区域做Hough变换</li>
-<li>限定<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>范围</li>
-</ol>
-</li>
-</ol>
-</li>
 </ol>
 </li>
 </ol>
