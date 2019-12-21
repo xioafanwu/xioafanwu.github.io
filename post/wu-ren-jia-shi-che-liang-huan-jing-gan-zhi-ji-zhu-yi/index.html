@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>无人驾驶车辆环境感知技术  （一） | LSG</title>
 <meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1576916547352">
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1576917718355">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://xioafanwu.github.io">
-  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1576916547352" alt="">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1576917718355" alt="">
   </a>
   <h1 class="site-title">
     LSG
@@ -80,7 +80,7 @@
                 2019-12-10
               </span>
               <span>
-                3 min read
+                4 min read
               </span>
               
             </div>
@@ -89,8 +89,11 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h3 id="结构化道路车道线检测">结构化道路车道线检测</h3>
-<h4 id="结构化道路常用基本假设">结构化道路常用基本假设</h4>
+                <blockquote>
+<p>本文介绍了结构化车道线检测方法。现实生活中的道路比较复杂，需要简化道路场景，对于结构化道路检测需要有四个假设：形状假设、特征一致假设、道路平坦和宽度假设以及感兴趣区域假设。车道线检测包括两个过程：边界点搜索和边界点拟合。边界点搜索流程：首先将图像灰度化（计算灰度RGB），然后去除噪声进行图像滤波，滤波有线性平滑算法和非线性算法以及自适应平滑算法，线性滤波算法就是用相邻像素值的平均值代替每个点的像素值会三十图像边缘和细节。非线性算法设定一个阈值会保留细节但是边缘还是会失真。滤波后进行边缘增强，边缘增强采用梯度法，用Prewitt算子或者Sobel算子等算子进行边缘增强。边缘增强后要二值化，二值化首先设定阈值，选择阈值有固定阈值或者迭代阈值法。边界线拟合用Hough变换进行直线拟合，Hough变换即将直线变成一个参考点，平面坐标系的点变成正弦曲线。利用曲线的交点就可以得到对应直线。</p>
+</blockquote>
+<h2 id="结构化道路车道线检测">结构化道路车道线检测</h2>
+<h3 id="结构化道路常用基本假设">结构化道路常用基本假设</h3>
 <ol>
 <li>道路形状假设
 <ol>
@@ -117,7 +120,7 @@
 </ol>
 </li>
 </ol>
-<h4 id="车道线检测">车道线检测</h4>
+<h3 id="车道线检测">车道线检测</h3>
 <ol>
 <li>
 <p>动态处理措施</p>
@@ -315,14 +318,10 @@
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li>
-<ul>
 <li><a href="#%E7%BB%93%E6%9E%84%E5%8C%96%E9%81%93%E8%B7%AF%E8%BD%A6%E9%81%93%E7%BA%BF%E6%A3%80%E6%B5%8B">结构化道路车道线检测</a>
 <ul>
 <li><a href="#%E7%BB%93%E6%9E%84%E5%8C%96%E9%81%93%E8%B7%AF%E5%B8%B8%E7%94%A8%E5%9F%BA%E6%9C%AC%E5%81%87%E8%AE%BE">结构化道路常用基本假设</a></li>
 <li><a href="#%E8%BD%A6%E9%81%93%E7%BA%BF%E6%A3%80%E6%B5%8B">车道线检测</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
