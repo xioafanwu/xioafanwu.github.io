@@ -1,0 +1,664 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>《利用python进行数据分析》 （四）—NumPy | LSG</title>
+<meta name="description" content="温故而知新" />
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1577074831979">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xioafanwu.github.io">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1577074831979" alt="">
+  </a>
+  <h1 class="site-title">
+    LSG
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              《利用python进行数据分析》 （四）—NumPy
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-12-21
+              </span>
+              <span>
+                13 min read
+              </span>
+              
+                <a href="https://xioafanwu.github.io/tag/ZJJjECf9a" class="post-tag">
+                  # 大数据分析
+                </a>
+              
+                <a href="https://xioafanwu.github.io/tag/hud56EXOZ" class="post-tag">
+                  # python
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/lesslessli-yong-python-jin-xing-shu-ju-fen-xi-greatergreater-si-numpy.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="ndarray多位数组对象">ndarray：多位数组对象</h2>
+<ol>
+<li>创建ndarry：array函数 zeros empty range</li>
+<li>ndarray数据类型：
+<ol>
+<li>dtype定义查看类型</li>
+<li>astype：转换数据类型</li>
+</ol>
+</li>
+<li>数组运算：不用for循环就能实现数组之间的运算</li>
+<li>基本索引和切片：
+<ol start="3">
+<li>类似列表</li>
+<li>改变切片中的值时，变动会体现在原始数据arr中</li>
+<li>[:]给数组所有值赋值</li>
+<li>多维数组索引，访问</li>
+<li>多维切片索引号</li>
+</ol>
+</li>
+</ol>
+<pre><code>In [60]: arr = np.arange(10)
+
+In [61]: arr
+Out[61]: array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+In [62]: arr[5]
+Out[62]: 5
+
+In [63]: arr[5:8]
+Out[63]: array([5, 6, 7])
+
+In [64]: arr[5:8] = 12
+
+In [65]: arr
+Out[65]: array([ 0,  1,  2,  3,  4, 12, 12, 12,  8,  9])
+In [66]: arr_slice = arr[5:8]
+
+In [67]: arr_slice
+Out[67]: array([12, 12, 12])
+In [68]: arr_slice[1] = 12345
+
+In [69]: arr
+Out[69]: array([    0,     1,     2,     3,     4,    12, 12345,    12,     8,   
+  9])
+In [72]: arr2d = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+In [73]: arr2d[2]
+Out[73]: array([7, 8, 9])
+In [74]: arr2d[0][2]
+Out[74]: 3
+
+In [75]: arr2d[0, 2]
+Out[75]: 3
+In [76]: arr3d = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+
+In [77]: arr3d
+Out[77]: 
+array([[[ 1,  2,  3],
+        [ 4,  5,  6]],
+       [[ 7,  8,  9],
+        [10, 11, 12]]])
+In [78]: arr3d[0]
+Out[78]: 
+array([[1, 2, 3],
+       [4, 5, 6]])
+In [79]: old_values = arr3d[0].copy()
+
+In [80]: arr3d[0] = 42
+
+In [81]: arr3d
+Out[81]: 
+array([[[42, 42, 42],
+        [42, 42, 42]],
+       [[ 7,  8,  9],
+        [10, 11, 12]]])
+
+In [82]: arr3d[0] = old_values
+
+In [83]: arr3d
+Out[83]: 
+array([[[ 1,  2,  3],
+        [ 4,  5,  6]],
+       [[ 7,  8,  9],
+        [10, 11, 12]]])
+In [85]: x = arr3d[1]
+
+In [86]: x
+Out[86]: 
+array([[ 7,  8,  9],
+       [10, 11, 12]])
+
+In [87]: x[0]
+Out[87]: array([7, 8, 9])
+In [90]: arr2d
+Out[90]: 
+array([[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]])
+
+In [91]: arr2d[:2]
+Out[91]: 
+array([[1, 2, 3],
+       [4, 5, 6]])
+In [92]: arr2d[:2, 1:]
+Out[92]: 
+array([[2, 3],
+       [5, 6]])
+In [95]: arr2d[:, :1]
+Out[95]: 
+array([[1],
+       [4],
+       [7]])
+</code></pre>
+<ol start="5">
+<li>布尔型索引</li>
+</ol>
+<pre><code>In [98]: names = np.array(['Bob', 'Joe', 'Will', 'Bob', 'Will', 'Joe', 'Joe'])
+
+In [99]: data = np.random.randn(7, 4)
+
+In [100]: names
+Out[100]: 
+array(['Bob', 'Joe', 'Will', 'Bob', 'Will', 'Joe', 'Joe'],
+      dtype='&lt;U4')
+
+In [101]: data
+Out[101]: 
+array([[ 0.0929,  0.2817,  0.769 ,  1.2464],
+       [ 1.0072, -1.2962,  0.275 ,  0.2289],
+       [ 1.3529,  0.8864, -2.0016, -0.3718],
+       [ 1.669 , -0.4386, -0.5397,  0.477 ],
+       [ 3.2489, -1.0212, -0.5771,  0.1241],
+       [ 0.3026,  0.5238,  0.0009,  1.3438],
+       [-0.7135, -0.8312, -2.3702, -1.8608]])
+In [102]: names == 'Bob'
+Out[102]: array([ True, False, False,  True, False, False, False], dtype=bool)
+In [103]: data[names == 'Bob']
+Out[103]: 
+array([[ 0.0929,  0.2817,  0.769 ,  1.2464],
+       [ 1.669 , -0.4386, -0.5397,  0.477 ]])
+</code></pre>
+<ol start="6">
+<li>花式索引
+<ol>
+<li>特定顺序索引</li>
+<li>负数索引</li>
+<li>与切片不一样，将数据复制到新数组</li>
+</ol>
+</li>
+</ol>
+<pre><code>In [117]: arr = np.empty((8, 4))
+
+In [118]: for i in range(8):
+   .....:     arr[i] = i
+
+In [119]: arr
+Out[119]: 
+array([[ 0.,  0.,  0.,  0.],
+       [ 1.,  1.,  1.,  1.],
+       [ 2.,  2.,  2.,  2.],
+       [ 3.,  3.,  3.,  3.],
+       [ 4.,  4.,  4.,  4.],
+       [ 5.,  5.,  5.,  5.],
+       [ 6.,  6.,  6.,  6.],
+       [ 7.,  7.,  7.,  7.]])
+In [120]: arr[[4, 3, 0, 6]]
+Out[120]: 
+array([[ 4.,  4.,  4.,  4.],
+       [ 3.,  3.,  3.,  3.],
+       [ 0.,  0.,  0.,  0.],
+       [ 6.,  6.,  6.,  6.]])
+In [121]: arr[[-3, -5, -7]]
+Out[121]: 
+array([[ 5.,  5.,  5.,  5.],
+       [ 3.,  3.,  3.,  3.],
+       [ 1.,  1.,  1.,  1.]])
+
+In [122]: arr = np.arange(32).reshape((8, 4))
+
+In [123]: arr
+Out[123]: 
+array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11],
+       [12, 13, 14, 15],
+       [16, 17, 18, 19],
+       [20, 21, 22, 23],
+       [24, 25, 26, 27],
+       [28, 29, 30, 31]])
+
+In [124]: arr[[1, 5, 7, 2], [0, 3, 1, 2]]
+Out[124]: array([ 4, 23, 29, 10])
+In [125]: arr[[1, 5, 7, 2]][:, [0, 3, 1, 2]]
+Out[125]: 
+array([[ 4,  7,  5,  6],
+       [20, 23, 21, 22],
+       [28, 31, 29, 30],
+       [ 8, 11,  9, 10]])
+</code></pre>
+<ol start="7">
+<li>数组转置和轴对换
+<ol>
+<li>T转置</li>
+<li>transpose方法</li>
+<li>swapaxes方法</li>
+</ol>
+</li>
+</ol>
+<pre><code>In [126]: arr = np.arange(15).reshape((3, 5))
+
+In [127]: arr
+Out[127]: 
+array([[ 0,  1,  2,  3,  4],
+       [ 5,  6,  7,  8,  9],
+       [10, 11, 12, 13, 14]])
+
+In [128]: arr.T
+Out[128]: 
+array([[ 0,  5, 10],
+       [ 1,  6, 11],
+       [ 2,  7, 12],
+       [ 3,  8, 13],
+       [ 4,  9, 14]])
+In [132]: arr = np.arange(16).reshape((2, 2, 4))
+
+In [133]: arr
+Out[133]: 
+array([[[ 0,  1,  2,  3],
+        [ 4,  5,  6,  7]],
+       [[ 8,  9, 10, 11],
+        [12, 13, 14, 15]]])
+
+In [134]: arr.transpose((1, 0, 2))
+Out[134]: 
+array([[[ 0,  1,  2,  3],
+        [ 8,  9, 10, 11]],
+       [[ 4,  5,  6,  7],
+        [12, 13, 14, 15]]])
+In [135]: arr
+Out[135]: 
+array([[[ 0,  1,  2,  3],
+        [ 4,  5,  6,  7]],
+       [[ 8,  9, 10, 11],
+        [12, 13, 14, 15]]])
+
+In [136]: arr.swapaxes(1, 2)
+Out[136]: 
+array([[[ 0,  4],
+        [ 1,  5],
+        [ 2,  6],
+        [ 3,  7]],
+       [[ 8, 12],
+        [ 9, 13],
+        [10, 14],
+        [11, 15]]])
+</code></pre>
+<h2 id="通用函数">通用函数</h2>
+<figure data-type="image" tabindex="1"><img src="https://tva2.sinaimg.cn/large/00705hvsly1g9xt1gobktj30ig0f0wim.jpg" alt="image"></figure>
+<figure data-type="image" tabindex="2"><img src="https://tva2.sinaimg.cn/large/00705hvsly1g9xt1s0qd1j30il0icn1f.jpg" alt="image"></figure>
+<h2 id="利用数组进行数据处理">利用数组进行数据处理</h2>
+<ol>
+<li>
+<p>矢量化数组运算</p>
+</li>
+<li>
+<p>将条件逻辑表述为数组运算</p>
+<ol>
+<li>np.where</li>
+</ol>
+</li>
+<li>
+<p>数学和统计方法</p>
+<figure data-type="image" tabindex="3"><img src="https://tvax2.sinaimg.cn/large/00705hvsly1g9xtoeavc9j30l40b2wh1.jpg" alt="image"></figure>
+<ol>
+<li>mean</li>
+<li>sum</li>
+<li>cumsum</li>
+</ol>
+</li>
+<li>
+<p>用于布尔型数组的方法</p>
+</li>
+<li>
+<p>排序</p>
+<ol>
+<li>sort</li>
+</ol>
+</li>
+<li>
+<p>唯一化以及其它的集合逻辑</p>
+<ol>
+<li>np.unique:找到数组中的唯一值，并返回排序结果</li>
+<li>np.in1d</li>
+</ol>
+</li>
+<li>
+<p>集合函数</p>
+<figure data-type="image" tabindex="4"><img src="https://tva2.sinaimg.cn/large/00705hvsly1g9xtvpxmipj30li08gmzk.jpg" alt="image"></figure>
+</li>
+</ol>
+<pre><code class="language-python">In [177]: arr = np.random.randn(5, 4)
+
+In [178]: arr
+Out[178]: 
+array([[ 2.1695, -0.1149,  2.0037,  0.0296],
+       [ 0.7953,  0.1181, -0.7485,  0.585 ],
+       [ 0.1527, -1.5657, -0.5625, -0.0327],
+       [-0.929 , -0.4826, -0.0363,  1.0954],
+       [ 0.9809, -0.5895,  1.5817, -0.5287]])
+
+In [179]: arr.mean()
+Out[179]: 0.19607051119998253
+
+In [180]: np.mean(arr)
+Out[180]: 0.19607051119998253
+
+In [181]: arr.sum()
+Out[181]: 3.9214102239996507
+In [182]: arr.mean(axis=1)
+Out[182]: array([ 1.022 ,  0.1875, -0.502 , -0.0881,  0.3611])
+
+In [183]: arr.sum(axis=0)
+Out[183]: array([ 3.1693, -2.6345,  2.2381,  1.1486])
+In [184]: arr = np.array([0, 1, 2, 3, 4, 5, 6, 7])
+
+In [185]: arr.cumsum()
+Out[185]: array([ 0,  1,  3,  6, 10, 15, 21, 28])
+In [186]: arr = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+In [187]: arr
+Out[187]: array([[0, 1, 2],       [3, 4, 5],       [6, 7, 8]])
+In [188]: arr.cumsum(axis=0)Out[188]: array([[ 0,  1,  2],       [ 3,  5,  7],       [ 9, 12, 15]])
+In [189]: arr.cumprod(axis=1)Out[189]: array([[  0,   0,   0],       [  3,  12,  60],       [  6,  42, 336]])
+In [190]: arr = np.random.randn(100)
+In [191]: (arr &gt; 0).sum() # Number of positive values
+Out[191]: 42In [192]: bools = np.array([False, False, True, False])
+In [193]: bools.any()Out[193]: True
+In [194]: bools.all()Out[194]: False
+In [195]: arr = np.random.randn(6)
+In [196]: arrOut[196]: array([ 0.6095, -0.4938,  1.24  , -0.1357,  1.43  , -0.8469])
+In [197]: arr.sort()
+In [198]: arr
+Out[198]: array([-0.8469, -0.4938, -0.1357,  0.6095,  1.24  ,  1.43  ])
+In [199]: arr = np.random.randn(5, 3)
+In [200]: arr
+Out[200]: array([[ 0.6033,  1.2636, -0.2555],       [-0.4457,  0.4684, -0.9616],       [-1.8245,  0.6254,  1.0229],       [ 1.1074,  0.0909, -0.3501],       [ 0.218 , -0.8948, -1.7415]])
+In [201]: arr.sort(1)
+In [202]: arr
+Out[202]: array([[-0.2555,  0.6033,  1.2636],       [-0.9616, -0.4457,  0.4684],       [-1.8245,  0.6254,  1.0229],       [-0.3501,  0.0909,  1.1074],       [-1.7415, -0.8948,  0.218 ]])
+In [203]: large_arr = np.random.randn(1000)
+In [204]: large_arr.sort()
+In [205]: large_arr[int(0.05 * len(large_arr))] # 5% quantile
+Out[205]: -1.5311513550102103
+In [206]: names = np.array(['Bob', 'Joe', 'Will', 'Bob', 'Will', 'Joe', 'Joe'])
+In [207]: np.unique(names)
+Out[207]: array(['Bob', 'Joe', 'Will'],      dtype='&lt;U4')
+In [208]: ints = np.array([3, 3, 3, 2, 2, 1, 1, 4, 4])
+In [209]: np.unique(ints)
+Out[209]: array([1, 2, 3, 4])
+In [210]: sorted(set(names))
+Out[210]: ['Bob', 'Joe', 'Will']
+In [211]: values = np.array([6, 0, 0, 3, 2, 5, 6])
+In [212]: np.in1d(values, [2, 3, 6])
+Out[212]: array([ True, False, False,  True,  True, False,  True], dtype=bool)
+</code></pre>
+<h2 id="用于数组的文件输入输出">用于数组的文件输入输出</h2>
+<ol>
+<li>np.save和np.load</li>
+</ol>
+<pre><code class="language-python">In [213]: arr = np.arange(10)
+In [214]: np.save('some_array', arr)
+In [215]: np.load('some_array.npy')
+Out[215]: array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+In [216]: np.savez('array_archive.npz', a=arr, b=arr)
+In [217]: arch = np.load('array_archive.npz')
+In [218]: arch['b']
+Out[218]: array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+In [219]: np.savez_compressed('arrays_compressed.npz', a=arr, b=arr)
+</code></pre>
+<h2 id="线性代数">线性代数</h2>
+<ol>
+<li>
+<p>dot函数</p>
+</li>
+<li>
+<p>numpy.linalg</p>
+<figure data-type="image" tabindex="5"><img src="https://tvax3.sinaimg.cn/large/00705hvsly1g9xu6qmvmpj30kj0d6tbi.jpg" alt="image"></figure>
+</li>
+</ol>
+<pre><code class="language-python">In [223]: x = np.array([[1., 2., 3.], [4., 5., 6.]])
+In [224]: y = np.array([[6., 23.], [-1, 7], [8, 9]])
+
+In [225]: x
+Out[225]: 
+array([[ 1.,  2.,  3.],
+       [ 4.,  5.,  6.]])
+
+In [226]: y
+Out[226]: 
+array([[  6.,  23.],
+       [ -1.,   7.],
+       [  8.,   9.]])
+
+In [227]: x.dot(y)
+Out[227]: 
+array([[  28.,   64.],
+       [  67.,  181.]])
+In [228]: np.dot(x, y)
+Out[228]: 
+array([[  28.,   64.],
+       [  67.,  181.]])
+In [229]: np.dot(x, np.ones(3))
+Out[229]: array([  6.,  15.])
+In [231]: from numpy.linalg import inv, qr
+
+In [232]: X = np.random.randn(5, 5)
+
+In [233]: mat = X.T.dot(X)
+
+In [234]: inv(mat)
+Out[234]: 
+array([[  933.1189,   871.8258, -1417.6902, -1460.4005,  1782.1391],
+       [  871.8258,   815.3929, -1325.9965, -1365.9242,  1666.9347],
+       [-1417.6902, -1325.9965,  2158.4424,  2222.0191, -2711.6822],
+       [-1460.4005, -1365.9242,  2222.0191,  2289.0575, -2793.422 ],
+       [ 1782.1391,  1666.9347, -2711.6822, -2793.422 ,  3409.5128]])
+
+In [235]: mat.dot(inv(mat))
+Out[235]: 
+array([[ 1.,  0., -0., -0., -0.],
+       [-0.,  1.,  0.,  0.,  0.],
+       [ 0.,  0.,  1.,  0.,  0.],
+       [-0.,  0.,  0.,  1., -0.],
+       [-0.,  0.,  0.,  0.,  1.]])
+
+In [236]: q, r = qr(mat)
+
+In [237]: r
+Out[237]: 
+array([[-1.6914,  4.38  ,  0.1757,  0.4075, -0.7838],
+       [ 0.    , -2.6436,  0.1939, -3.072 , -1.0702],
+       [ 0.    ,  0.    , -0.8138,  1.5414,  0.6155],
+       [ 0.    ,  0.    ,  0.    , -2.6445, -2.1669],
+       [ 0.    ,  0.    ,  0.    ,  0.    ,  0.0002]])
+</code></pre>
+<h2 id="伪随机数生成">伪随机数生成</h2>
+<ol>
+<li>
+<p>numpy.random</p>
+<figure data-type="image" tabindex="6"><img src="https://tvax2.sinaimg.cn/large/00705hvsly1g9xufeo9iyj30le0g2wid.jpg" alt="image"></figure>
+<ol>
+<li>normal：正态分布样本</li>
+<li>np.random.seed：种子</li>
+<li>隔离随机数种子：np.random.RandomState</li>
+</ol>
+</li>
+</ol>
+<pre><code class="language-python">In [238]: samples = np.random.normal(size=(4, 4))
+
+In [239]: samples
+Out[239]: 
+array([[ 0.5732,  0.1933,  0.4429,  1.2796],
+       [ 0.575 ,  0.4339, -0.7658, -1.237 ],
+       [-0.5367,  1.8545, -0.92  , -0.1082],
+       [ 0.1525,  0.9435, -1.0953, -0.144 ]])
+In [240]: from random import normalvariate
+
+In [241]: N = 1000000
+
+In [242]: %timeit samples = [normalvariate(0, 1) for _ in range(N)]
+1.77 s +- 126 ms per loop (mean +- std. dev. of 7 runs, 1 loop each)
+
+In [243]: %timeit np.random.normal(size=N)
+61.7 ms +- 1.32 ms per loop (mean +- std. dev. of 7 runs, 10 loops each)
+In [244]: np.random.seed(1234)
+In [245]: rng = np.random.RandomState(1234)
+
+In [246]: rng.randn(10)
+Out[246]: 
+array([ 0.4714, -1.191 ,  1.4327, -0.3127, -0.7206,  0.8872,  0.8596,
+       -0.6365,  0.0157, -2.2427])
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#ndarray%E5%A4%9A%E4%BD%8D%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1">ndarray：多位数组对象</a></li>
+<li><a href="#%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0">通用函数</a></li>
+<li><a href="#%E5%88%A9%E7%94%A8%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86">利用数组进行数据处理</a></li>
+<li><a href="#%E7%94%A8%E4%BA%8E%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA">用于数组的文件输入输出</a></li>
+<li><a href="#%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0">线性代数</a></li>
+<li><a href="#%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90">伪随机数生成</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xioafanwu.github.io/post/wu-ren-jia-shi-xu-lun">
+              <h3 class="post-title">
+                无人驾驶绪论
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
