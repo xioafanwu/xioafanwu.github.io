@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
     <title>LSG</title>
-    <updated>2019-12-23T04:20:38.734Z</updated>
+    <updated>2019-12-23T07:00:13.393Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
@@ -16,7 +16,10 @@
         <link href="https://xioafanwu.github.io/post/wu-ren-jia-shi-huan-jing-gan-zhi-ji-zhu-san">
         </link>
         <updated>2019-12-23T04:19:52.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="前方车辆检测">前方车辆检测</h2>
+        <content type="html"><![CDATA[<blockquote>
+<p>本文介绍了前方车辆检测技术。车辆检测方法主要是基于视觉传感器、雷达、红外传感器灯多传感器融合。第一种是视觉摄像机与雷达的融合。系统由：激光雷达模块、视觉模块、数据融合模块、分类器模块和跟踪和输出模块构成。数据融合模块包括空间数据融合（坐标系的变换）和时间数据融合（GPS时间参数融合、双缓存和多线程技术）。激光雷达模块主要进行聚类分析，得到目标位置分析。分类器模块训练正负样本得到特征分类器。视觉模块结合激光雷达提取到的位置信息得到感兴趣区域，进行分类得到目标位置参数。跟踪和输出模块，跟踪预估目标位置。激光雷达聚类算法主要有Kmeans、DBSCAN算法。分类器训练主要用Haar特征+Adaboost算法。第二种是毫米波雷达和视觉摄像机的融合。</p>
+</blockquote>
+<h2 id="前方车辆检测">前方车辆检测</h2>
 <h3 id="前车车辆检测方法">前车车辆检测方法</h3>
 <ol>
 <li>基于视觉
