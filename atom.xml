@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
     <title>LSG</title>
-    <updated>2019-12-23T07:00:13.393Z</updated>
+    <updated>2019-12-23T07:15:57.873Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
@@ -10,6 +10,76 @@
     <logo>https://xioafanwu.github.io/images/avatar.png</logo>
     <icon>https://xioafanwu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, LSG</rights>
+    <entry>
+        <title type="html"><![CDATA[Machine Learning—Andrew Ng（二）]]></title>
+        <id>https://xioafanwu.github.io/post/machine-learning-andrew-nger</id>
+        <link href="https://xioafanwu.github.io/post/machine-learning-andrew-nger">
+        </link>
+        <updated>2019-12-23T07:14:26.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="模型和成本函数">模型和成本函数</h2>
+<h3 id="模型表示">模型表示</h3>
+<ol>
+<li>
+<p>线性回归模型</p>
+<figure data-type="image" tabindex="1"><img src="https://tva1.sinaimg.cn/large/00705hvsly1ga4re2oyjqj30pg0bmwir.jpg" alt="image"></figure>
+</li>
+<li>
+<p>假设函数：h</p>
+</li>
+</ol>
+<h3 id="代价函数j">代价函数J</h3>
+<ol>
+<li>
+<p>平方误差代价函数</p>
+<figure data-type="image" tabindex="2"><img src="https://tvax2.sinaimg.cn/large/00705hvsly1ga4rj4ztjbj30pl0efwld.jpg" alt="image"></figure>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>J</mi><mrow><mo fence="true">(</mo><msub><mi>θ</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>θ</mi><mn>1</mn></msub><mo fence="true">)</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>m</mi></mrow></mfrac><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></msubsup><msup><mrow><mo fence="true">(</mo><msub><mover accent="true"><mi>y</mi><mo>^</mo></mover><mi>i</mi></msub><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub><mo fence="true">)</mo></mrow><mn>2</mn></msup><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>m</mi></mrow></mfrac><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></msubsup><msup><mrow><mo fence="true">(</mo><msub><mi>h</mi><mi>θ</mi></msub><mrow><mo fence="true">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo fence="true">)</mo></mrow><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub><mo fence="true">)</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">J\left(\theta_{0}, \theta_{1}\right)=\frac{1}{2 m} \sum_{i=1}^{m}\left(\hat{y}_{i}-y_{i}\right)^{2}=\frac{1}{2 m} \sum_{i=1}^{m}\left(h_{\theta}\left(x_{i}\right)-y_{i}\right)^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.299008em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathdefault mtight">m</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.299008em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathdefault mtight">m</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+<li>
+<p>预测值和真实值的误差</p>
+</li>
+<li>
+<p>代价函数和假设函数的区别</p>
+<figure data-type="image" tabindex="3"><img src="https://tvax3.sinaimg.cn/large/00705hvsly1ga4ruzxjgqj30o00bhaga.jpg" alt="image"></figure>
+<ol>
+<li>自变量不同</li>
+<li>意义不同</li>
+</ol>
+</li>
+</ol>
+<h3 id="梯度下降法">梯度下降法</h3>
+<figure data-type="image" tabindex="4"><img src="https://tvax4.sinaimg.cn/large/00705hvsly1ga4rzswtaej30mv0bodol.jpg" alt="image"></figure>
+<ol>
+<li>
+<p>作用：将代价函数最小化</p>
+</li>
+<li>
+<p>原理：每一点都找下降最快的方向</p>
+</li>
+<li>
+<p>特点</p>
+<ol>
+<li>
+<p>同步更新</p>
+<figure data-type="image" tabindex="5"><img src="https://tva3.sinaimg.cn/large/00705hvsly1ga4sbooxwdj30fr07y74m.jpg" alt="image"></figure>
+</li>
+<li>
+<p>步长越来越小</p>
+<figure data-type="image" tabindex="6"><img src="https://tvax3.sinaimg.cn/large/00705hvsly1ga5rq1ylgvj30uy0g5gup.jpg" alt="image"></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="线性回归梯度下降">线性回归梯度下降</h3>
+<figure data-type="image" tabindex="7"><img src="https://tvax2.sinaimg.cn/large/00705hvsly1ga6ogbgqojj30km0a2790.jpg" alt="image"></figure>
+<ol>
+<li>Batch梯度下降
+<ol>
+<li>遍历所有样本</li>
+</ol>
+</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[无人驾驶环境感知技术（三）]]></title>
         <id>https://xioafanwu.github.io/post/wu-ren-jia-shi-huan-jing-gan-zhi-ji-zhu-san</id>
@@ -1657,422 +1727,6 @@ M1001 80H400000v40H1013z'/></svg></span></span></span><span class="vlist-s">​<
 </ol>
 </li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[《利用Python进行数据分析》（三）]]></title>
-        <id>https://xioafanwu.github.io/post/lesslessli-yong-python-jin-xing-shu-ju-fen-xi-greatergreater-san</id>
-        <link href="https://xioafanwu.github.io/post/lesslessli-yong-python-jin-xing-shu-ju-fen-xi-greatergreater-san">
-        </link>
-        <updated>2019-12-11T15:13:48.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="数据结构和序列">数据结构和序列</h2>
-<h3 id="元组">元组</h3>
-<ol>
-<li>固定长度 不可改变</li>
-<li>创建方法：逗号分隔/加括号（）</li>
-<li>tuple将任意序列转化为元组</li>
-<li>
-<ul>
-<li>串联元组 *复制元组</li>
-</ul>
-</li>
-<li>count：统计某个值出现的频率</li>
-</ol>
-<pre><code class="language-python">In [1]: tup = 4, 5, 6
-In [2]: tup
-Out[2]: (4, 5, 6)
-In [3]: nested_tup = (4, 5, 6), (7, 8)
-In [4]: nested_tup
-Out[4]: ((4, 5, 6), (7, 8))
-In [5]: tuple([4, 0, 2])
-Out[5]: (4, 0, 2)
-In [6]: tup = tuple('string')
-In [7]: tup
-Out[7]: ('s', 't', 'r', 'i', 'n', 'g')
-In [8]: tup[0]
-Out[8]: 's
-In [9]: tup = tuple(['foo', [1, 2], True])
-In [10]: tup[2] = False
----------------------------------------------------------------------------
-TypeError                                 Traceback (most recent call last)
-&lt;ipython-input-10-c7308343b841&gt; in &lt;module&gt;()
-----&gt; 1 tup[2] = False
-TypeError: 'tuple' object does not support item assignment
-In [11]: tup[1].append(3)
-In [12]: tup
-Out[12]: ('foo', [1, 2, 3], True)
-In [34]: a = (1, 2, 2, 2, 3, 4, 2)
-In [35]: a.count(2)
-Out[35]: 4
-</code></pre>
-<h3 id="拆分元组">拆分元组</h3>
-<ol>
-<li>拆分等式右边的值</li>
-<li>*rest抓取任意长度不需要的变量</li>
-</ol>
-<pre><code class="language-python">In [18]: tup = 4, 5, (6, 7)
-In [19]: a, b, (c, d) = tup
-In [20]: d
-Out[20]: 7
-In [29]: values = 1, 2, 3, 4, 5
-
-In [30]: a, b, *rest = values #rest可以用其他名字代替
-In [31]: a, b
-Out[31]: (1, 2)
-In [32]: rest
-Out[32]: [3, 4, 5]
-</code></pre>
-<h3 id="列表">列表</h3>
-<ol>
-<li>列表长度可变，内容可以被修改</li>
-<li>创建方法：方括号定义，list函数</li>
-<li>添加元素：append insert（插入）</li>
-<li>删除元素：pop（移除指定位） remove（去除某个值）</li>
-<li>查询元素：in</li>
-<li>串联列表：+ extend</li>
-<li>排序：sort
-<ol>
-<li>二级排序key 定义排序方法</li>
-</ol>
-</li>
-<li>二分搜索和维护：
-<ol>
-<li>bisect.bisect:查询元素在列表位置</li>
-<li>bisect.insort:在确定位置插入元素</li>
-</ol>
-</li>
-<li>切片元素
-<ol>
-<li>使用形式：方括号中使用start：stop</li>
-<li><strong>包含起始元素，不包含结束元素</strong></li>
-<li>第二个冒号表示步长</li>
-</ol>
-</li>
-</ol>
-<pre><code class="language-python">In [36]: a_list = [2, 3, 7, None]
-In [37]: tup = ('foo', 'bar', 'baz')
-In [38]: b_list = list(tup)
-In [39]: b_list
-Out[39]: ['foo', 'bar', 'baz']
-In [40]: b_list[1] = 'peekaboo'
-In [41]: b_list
-Out[41]: ['foo', 'peekaboo', 'baz']
-In [45]: b_list.append('dwarf'）
-In [46]: b_list
-Out[46]: ['foo', 'peekaboo', 'baz', 'dwarf']
-In [47]: b_list.insert(1, 'red')
-In [48]: b_list
-Out[48]: ['foo', 'red', 'peekaboo', 'baz', 'dwarf']
-In [49]: b_list.pop(2)
-Out[49]: 'peekaboo'
-In [50]: b_list
-Out[50]: ['foo', 'red', 'baz', 'dwarf']
-In [51]: b_list.append('foo')
-In [52]: b_list
-Out[52]: ['foo', 'red', 'baz', 'dwarf', 'foo']
-In [53]: b_list.remove('foo')
-In [54]: b_list
-Out[54]: ['red', 'baz', 'dwarf', 'foo']
-In [58]: x = [4, None, 'foo']
-In [59]: x.extend([7, 8, (2, 3)])
-In [60]: x
-Out[60]: [4, None, 'foo', 7, 8, (2, 3)]
-In [64]: b = ['saw', 'small', 'He', 'foxes', 'six']
-In [61]: a = [7, 2, 5, 1, 3]
-In [62]: a.sort()
-In [63]: a
-Out[63]: [1, 2, 3, 5, 7]
-In [65]: b.sort(key=len)
-In [66]: b
-Out[66]: ['He', 'saw', 'six', 'small', 'foxes']
-In [67]: import bisect
-In [68]: c = [1, 2, 2, 2, 3, 4, 7]
-In [69]: bisect.bisect(c, 2)
-Out[69]: 4
-In [70]: bisect.bisect(c, 5)
-Out[70]: 6
-In [71]: bisect.insort(c, 6)
-In [72]: c
-Out[72]: [1, 2, 2, 2, 3, 4, 6, 7]
-In [75]: seq[3:4] = [6, 3]
-In [76]: seq
-Out[76]: [7, 2, 3, 6, 3, 5, 6, 0, 1]
-In [79]: seq[-4:]
-Out[79]: [5, 6, 0, 1]
-In [80]: seq[-6:-2]
-Out[80]: [6, 3, 5, 6]
-</code></pre>
-<h3 id="序列函数">序列函数</h3>
-<ol>
-<li>enmuerate函数：映射元素对应的位置</li>
-<li>sorted函数：从任意序列返回一个排序系列</li>
-<li>zip函数
-<ol>
-<li>将多个列表元组组合成新的元组</li>
-<li>用途：结合enumerate，同时迭代多个序列</li>
-<li>行列表转换为列的列表</li>
-</ol>
-</li>
-<li>reversed函数：从后向前迭代一个序列</li>
-</ol>
-<pre><code class="language-python">In [83]: some_list = ['foo', 'bar', 'baz']
-
-In [84]: mapping = {}
-
-In [85]: for i, v in enumerate(some_list):
-   ....:     mapping[v] = i
-
-In [86]: mapping
-Out[86]: {'bar': 1, 'baz': 2, 'foo': 0}
-In [87]: sorted([7, 1, 2, 6, 0, 3, 2])
-Out[87]: [0, 1, 2, 2, 3, 6, 7]
-
-In [88]: sorted('horse race')
-Out[88]: [' ', 'a', 'c', 'e', 'e', 'h', 'o', 'r', 'r', 's']
-In [89]: seq1 = ['foo', 'bar', 'baz']
-
-In [90]: seq2 = ['one', 'two', 'three']
-
-In [91]: zipped = zip(seq1, seq2)
-
-In [92]: list(zipped)
-Out[92]: [('foo', 'one'), ('bar', 'two'), ('baz', 'three')]
-In [93]: seq3 = [False, True]
-
-In [94]: list(zip(seq1, seq2, seq3))
-Out[94]: [('foo', 'one', False), ('bar', 'two', True)]
-In [95]: for i, (a, b) in enumerate(zip(seq1, seq2)):
-   ....:     print('{0}: {1}, {2}'.format(i, a, b))
-   ....:
-0: foo, one
-1: bar, two
-2: baz, three
-In [96]: pitchers = [('Nolan', 'Ryan'), ('Roger', 'Clemens'),
-   ....:             ('Schilling', 'Curt')]
-
-In [97]: first_names, last_names = zip(*pitchers)
-
-In [98]: first_names
-Out[98]: ('Nolan', 'Roger', 'Schilling')
-
-In [99]: last_names
-Out[99]: ('Ryan', 'Clemens', 'Curt')
-</code></pre>
-<h3 id="字典">字典</h3>
-<ol>
-<li>创建字典元素：{}，:分隔键和键值</li>
-<li>访问、插入、设定字典中的元素</li>
-<li>删除值del关键字或pop方法（删除值同时删除键）</li>
-<li>keys和values将顺序输出字典的键值</li>
-<li>update将字典融合</li>
-<li>序列创建字典：dict接受二元元组的列表</li>
-<li>字典的值可以为Python对象，键通常是不可变的标量类型或元组。这被称为“可哈希性”
-<ol>
-<li>用has函数检测是否可哈希</li>
-</ol>
-</li>
-</ol>
-<pre><code class="language-python">In [101]: empty_dict = {}
-
-In [102]: d1 = {'a' : 'some value', 'b' : [1, 2, 3, 4]}
-
-In [103]: d1
-Out[103]: {'a': 'some value', 'b': [1, 2, 3, 4]}
-In [104]: d1[7] = 'an integer'
-
-In [105]: d1
-Out[105]: {'a': 'some value', 'b': [1, 2, 3, 4], 7: 'an integer'}
-
-In [106]: d1['b']
-Out[106]: [1, 2, 3, 4]
-In [108]: d1[5] = 'some value'
-
-In [109]: d1
-Out[109]: 
-{'a': 'some value',
- 'b': [1, 2, 3, 4],
- 7: 'an integer',
- 5: 'some value'}
-
-In [110]: d1['dummy'] = 'another value'
-
-In [111]: d1
-Out[111]: 
-{'a': 'some value',
- 'b': [1, 2, 3, 4],
- 7: 'an integer',
- 5: 'some value',
- 'dummy': 'another value'}
-
-In [112]: del d1[5]
-
-In [113]: d1
-Out[113]: 
-{'a': 'some value',
- 'b': [1, 2, 3, 4],
- 7: 'an integer',
- 'dummy': 'another value'}
-
-In [114]: ret = d1.pop('dummy')
-
-In [115]: ret
-Out[115]: 'another value'
-
-In [116]: d1
-Out[116]: {'a': 'some value', 'b': [1, 2, 3, 4], 7: 'an integer'}
-In [117]: list(d1.keys())
-Out[117]: ['a', 'b', 7]
-
-In [118]: list(d1.values())
-Out[118]: ['some value', [1, 2, 3, 4], 'an integer']
-In [119]: d1.update({'b' : 'foo', 'c' : 12})
-
-In [120]: d1
-Out[120]: {'a': 'some value', 'b': 'foo', 7: 'an integer', 'c': 12}
-</code></pre>
-<h3 id="几何">几何</h3>
-<ol>
-<li>
-<p>无序不可重复的元素集合（没有值只有键）</p>
-</li>
-<li>
-<p>创建：set函数或者{}</p>
-</li>
-<li>
-<p>集合的运算</p>
-<ol>
-<li>
-<p>union方法或者|：合并</p>
-</li>
-<li>
-<p>intersection方法或者&amp;：求交集</p>
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/xioafanwu/Figurebed/master/img/20191211220611.png" alt=""></figure>
-</li>
-</ol>
-</li>
-<li>
-<p>检测集合关系：issubset</p>
-</li>
-</ol>
-<pre><code class="language-python">In [133]: set([2, 2, 2, 1, 3, 3])
-Out[133]: {1, 2, 3}
-
-In [134]: {2, 2, 2, 1, 3, 3}
-Out[134]: {1, 2, 3}
-In [135]: a = {1, 2, 3, 4, 5}
-
-In [136]: b = {3, 4, 5, 6, 7, 8}
-In [137]: a.union(b)
-Out[137]: {1, 2, 3, 4, 5, 6, 7, 8}
-
-In [138]: a | b
-Out[138]: {1, 2, 3, 4, 5, 6, 7, 8}
-In [139]: a.intersection(b)
-Out[139]: {3, 4, 5}
-
-In [140]: a &amp; b
-Out[140]: {3, 4, 5}
-In [141]: c = a.copy()
-
-In [142]: c |= b
-
-In [143]: c
-Out[143]: {1, 2, 3, 4, 5, 6, 7, 8}
-
-In [144]: d = a.copy()
-
-In [145]: d &amp;= b
-
-In [146]: d
-Out[146]: {3, 4, 5}
-</code></pre>
-<h2 id="函数">函数</h2>
-<h3 id="命名空间-作用域和局部函数">命名空间、作用域，和局部函数</h3>
-<ol>
-<li>任何在函数中赋值的变量默认都是被分配到局部命名空间（local namespace）中的。局部命名空间是在函数被调用时创建的，函数参数会立即填入该命名空间</li>
-<li>在函数执行完毕之后，局部命名空间就会被销毁</li>
-</ol>
-<h3 id="返回多个值">返回多个值</h3>
-<ol>
-<li>函数可以返回多个值</li>
-</ol>
-<pre><code class="language-python">def f():
-    a = 5
-    b = 6
-    c = 7
-    return a, b, c
-
-a, b, c = f()
-</code></pre>
-<h3 id="匿名函数">匿名函数</h3>
-<pre><code class="language-python">In [177]: strings = ['foo', 'card', 'bar', 'aaaa', 'abab']
-In [178]: strings.sort(key=lambda x: len(set(list(x))))
-
-In [179]: strings
-Out[179]: ['aaaa', 'foo', 'abab', 'bar', 'card']
-</code></pre>
-<h3 id="柯里化部分参数应用">柯里化：部分参数应用</h3>
-<ol>
-<li>定义一个可以调用现有函数的新函数</li>
-<li>内置的functools模块可以用partial函数将此过程简化</li>
-</ol>
-<pre><code class="language-python">def add_numbers(x, y):
-    return x + y
-from functools import partial
-add_five = partial(add_numbers, 5)
-</code></pre>
-<h3 id="生成器">生成器</h3>
-<ol>
-<li>一般的函数执行之后只会返回单个值，而生成器则是以延迟的方式返回一个值序列，即每返回一个值之后暂停，直到下一个值被请求时再继续</li>
-<li>要创建一个生成器，只需将函数中的return替换为yeild即可</li>
-<li>生成器表达式：创建方式为，把列表推导式两端的方括号改成圆括号</li>
-</ol>
-<pre><code class="language-python">def squares(n=10):
-    print('Generating squares from 1 to {0}'.format(n ** 2))
-    for i in range(1, n + 1):
-        yield i ** 2
-In [186]: gen = squares()
-
-In [187]: gen
-Out[187]: &lt;generator object squares at 0x7fbbd5ab4570&gt;
-In [188]: for x in gen:
-   .....:     print(x, end=' ')
-Generating squares from 1 to 100
-1 4 9 16 25 36 49 64 81 100
-In [189]: gen = (x ** 2 for x in range(100))
-In [191]: sum(x ** 2 for x in range(100))
-Out[191]: 328350
-
-In [192]: dict((i, i **2) for i in range(5))
-Out[192]: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
-</code></pre>
-<h3 id="itertools模块">itertools模块</h3>
-<ol>
-<li>groupby函数：根据函数的返回值对序列中的连续元素进行分组</li>
-</ol>
-<pre><code class="language-python">In [193]: import itertools
-
-In [194]: first_letter = lambda x: x[0]
-
-In [195]: names = ['Alan', 'Adam', 'Wes', 'Will', 'Albert', 'Steven']
-
-In [196]: for letter, names in itertools.groupby(names, first_letter):
-   .....:     print(letter, list(names)) # names is a generator
-A ['Alan', 'Adam']
-W ['Wes', 'Will']
-A ['Albert']
-S ['Steven']
-</code></pre>
-<h3 id="错误和异常处理">错误和异常处理</h3>
-<ol>
-<li>try/except结构</li>
-</ol>
-<pre><code class="language-python">def attempt_float(x):
-    try:
-        return float(x)
-    except (TypeError, ValueError):
-        return x
-</code></pre>
 ]]></content>
     </entry>
 </feed>
