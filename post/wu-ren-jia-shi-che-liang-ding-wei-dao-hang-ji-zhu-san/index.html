@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>无人驾驶车辆定位导航技术（二） | LSG</title>
 <meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1577085354890">
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1577172896531">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://xioafanwu.github.io">
-  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1577085354890" alt="">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1577172896531" alt="">
   </a>
   <h1 class="site-title">
     LSG
@@ -80,7 +80,7 @@
                 2019-12-15
               </span>
               <span>
-                3 min read
+                5 min read
               </span>
               
                 <a href="https://xioafanwu.github.io/tag/TOXjoYI1p" class="post-tag">
@@ -93,7 +93,10 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h2 id="视觉定位技术">视觉定位技术</h2>
+                <blockquote>
+<p>本文主要介绍了视觉定位SLAM技术和视觉里程计技术。SLAM技术主要用来解决在未知地图上，从未知的未知出大，进行车体位置和航向的确定，同时创建环境地图实时更新。主要包括四个步骤：前段、后端优化、回环检测和建图。前段处理是为了计算图像帧之间相机姿态的相对位置关系。主要包括：特征提取、特征匹配、运动估计。特征提取常用角点特征和直线特征，利用Haris、FAST等角点检测器提取特征点。特征匹配是在两张图像中找到同一特征。常用两种方法，一种是在一张图像上提取到特征点，在其他图像上遍历所有特征搜索相对于关联点，为了避免一对多加快匹配效率常采用多维搜索数和哈希表以及双向匹配。另一种方法是在分别在两个图像上检测特征点，通过某种相似性度量特征点。运动估计是预测车体的运动变化。后端优化是去除SLAM过程中的噪声，一般有两种方法滤波法和全局光束法。回环检测是解决位置飘逸问题。使车辆在回到曾经走过的道路上可以给车辆添加额外的约束。目前SLAM解决方法分为滤波器和基于优化的两个阵营。视觉里程计技术即根据图像估计相机的运动，按实现方式分为特征点法和直接方法，按照摄像头数目分为单目视觉和立体视觉</p>
+</blockquote>
+<h2 id="视觉定位技术">视觉定位技术</h2>
 <h3 id="视觉slamsimultaneous-localization-and-mapping">视觉SLAM（simultaneous localization and mapping）</h3>
 <ol>
 <li>

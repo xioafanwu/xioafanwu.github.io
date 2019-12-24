@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>无人驾驶车辆定位导航技术（一） | LSG</title>
 <meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1577085354890">
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1577172896531">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://xioafanwu.github.io">
-  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1577085354890" alt="">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1577172896531" alt="">
   </a>
   <h1 class="site-title">
     LSG
@@ -80,7 +80,7 @@
                 2019-12-15
               </span>
               <span>
-                7 min read
+                9 min read
               </span>
               
                 <a href="https://xioafanwu.github.io/tag/TOXjoYI1p" class="post-tag">
@@ -93,7 +93,10 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h2 id="全球卫星导航定位">全球卫星导航定位</h2>
+                <blockquote>
+<p>本文介绍了全球卫星导航定位GPS系统和GPS/DR组合定位。GPS系统由空间部分、地面部分和用户设备部分组成。空间部分由24颗卫星组成。地面监控系统负责接收卫星传回的信息，计算星历和相对距离等。用户接收部分测量卫星到接收天线的距离，计算出用户位置经纬度、速度等信息。基本原理：以高速卫星瞬间位置为起算数据，基于到达时间原理或者载波相位原理测量观测点与GPS卫星之间的距离，最后采用空间距离后方交会方法估计观测点位置。GPS系统的误差来源：时钟偏差、电离层偏差、多路径延迟误差、对流层误差。GPS系统定位有三个特性：实时性、连续性和误差特性。连续性指的是可观测到的卫星数目，至少需要4颗可通视卫星才能定位。实时性体现在实时更新定位数据，数据结算也需要时间。误差特性：电离层对流层误差可以补偿，时钟误差可以消除，星历误差要随时间积累。为了消除卫星钟误差、对流层和电离层星历误差产生差分GPS系统。差分GPS系统由基准站和数据传输和移动站组成。差分GPS的原理是借助基准站给移动站发送改正数，根据该证书的具体内容分为位置差分、伪距差分和载波相位差分。位置差分是位置坐标，伪距差分改正数是距离。载波相位差分是实时动态定位技术，短时间内得到高精度位置信息，但具有一定局限性：受距离限制，需要假设本地基准站，误差随距离增长。GPS和/DR组合定位借助GPS和航迹推算技术的优点，互补。有两种结构一种是切换式、一种是融合式。切换式结构简单，计算量小，但是没有充分发挥两者优点只能解决卫星遮挡问题。融合式有两种：耦合式和互补式。耦合式有松耦合和紧耦合，互补式组合定位分为集中式和分散式主要是基于kalman滤波器进行数据融合。</p>
+</blockquote>
+<h2 id="全球卫星导航定位">全球卫星导航定位</h2>
 <h3 id="gps定位的基本原理">GPS定位的基本原理</h3>
 <ol>
 <li>
