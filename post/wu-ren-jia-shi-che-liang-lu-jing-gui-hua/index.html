@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>无人驾驶车辆路径规划 | LSG</title>
 <meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1577172896531">
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1577255463914">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://xioafanwu.github.io">
-  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1577172896531" alt="">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1577255463914" alt="">
   </a>
   <h1 class="site-title">
     LSG
@@ -80,7 +80,7 @@
                 2019-12-16
               </span>
               <span>
-                5 min read
+                6 min read
               </span>
               
                 <a href="https://xioafanwu.github.io/tag/TOXjoYI1p" class="post-tag">
@@ -93,17 +93,21 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h2 id="路径规划概述">路径规划概述</h2>
+                <blockquote>
+<p>本文介绍了无人驾驶车辆的路径规划问题。路径规划分为全局路径规划和局部路径规划问题。全局路径规划解决的是在已知起点和终点搜索出一条最优化的全局期望路径。局部路径规划解决的是在未来一段时间内的路径规划。常用算法有两类：基于采样的路径规划算法（快速随机树、概率图）和基于地图的路径搜索（单元分解法）。详细介绍了Dijikstra（最短路径算法）和经典A*算法</p>
+</blockquote>
+<h2 id="路径规划概述">路径规划概述</h2>
 <h3 id="路径规划作用">路径规划作用</h3>
 <ol>
 <li>全局路径规划
 <ol>
+<li>已知起点和终点搜索出一条最优化全局期望路径</li>
 <li>可以行驶前离线进行</li>
 <li>也可以行驶中规划</li>
 </ol>
 </li>
 <li>局部路径规划
-<ol>
+<ol start="4">
 <li>以车辆局部坐标系为准</li>
 <li>需要全局期望路径</li>
 <li>未来行驶状态的集合，寻找一条满足车辆运动学和舒适性指标的路径</li>

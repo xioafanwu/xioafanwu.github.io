@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
     <title>LSG</title>
-    <updated>2019-12-24T07:35:02.452Z</updated>
+    <updated>2019-12-25T06:31:07.283Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
@@ -1187,17 +1187,21 @@ array([ 0.4714, -1.191 ,  1.4327, -0.3127, -0.7206,  0.8872,  0.8596,
         <link href="https://xioafanwu.github.io/post/wu-ren-jia-shi-che-liang-lu-jing-gui-hua">
         </link>
         <updated>2019-12-16T07:56:59.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="路径规划概述">路径规划概述</h2>
+        <content type="html"><![CDATA[<blockquote>
+<p>本文介绍了无人驾驶车辆的路径规划问题。路径规划分为全局路径规划和局部路径规划问题。全局路径规划解决的是在已知起点和终点搜索出一条最优化的全局期望路径。局部路径规划解决的是在未来一段时间内的路径规划。常用算法有两类：基于采样的路径规划算法（快速随机树、概率图）和基于地图的路径搜索（单元分解法）。详细介绍了Dijikstra（最短路径算法）和经典A*算法</p>
+</blockquote>
+<h2 id="路径规划概述">路径规划概述</h2>
 <h3 id="路径规划作用">路径规划作用</h3>
 <ol>
 <li>全局路径规划
 <ol>
+<li>已知起点和终点搜索出一条最优化全局期望路径</li>
 <li>可以行驶前离线进行</li>
 <li>也可以行驶中规划</li>
 </ol>
 </li>
 <li>局部路径规划
-<ol>
+<ol start="4">
 <li>以车辆局部坐标系为准</li>
 <li>需要全局期望路径</li>
 <li>未来行驶状态的集合，寻找一条满足车辆运动学和舒适性指标的路径</li>
