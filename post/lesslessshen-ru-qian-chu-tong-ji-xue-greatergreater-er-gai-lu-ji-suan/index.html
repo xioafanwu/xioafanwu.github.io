@@ -1,0 +1,232 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>《深入浅出统计学》（二）—概率计算 | LSG</title>
+<meta name="description" content="温故而知新" />
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1578065247544">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xioafanwu.github.io">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1578065247544" alt="">
+  </a>
+  <h1 class="site-title">
+    LSG
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              《深入浅出统计学》（二）—概率计算
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-01-03
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://xioafanwu.github.io/tag/ZJJjECf9a" class="post-tag">
+                  # 大数据分析
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/lesslessshen-ru-qian-chu-tong-ji-xue-greatergreater-er-gai-lu-ji-suan.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="相关定义">相关定义</h2>
+<ol>
+<li>
+<p>概率：量度某事发生几率的一种数量指标</p>
+</li>
+<li>
+<p>事件：表示有概率可言的任何事情</p>
+</li>
+<li>
+<p>维恩图</p>
+</li>
+<li>
+<p>对立事件：“A不发生”事件有一种简便表示方法—A'。A被称为A的对立事件。</p>
+</li>
+<li>
+<p>互斥事件：如果两个事件是互斥事件，则只有其中一个事件会发生。</p>
+</li>
+<li>
+<p>相交事件：如果两个事件相交，则这两个事件有可能同制发生。</p>
+</li>
+<li>
+<p>相关事件：如果几个事件互有影响，则为相关事件</p>
+</li>
+<li>
+<p>独立事件：如果几个事件互不影响，则为独立事件</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">P</mi><mo>(</mo><mi mathvariant="bold">A</mi><mi mathvariant="normal">∣</mi><mi mathvariant="bold">B</mi><mo>)</mo><mo>=</mo><mi mathvariant="bold">P</mi><mo>(</mo><mi mathvariant="bold">A</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathbf{P}(\mathbf{A} | \mathbf{B})=\mathbf{P}(\mathbf{A})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf">P</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">A</span></span><span class="mord">∣</span><span class="mord"><span class="mord mathbf">B</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf">P</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">A</span></span><span class="mclose">)</span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">P</mi><mo>(</mo><mi mathvariant="bold">A</mi><mo>∩</mo><mi mathvariant="bold">B</mi><mo>)</mo><mo>=</mo><mi mathvariant="bold">P</mi><mo>(</mo><mi mathvariant="bold">A</mi><mo>)</mo><mo>×</mo><mi mathvariant="bold">P</mi><mo>(</mo><mi mathvariant="bold">B</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathbf{P}(\mathbf{A} \cap \mathbf{B})=\mathbf{P}(\mathbf{A}) \times \mathbf{P}(\mathbf{B})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf">P</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">A</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf">B</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf">P</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">A</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf">P</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">B</span></span><span class="mclose">)</span></span></span></span></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="条件概率">条件概率</h2>
+<ol>
+<li>
+<p>如果要表示以另一个事件的发生为条件的某个事件的发生概率，我们就用“I”符号表示“已知条件”，于是，“以事件B为已知条件的事件A的概率”就可以简写为：</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mi mathvariant="normal">∣</mi><mi>B</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo>)</mo></mrow><mrow><mi>P</mi><mo>(</mo><mi>B</mi><mo>)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">P(A | B)=\frac{P(A \cap B)}{P(B)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight">)</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">A</span><span class="mbin mtight">∩</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+</blockquote>
+</li>
+<li>
+<p>概率树</p>
+<figure data-type="image" tabindex="1"><img src="https://tvax2.sinaimg.cn/large/00705hvsly1gajr9uginrj30q50jt0vj.jpg" alt="image" loading="lazy"></figure>
+</li>
+<li>
+<p>全概率公式</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">P</mi><mo>(</mo><mi mathvariant="normal">B</mi><mo>)</mo><mo>=</mo><mi mathvariant="normal">P</mi><mo>(</mo><mi mathvariant="normal">A</mi><mo>∩</mo><mi mathvariant="normal">B</mi><mo>)</mo><mo>+</mo><mi mathvariant="normal">P</mi><mrow><mo fence="true">(</mo><msup><mi mathvariant="normal">A</mi><mo mathvariant="normal">′</mo></msup><mo>∩</mo><mi mathvariant="normal">B</mi><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathbf{P}(\mathrm{B})=\mathrm{P}(\mathrm{A} \cap \mathrm{B})+\mathrm{P}\left(\mathrm{A}^{\prime} \cap \mathrm{B}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf">P</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathrm">B</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">P</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathrm">A</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">B</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">P</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord"><span class="mord mathrm">A</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathrm">B</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>(</mo><mi>B</mi><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>×</mo><mi>P</mi><mo>(</mo><mi>B</mi><mi mathvariant="normal">∣</mi><mi>A</mi><mo>)</mo><mo>+</mo><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>×</mo><mi>P</mi><mo>(</mo><mi>B</mi><mi mathvariant="normal">∣</mi><mi>A</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">P(B)=P(A) \times P(B | A)+P(A) \times P(B | A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord">∣</span><span class="mord mathdefault">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord">∣</span><span class="mord mathdefault">A</span><span class="mclose">)</span></span></span></span></p>
+</blockquote>
+</li>
+<li>
+<p>贝叶斯定理</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mi mathvariant="normal">∣</mi><mi>B</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>×</mo><mi>P</mi><mo>(</mo><mi>B</mi><mi mathvariant="normal">∣</mi><mi>A</mi><mo>)</mo></mrow><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>×</mo><mi>P</mi><mo>(</mo><mi>B</mi><mi mathvariant="normal">∣</mi><mi>A</mi><mo>)</mo><mo>+</mo><mi>P</mi><mrow><mo fence="true">(</mo><msup><mi>A</mi><mo mathvariant="normal">′</mo></msup><mo fence="true">)</mo></mrow><mo>×</mo><mi>P</mi><mrow><mo fence="true">(</mo><mi>B</mi><mi mathvariant="normal">∣</mi><msup><mi>A</mi><mo mathvariant="normal">′</mo></msup><mo fence="true">)</mo></mrow></mrow></mfrac></mrow><annotation encoding="application/x-tex">P(A | B)=\frac{P(A) \times P(B | A)}{P(A) \times P(B | A)+P\left(A^{\prime}\right) \times P\left(B | A^{\prime}\right)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">A</span><span class="mclose mtight">)</span><span class="mbin mtight">×</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span><span class="mord mtight">∣</span><span class="mord mathdefault mtight">A</span><span class="mclose mtight">)</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="minner mtight"><span class="mopen mtight delimcenter" style="top:0em;"><span class="mtight">(</span></span><span class="mord mtight"><span class="mord mathdefault mtight">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose mtight delimcenter" style="top:0em;"><span class="mtight">)</span></span></span><span class="mbin mtight">×</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="minner mtight"><span class="mopen mtight delimcenter" style="top:0em;"><span class="mtight">(</span></span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span><span class="mord mtight">∣</span><span class="mord mtight"><span class="mord mathdefault mtight">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose mtight delimcenter" style="top:0em;"><span class="mtight">)</span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">A</span><span class="mclose mtight">)</span><span class="mbin mtight">×</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span><span class="mord mtight">∣</span><span class="mord mathdefault mtight">A</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+</blockquote>
+</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%9B%B8%E5%85%B3%E5%AE%9A%E4%B9%89">相关定义</a></li>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87">条件概率</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xioafanwu.github.io/post/dian-dong-qi-che-dong-li-dian-chi-chong-dian-neng-liang-yu-ce">
+              <h3 class="post-title">
+                电动汽车动力电池充电能量预测
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

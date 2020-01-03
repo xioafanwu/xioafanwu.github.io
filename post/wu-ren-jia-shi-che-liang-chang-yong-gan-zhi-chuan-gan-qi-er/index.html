@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>无人驾驶车辆常用感知传感器（二） | LSG</title>
 <meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1577262116797">
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1578065247544">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://xioafanwu.github.io">
-  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1577262116797" alt="">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1578065247544" alt="">
   </a>
   <h1 class="site-title">
     LSG
@@ -101,7 +101,7 @@
 <ol>
 <li>
 <p>摄像机模型建立</p>
-<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/12/08/FxCDaSTkXmglht8.png" alt="quicker_a43f2ef3-7c02-4736-8f6e-14eedf4403bb.png"></figure>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/12/08/FxCDaSTkXmglht8.png" alt="quicker_a43f2ef3-7c02-4736-8f6e-14eedf4403bb.png" loading="lazy"></figure>
 <ol>
 <li>
 <p>车体坐标系、摄像机坐标系、图像坐标系之间的关系</p>
@@ -114,7 +114,7 @@
 </li>
 <li>
 <p>像素坐标系：图片左上角</p>
-<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/12/08/p391WIXoltCHJLG.png" alt="quicker_3c8c33de-fc85-4406-a8c8-2a7da87dd000.png"></figure>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/12/08/p391WIXoltCHJLG.png" alt="quicker_3c8c33de-fc85-4406-a8c8-2a7da87dd000.png" loading="lazy"></figure>
 </li>
 </ol>
 </li>
@@ -216,11 +216,11 @@
 </li>
 </ol>
 <h3 id="双目视觉标定">双目视觉标定</h3>
-<figure data-type="image" tabindex="3"><img src="https://tva3.sinaimg.cn/large/00705hvsgy1ga4eyzchp3j30hs0aidin.jpg" alt="image"></figure>
+<figure data-type="image" tabindex="3"><img src="https://tva3.sinaimg.cn/large/00705hvsgy1ga4eyzchp3j30hs0aidin.jpg" alt="image" loading="lazy"></figure>
 <ol>
 <li>
 <p>双目视觉模型的建立</p>
-<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2019/12/08/17GOr4pvfY2snjF.png" alt="quicker_c67494a4-ce0f-40e8-95c0-1cb551babb99.png"></figure>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2019/12/08/17GOr4pvfY2snjF.png" alt="quicker_c67494a4-ce0f-40e8-95c0-1cb551babb99.png" loading="lazy"></figure>
 <ol>
 <li>
 <p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>O</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>O</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">O_1,O_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>左右摄像机光心；<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>P</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>P</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">P_1,P_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>透过透镜成像在像平面上的点</p>
@@ -237,7 +237,7 @@
 </li>
 <li>
 <p>双目图像去畸变处理</p>
-<figure data-type="image" tabindex="5"><img src="https://i.loli.net/2019/12/08/dNPJ67foj1VS4aC.png" alt="quicker_48253392-ae28-4b1f-a4ff-f4be193d35c6.png"></figure>
+<figure data-type="image" tabindex="5"><img src="https://i.loli.net/2019/12/08/dNPJ67foj1VS4aC.png" alt="quicker_48253392-ae28-4b1f-a4ff-f4be193d35c6.png" loading="lazy"></figure>
 <ol>
 <li>
 <p>径向畸变</p>
@@ -274,7 +274,7 @@
 </li>
 <li>
 <p>双目图像校正</p>
-<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2019/12/08/OnQZNB7M5TVY86g.png" alt="quicker_32757cf5-5e83-4b8b-8252-117b3bd4928b.png"></figure>
+<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2019/12/08/OnQZNB7M5TVY86g.png" alt="quicker_32757cf5-5e83-4b8b-8252-117b3bd4928b.png" loading="lazy"></figure>
 <ol>
 <li>两台相机光轴不平行，极线未校准</li>
 <li>图像平面旋转和平移</li>
