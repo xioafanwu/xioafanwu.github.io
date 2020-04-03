@@ -1,0 +1,254 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Race Car Vehicle Dynamics-17.5 | LSG</title>
+<meta name="description" content="温故而知新" />
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1585906686684">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xioafanwu.github.io">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1585906686684" alt="">
+  </a>
+  <h1 class="site-title">
+    LSG
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Race Car Vehicle Dynamics-17.5
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-29
+              </span>
+              <span>
+                14 min read
+              </span>
+              
+                <a href="https://xioafanwu.github.io/tag/mvda-W-BX/" class="post-tag">
+                  # 悬架
+                </a>
+              
+                <a href="https://xioafanwu.github.io/tag/BtT2vwWwr/" class="post-tag">
+                  # 汽车动力学
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/1.jpg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h3 id="175-前悬架">17.5 前悬架</h3>
+<h4 id="引言">引言</h4>
+<p>        这些年出现了很多种类的前悬架。这其中包括横梁式，大众的拖曳臂式等等。近两年，乘用车的悬架大致有两类：麦弗逊式和不等长双横臂式。</p>
+<p>        这一章节只介绍两种主流的前悬架。其他类型的悬架要么导向机构承受很大的弯矩，导向机构不合理，磨损较大或着这几个问题都有。讨论一种悬架最好的方法就是一步一步的设计它。通常做每一个决定都伴随着妥协。通过研究这些问题，就可以看大每一种悬架的局限。</p>
+<h4 id="前悬架设计问题常识">前悬架设计问题——常识</h4>
+<p>        设计任何前悬架的<font color=#dd0000>第一个任务是建立一些参数，这个是要被固定的。或者说这个是任何原因都不能够改变的。这些参数要被列出以防被忽略。下一个任务是列出轮辋，轮胎，制动和轴承。这里要做的是确定它们在车上位置，所以轮距是要事先确定的。如果这个还没有确定，轮距应该做的尽可能大。</font>这个听起来有点不负责，不过这个是权衡各方面的结果。例如要遵循什么样的规则？最主要的是这辆车将在什么样的赛道上跑？在高速赛道上小的正视图面积是重要的。在低速赛道多弯的赛道上？所有这些问题都会影响基本轮距的选择。</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/xioafanwu/Figurebed/master/img/20200329143742.png" alt="" loading="lazy"></figure>
+<p>        <font color=#dd0000>轮胎尺寸，轮辆直径和宽度是要选择的</font>。特殊的轮辋制造商需要知道轮辋的截面形状，为了达到最优的轮胎使用效果。轮胎尺寸通常受限于比赛规则。通常，使用各种他们同意你用的轮胎。另一点是使用你供应商新开发的尺寸；这样可以保证最新的配方和设计是适合你的车的。记住，轮胎是整车底盘部分中最重要的部件。</p>
+<p>        轮辋偏距由为固定制动卡钳而流出轮辋内部空间决定。一旦卡钳位置决定了，制动盘的位置自然决定了。随着制动盘位置的确定，下球头销的位置也就决定了。轮辋轴承的位置也要尽快确定，理想的位置应该在轮胎的中心在两个球头之间（为了让轴承收到的载荷最小）</p>
+<p>        既然下球头销的侧边位置已经确定，<font color=#dd0000>下一步是确定下球头销的高度</font>。在量产车中这个高度必须是5英寸，不过在赛车上因为结构原因就要求越低越好为了。通常在这方面没有规则不过有一些必须要考虑的因素例如轮胎漏气后离地间隙。如果当轮胎漏气后所有的都在轮辆里面就不得不了解轮胎和制动盘在整个轮辋行程中的载荷。</p>
+<p>        <font color=#dd0000>下一步是决定主视图的主销内倾</font>。这些问题产生主销偏距，主轴长度（主销距离过轮辋中点平行线的距离）和主销内倾角。它们是相互关联的并且妥协是必须的。<font color=#dd0000>如果你要一个确定的主销偏距现在你有两个点要建立，也就是下球头销和主销与地面的交点</font>一—这样主销内倾角就自然固定下来了。如果你希望有一个特定的主销内倾那主销偏距可能就不是你想要的。基本上，<font color=#dd0000>在前驱车上把下球头销尽可能地向外推，以得到一个小的主销内倾角，小于八度，并且可以接受由此带来主销偏距</font>。如果你设计的是四轮驱动的车你必须把主轴长度（主销距离过轮辆中点平行线的距离）做到最小同时特到一个负的主销偏距。这个可能导致主销参数达到16°，不过你不得不接受它或者找到别的方法避免它。</p>
+<p>        当车轮转向时主销后倾角就起作用。一个需要理解的概念是更多的主销后倾意味着转向时车辆被抬得更高。这是转向回正的原因之一，车辆的重量使得转向回正。抬高车辆的力也和主轴长度（主销距离过轮辋中点平行线的距离）有关，长的主轴长度意味着更多的举升力。</p>
+<p>        车轮转向时的车轮外倾取决于主销内倾和后倾。当没有主销内倾和后倾，以一定角度转向时没有车轮外倾没有变化。当有主销后倾但任然没有内倾是车轮会在转向时损失车轮外倾，换一句话说外侧车轮会向着正的车轮外倾角方向变化。当加入主销内倾后会影响主销后倾的效果。正的主销内倾，没有主销后倾，外侧车轮会增加负的内倾，内侧车轮会增加正的。因此主销内倾会在主销后倾的基础上增加有利的车轮倾角。换句话说，需要小的主销内倾的原因是主销内倾角会因为外车车轮主销后倾带来的负的车轮内倾增益而减小。</p>
+<p>决定悬架安装位置有很多因素例如发动机安装位置和方向，前轮或后轮驱动等等。另外还有很多性能原因决定支架的位置。首先我们必须假设每个结构都是弹簧而且必须如此对待。例如安装支架的刚度和上下控制臂相对于车架的刚度不一定是要一样的。因为，<font color=#dd0000>当有一个转向的侧向力时，在球头销处相对于横拉杆外点的位移就形成一个角度。为了保证稳定性最好有一定的侧向力，所以后束好于前束。</font></p>
+<p>        为了确保稳定性，最好将径向力偏转是前束向外（侧向力转向不足）而不是脚趾向内。我们可以确保机架的正确位置会发生这种情况。如果需要高架齿条，则它必须位于车轮中心后面；如果需要低架齿条，则必须位于车轮中心之前。如图17.17中阴影区域所示。</p>
+<p>        当整个系统的每个部件被安放好悬架的结构设计也就完成了。那些带有一个从球头销伸出一个直杆的控制臂的刚度大于那些倾斜的控制臂。当要一个更轻的设计时<font color=#dd0000>，建立弹簧，减震器，横向稳定杆的杠杆比尽可能是1：1可以提供更直接的加载路径从而增加系统的刚度</font></p>
+<h4 id="前悬架设计问题-sla">前悬架设计问题-SLA</h4>
+<p>        短臂悬挂（SLA）悬架是设计人员的选择，因为它能够以最小的折衷满足期望的性能目标。</p>
+<p>        这个设计的开始就像上面提到的那样。轮距，轮辋尺寸，轮胎和制动器等的细节确定下球头销可能的位置。上球头销的位置用主销角度或磨胎半径决定的。双横臂悬架有很多自由不过在立柱设计上不行的，只能选择长或短的转向节。</p>
+<p>        <font color=#dd0000>短的转向节是指上球头销在轮辋直径内。</font>配合大偏距和大尺寸轮辋，通过把上球头销放到轮辆里面这个主销可以保持得很小（同时可以得到更小的磨胎半径和主轴长度）为了减小在控制臂和别的悬架原件上的载荷需要一个长的主销，这就意味可以把上下球头销分的更开。从安装上来说，短的转向节使得主销长度臂比理想的短。<font color=#dd0000>另一个选择是长的转向节，上球头销在轮胎上。在长的转向节设计时自然有很大的间隔从而减小反作用力</font>。这个选择也能得到理想的主销内倾角从而获得理想的主轴长度和磨胎半径。另一个长转向节的优势是相对于短的转向节同样的加工误差会造成相对较小的几何误差。长的转向节也有坏处，增加结构设计量，对于完成设计后改变轮胎尺寸或宽度而不改变轮距有和增加主轴长度和磨胎半径有一定的限制。</p>
+<p>        当上下球头销位置确定后，横拉杆的外点也应该按照照9章确定。</p>
+<h4 id="正视图几何">正视图几何</h4>
+<p>        正视图几何设计现在开始。正视图等效摆臂的瞬心是由理想侧倾中心高度和车辆侧倾时车轮倾角的变化。<font color=#dd0000>用车辆侧倾时车轮倾角的变化来设计正视图等效摆臂长度的方法如下</font>：</p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/xioafanwu/Figurebed/master/img/20200329150450.png" alt="" loading="lazy"></figure>
+<ul>
+<li>
+<p>第一步：建立正视图等效控制臂即A-A线</p>
+</li>
+<li>
+<p>第二步：建立侧倾中心位置，连接轮胎接地点和侧倾中心到A-A线确立IC</p>
+</li>
+<li>
+<p>第三步：连接IC和外球头销</p>
+</li>
+<li>
+<p>第四步：选择一个控制臂长度以确定转轴位置</p>
+</li>
+<li>
+<p>第五步：连接横拉杆外点和IC</p>
+</li>
+<li>
+<p>第六步：建立横拉杆长度</p>
+</li>
+</ul>
+<p>        正视图瞬心高度是由轮胎接地点和侧倾中心连线所决定的。瞬心必须在这条线上（A-A）。现在我们连接两个外球头销和瞬心。这两条线就是上下控制臂平面和过车轮中心的垂面的交线。各种别的要求会决定下控制臂的长度不过这个长度是越长越好。上控制臂的长度与下控制臂有关用来调节车轮倾角曲线（即悬架运动时车轮倾角的变化曲线）如果上下控制臂长度相同那么车轮倾角相对于车轮运功的变化曲线为一条直线。如果上控制臂比下控制臂长，这条曲线会正的车轮外倾角方向凸出。如果上控制臂短于下控制臂，曲线会向负的车轮外倾角方向凹。上控制臂做的越短曲线的曲率越大。理想的曲线是在车轮上跳时外倾角逐渐向负方向变化而在下落时的变化较小。一些设计者努力使得车轮下落时车轮倾角向正方向变化，上跳时逐步向负方向变化。</p>
+<p>        完成了正视图的几何设计，转向横拉杆和转向器的位置应该大致定下了。做法是话一条线通过转向横拉杆外点（由第19章确定）和正视图瞬心。正确的横拉杆长度是为了得到一条线性的前束变化曲线。这个长度会在侧视图几何完成后确定，不过现在设计的话可以帮助转向器的定位</p>
+<h4 id="侧视图几何">侧视图几何</h4>
+<p>        下一步的设计工作是侧视图几何。记住当我们处理侧视图几何的时候我们从侧面看这辆车但这些点是我们投影建立的。例如瞬心在车轮平面。理想的瞬心应该首先建立。这个是抵抗效果计算的结果，最小的侧视图等效摆臂可以由此得到，同时在上跳和下降时轮胎接地面积是否会减小。图17.19所展示的是如何用图示法建立瞬心。有时候这些预期的参数会互相矛盾。例如，四轮驱动抗抬头和在上跳时减小轮胎接地面积是矛盾的。另一个常见的矛盾是高的抗点头率和车轮上跳时大幅度的后退。通常是缩短侧视图摆臂长度，尽可能地减小。所以决定侧视图瞬心的参数在决定时要特别小心。</p>
+<img src='https://i.loli.net/2020/03/29/BtLhveC9zf3mpIu.png' title='quicker_930f8588-3b2b-46ba-86ad-e9576116e37a.png' />
+<p>第一步：用制动抗点头率确定角度</p>
+<p>第二步：决定侧视图控制臂长度B-B</p>
+<p>由第一，二步确定侧视图瞬心</p>
+<p>        一旦瞬心确定，设计师要如何保证几何结构能提供准确的正视图和侧视图瞬心？这是下一步设计步骤。</p>
+<h4 id="双横臂内轴位置">双横臂内轴位置</h4>
+<p>        有两个图解法来确定正视图和侧视图坐标。一个是三点确定一个面，另一个是两个面相交为一条线。对于双横臂悬架和别的悬架的布置方法如下。画法几何中的投影技术被用来决定A臂的平面用来确定瞬时轴线。除此之外没有别的画法几何理论要说了。</p>
+<p>        正视图上下控制臂在这个阶段在车轮横向端面上只是一条线。我们还没有决定这两个控制臂前后转轴的真实位置。我们要知道所有我们要在侧视图上做的事，不要忘记在正视图上的事。下一步是延长正视图控制臂线直到与车轮纵向平面相交。现在侧视图上，从这些新的点做直线来预先确定侧视图瞬心。如图17.20我们会这个步骤来计算。为了证实，全尺寸的图是必须的，为了保证精度。</p>
+<p>        在正视图上，上控制臂的内点是1，上球头销是2，并在纵向平面内延长到点3.在下控制臂上找到对应的点11，12，13.这六个点被转移到侧视图上。两条在侧视图上的线从侧视图瞬心开始被延长并分别穿过连接点3，13。接下来我们选择一个任意点在测试图IC和3的线上，并比点3该处几英寸并编号为4。在下控制臂上同样创建点14.下一步我们把这些点投影到正视图上，这样在正视和侧视图上都包含点1到4和11到14.</p>
+<p>        为了保持理想的上控制臂硬点（1到4）必须在一个平面里，同时下控制臂硬点也必须在一个平面里。只要我们总是在设计直线时通过一个平面中的两个点并在这些线上建立新的点，这些新的点就一定能够在这个面上。下一步我们画一条线从点4到2。在两个面内都这么做并且这根线在正视图中被延长到和点1一样。在下控制臂上重复用点14连接点12延长到点11。</p>
+<p>        对于大多数悬架设计这是可接受的甚至是令人满意的情况，即使控制臂的内侧转轴平行于汽车中线的车。所以下一步是在正视图上画一个通过点1的垂线，这个线是上控制臂轴线的投影。在这条垂线上确定点5作为点4和点2线的延长。通过点11做下控制臂轴线投影（一条垂线），并在上面找到点15，在点14和12的延长线上。下一步投影点5和点15到侧视图上。在点1和点5间量一条线同时在点15和点11上也做一条。（侧视图上的虚线）这个控制臂的转轴必须在这条线上。他们可以布置得更宽或窄但必须在这条线上。</p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2020/03/29/Cra4ykfAtYdEXlD.png" alt="quicker_874f44f3-cea2-46be-af88-bc27d5a14ed9.png" loading="lazy"></figure>
+<p>        重新看图17.6我们可以重新画成17.21，可以看出上下控制臂定义了两个平面，这两个平面相交并形成了这个悬架的瞬时轴线。这个结构的扩展包括主销的后倾都由读者自己决定。<br>
+        现在的设计就只剩下通过调教把悬架变形转向曲线变成线性。</p>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2020/03/29/R6gS1CQem4yTIlK.png" alt="quicker_4616de26-a1d5-48a5-84bb-73b6b5db5436.png" loading="lazy"></figure>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#175-%E5%89%8D%E6%82%AC%E6%9E%B6">17.5 前悬架</a>
+<ul>
+<li><a href="#%E5%BC%95%E8%A8%80">引言</a></li>
+<li><a href="#%E5%89%8D%E6%82%AC%E6%9E%B6%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98%E5%B8%B8%E8%AF%86">前悬架设计问题——常识</a></li>
+<li><a href="#%E5%89%8D%E6%82%AC%E6%9E%B6%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98-sla">前悬架设计问题-SLA</a></li>
+<li><a href="#%E6%AD%A3%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95">正视图几何</a></li>
+<li><a href="#%E4%BE%A7%E8%A7%86%E5%9B%BE%E5%87%A0%E4%BD%95">侧视图几何</a></li>
+<li><a href="#%E5%8F%8C%E6%A8%AA%E8%87%82%E5%86%85%E8%BD%B4%E4%BD%8D%E7%BD%AE">双横臂内轴位置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xioafanwu.github.io/post/understanding-movies-gu-shi-san/">
+              <h3 class="post-title">
+                Understanding MOVIES—故事（三）
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
