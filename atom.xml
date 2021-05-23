@@ -2,14 +2,112 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
     <title>LSG</title>
-    <updated>2020-08-15T14:33:23.103Z</updated>
+    <updated>2021-05-23T11:30:59.438Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://xioafanwu.github.io/images/avatar.png</logo>
     <icon>https://xioafanwu.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, LSG</rights>
+    <rights>All rights reserved 2021, LSG</rights>
+    <entry>
+        <title type="html"><![CDATA[019-Data-driven nonparametric Li-ion battery ageing model aiming at learning from real operation data – Part A Storage operation]]></title>
+        <id>https://xioafanwu.github.io/post/019-data-driven-nonparametric-li-ion-battery-ageing-model-aiming-at-learning-from-real-operation-data-part-a-storage-operation/</id>
+        <link href="https://xioafanwu.github.io/post/019-data-driven-nonparametric-li-ion-battery-ageing-model-aiming-at-learning-from-real-operation-data-part-a-storage-operation/">
+        </link>
+        <updated>2021-05-23T10:03:44.000Z</updated>
+        <content type="html"><![CDATA[<hr>
+<h2 id="keywords-gproperation-dataonline-learningdaily-ageingreadtime-2021523publishtime-20200801rating-82author-mattin-lucujournal-journal-of-energy-storagecitation-5doi-httpsdoiorg101016jest2020101409">Keywords: GPR;Operation data;Online learning;Daily ageing<br>
+ReadTime: 2021/5/23<br>
+PublishTime: 2020/08/01<br>
+Rating: 8.2<br>
+Author: Mattin Lucu<br>
+Journal: Journal of Energy Storage<br>
+Citation: 5<br>
+Doi: https://doi.org/10.1016/j.est.2020.101409</h2>
+<p>#100-专业  #150-汽车理论-电池 #Literature-notes</p>
+<h2 id="i️基本信息">ℹ️基本信息</h2>
+<ul>
+<li>期刊：[[Journal of Energy Storage]]</li>
+<li>机构：[[Basque Research and Technology Alliance (BRTA)]]</li>
+</ul>
+<h2 id="️主要贡献">✏️主要贡献</h2>
+<h2 id="主体框架">🚩主体框架</h2>
+<p>![[Pasted image 20210522113453.png]]</p>
+<pre><code class="language-mermaid">graph LR
+A[019]  --&gt; B(摘要:利用高斯过程方法开发老化模型,可以从实时数据中更新,解决以前的方法需要大量实验的痛点)
+A --&gt; C(1.引言:)
+B --&gt; D{菱形}
+C --&gt; D
+</code></pre>
+<h3 id="主要解决的问题">主要解决的问题</h3>
+<ul>
+<li><label class="ob-comment" title="量化" style="color: write;padding: 6px;border: 2px solid black;text-align:left"> 之前的模型需要大量的实验数据，不知道是否有意义 <input type="checkbox"> <span style="">量化需要满足全温度、全SOC下的日历老化模型有足够性能所需要的最少的实验量 </span></label></li>
+<li><label class="ob-comment" title="用什么评价" style="color: write;padding: 6px;border: 2px solid black;"> 高斯过程回归的性能随着数据的增多是否会提高？<input type="checkbox"> <span style="学习"> 构造多个模型，分析高斯过程随着数据量的增多，性能不断提高的特点。 </span></label></li>
+<li><label class="ob-comment" title="" style="color: write;padding: 6px;border: 2px solid black;"> 对关键预测应力（温度、SOC状态）量化不足 <input type="checkbox"> <span style=""> 通过高斯核函数超参数的倒数量化每个应力因素的影响程度，需要有相关的数学知识 </span></label></li>
+<li><label class="ob-comment" title="" style="color: write;padding: 6px;border: 2px solid black;"> 其他高斯方法的核函数选择主要是根据误差，没有专门化 <input type="checkbox"> <span style="">根据每个指标的特点精心选择了三种核函数 </span></label></li>
+</ul>
+<h3 id="怎么解决的问题">怎么解决的问题</h3>
+<p><strong>数据集进化+数学知识</strong>：通过做不同存储条件下的老化实验，经过实验标定得到老化数据。组合不同的存储条件训练不同的原始数据，得到性能不断进化的高斯模型，说明高斯的数据学习能力以及量化最少的实验数据。同时借助高斯相关数学方面的论文，依据电池老化特性结合核函数的性质选择核函数，且根据核函数超参数可以量化不同应力因素的影响程度。 #summary</p>
+<h3 id="怎么设计方法的">怎么设计方法的</h3>
+<ol>
+<li>先做固定静态工况下的模型，根据数据集的输入不同（依次增加特征的多样性，开始只有一个温度，然后逐渐加入多个温度）划分不同的训练集得到不同的模型，通过比较这些模型的性能，说明他的方法随着数据的增加性能（误差和置信度）会更好。<br>
+<em>可以逐步季节的数据纳入训练集，说明模型性能的提高。</em> #idea</li>
+<li>然后在做动态工况下的模型，通过静态工况选取性能较好的模型，用在动态数据上。</li>
+<li>接下来又将动态实验数据纳入训练集，得到一个模型</li>
+</ol>
+<h3 id="怎么评价的实验设计怎样">怎么评价的（实验设计怎样）</h3>
+<p>做对比实验</p>
+<h3 id="结论怎样强结论和弱结论">结论怎样（强结论和弱结论）</h3>
+<ul>
+<li>高斯方法的确随着数据增多性能增强</li>
+<li>温度对老化的影响比对SOC的影响更大<br>
+<em>有没有别的方法能够比较不同应力因素的影响程度</em> #idea</li>
+</ul>
+<h2 id="️写法">✍️写法</h2>
+<h3 id="怎么论述的">怎么论述的</h3>
+<h4 id="7从动态操作过程中学习">7.从动态操作过程中学习</h4>
+<pre><code class="language-ad-note">title: 为什么要研究动态工况
+content: 在实际应用中，锂离子电池的操作条件几乎是恒定的。这意味着在恒定操作条件下实现的老化测试基础上开发的老化模型必须在动态操作条件下得到验证。此外，由于本研究的重点是开发面向从实际操作中收集的老化数据学习的老化模型，分析直接从动态操作曲线推断不同应力因素和容量损失之间的关联的可能性是必要的。
+collapse: open
+</code></pre>
+<ol>
+<li>为什么要研究动态工况</li>
+</ol>
+<h2 id="知识">🌟知识</h2>
+<ul>
+<li>三元电池日历老化的四个阶段，每个阶段都有不一样的原因，第一阶段容量上升和老化机制没什么关系</li>
+<li>高SOC状态下老化更快</li>
+</ul>
+<h2 id="问题">❓问题</h2>
+<h2 id="进一步研究">⏩进一步研究</h2>
+<h3 id="是否基于前人研究">是否基于前人研究</h3>
+<h3 id="进一步可以做什么">进一步可以做什么</h3>
+<ul>
+<li>新添多少数据时更新一波模型</li>
+<li>融合日历模型和周期模型</li>
+<li>数据集增大时需要考虑如何提高计算速度</li>
+</ul>
+<h2 id="️图片">🖼️图片</h2>
+<p>![[Pasted image 20210523164425.png]]<br>
+![[Pasted image 20210523164443.png]]<br>
+![[Pasted image 20210523164500.png]]<br>
+![[Pasted image 20210523164514.png]]<br>
+![[Pasted image 20210523164524.png]]<br>
+![[Pasted image 20210523164532.png]]</p>
+<h2 id="参考文献">参考文献</h2>
+<ul>
+<li>关于电化学模型：Ageing forecast of lithium-ion batteries for electric and hybrid vehicles</li>
+<li>关于经验模型：
+<ul>
+<li>Development of a lifetime prediction model for lithium-ion batteries based on extended accelerated aging test data</li>
+<li>Remaining useful life prediction of lithium batteries in calendar ageing for automotive applications, Microelectron.</li>
+</ul>
+</li>
+<li>高斯过程回归方法论文</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[读书笔记005-《真确》]]></title>
         <id>https://xioafanwu.github.io/post/du-shu-bi-ji-005-lesslesszhen-que-greatergreater/</id>
@@ -1111,44 +1209,5 @@ Q4：如何改变思维惰性？<br>
 <figure data-type="image" tabindex="4"><img src="https://i.loli.net/2020/05/07/bdofvcuYjh6qJGQ.png" alt="image.png" loading="lazy"></figure>
 <center> [电影]后人;后裔;继承人生;</center>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[《 Understanding MOVIES》一意识形态（五）]]></title>
-        <id>https://xioafanwu.github.io/post/lessless-understanding-moviesgreatergreater-yi-yi-shi-xing-tai-wu/</id>
-        <link href="https://xioafanwu.github.io/post/lessless-understanding-moviesgreatergreater-yi-yi-shi-xing-tai-wu/">
-        </link>
-        <updated>2020-05-07T09:01:11.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="同性恋自由">同性恋自由</h2>
-<p>        同性恋自由运动从20世纪60年代的其他革命团体，尤其是从女权主义和黑人解放运动中获得很大鼓舞。不过这有一些不同。如果说妇女和有色人种无法把自己假装成“另一种人”，那么，同性恋者则能够冒充普通人。事实上他们往往也是这样做的，至今仍然这样，因为社会的成见对他们不利。所以才产生了一个词，叫做“卫生间里”，因为同性恋者总是向外界隐瞒他或她的性别，冒充常人。</p>
-<p>        性研究家在造成同性恋现象的原因问题上意见纷纭不金赛与马斯特斯和约翰逊等人遵循弗洛伊德的学说，认为一切性行为都是后天学的，而不是天生的。弗洛伊德认为，利比多即性欲—是不分对象的、无道德的，因社会常规而纳入定轨道。简言之，什么是“正常”的性，这是需要学习的。另有一些研究者则认为，同性恋像其他遗传特征一样是与生俱来的。新近的医学研究在脑组织结构方面的发现似乎倾向于证明，同性恋是有其生理上的原因的。</p>
-<p>        但两派在一点上意见一致，即认为性身份的形成是在青春期之前，在一个人尚未意识到自己的性别之前。完全的异性恋者把同性恋的男人和女人视为“不正常”，正是因为忽略了这点。一个人对同性别者感兴趣，这并不是他或她自己的选择。相反，是这种情况选择了他们。他们的性对于他们来说如同异性恋者一样是正常的。</p>
-<p>        金赛性研究所发现同性恋的普遍程度比我们通常认为的要高。通过各种科学调查，研兖人员发现，美国人口中有约10%是纯粹的同性恋者：有更大比率的人离达33%）过至少-次同性恋的经历。不少评论家认为，性标签只是一种适当的规定，我们每个人都有男性的一面和女性的面：（图10-27）。</p>
-<p>        电影史家维托拉索指出.“我们根本不存在，这是有关同性恋者的弥天大谎”由于他们长久以来受迫害的历史，同性恋者直到20世纪0年代以前一直是隐蔽的。艹百年以前在英困，同性恋可处以死刑。在许多国家；名至冷仍是可判监禁的犯罪行为，即使是成年人之间两厢情愿纳粹曾把成千上万同性恋者与犹太人、吉；赛人、斯拉夫人及其他、“不良分子”一-起关进集中营。</p>
-<p>        在艺术界和娱乐圈里，同性恋相当普遍，人们】不认为这与才能有什么关系。对男女两性都感兴趣现象更为多。但是在衬会上，由于人狷非常厌恶同性恋者；所以许多艺人，尤其是男演员，总要长期地隐瞒他们的性身份。既有异性恋也宥同性恋的一些电能畊星、如玛琳·黛德丽、泰伦·鲍华；埃洛尔弗林和詹姆斯∵迪恩，在他】生前一直被视为鹲人。演艺圈以外很少有人知道蒙哥马利·克利夫特和洛克：赫德森：（图10-28）是同性恋者。，他们觉得被公众知道，他们在影片中扮演爱情故事的男主角就失去可信性了3</p>
-<p>        当然，这个秘密容易使他们受到讹诈，这也是那些好斗的同性恋者坚决要使他们的这一点得到公众认的主要原因之有趣的是，像黛德丽、嘉宝和梅·惠斯特这些女明星身上那种两性俱备的特征看来正是使她们走红的种原因，而男演员湘很少允许在银幕上透露地们性别含糊的→面。</p>
-<p>        电影中对同性恋的憎恶，同种族主义和性别歧视一样，直到不久以前直是普遍的。同性恋男性常被表现为娘娘腔男人”和“脂粉气男人”。同性恋女性被表现为男人气的“假小子”。不过这方面也有一些例外，特别是在20世纪20年代的先锋派电影中和纳粹上台前的德国电影中。较近的例子是，弗朗索瓦·特吕弗的一些影片中有一些显然是同性恋者的角色，但是却没有大做文章。</p>
-<p>        既有异性恋又有同性恋的作家戈尔·维达尔曾为好莱坞写过若干电影剧本，他说：“说到1960年以前的电影中表现公开的同性恋，那没有人试图这样做，也不可能这样做……但是些潜台词却偶尔表露出这种事情。”他是指那些表面看来是表现异性恋，但含蕃地暗示同性恋的影片。没有人能明说《马耳他之鹰》中小伊莱沙·库克和彼得·洛尔所扮演的角色是同性恋者，但是字里行间却实际暗示是这样。此外，具有同性恋潜台词的影片还有：《瑞典女王》、《宾虚》（新旧两个版本都是）、《琪尔达》、《逃犯》、《绳索》、《无因的反叛》、《火车上的陌生客》、《斯巴达克思》、《穷街陋巷》以及大多数男子汉片。</p>
-<p>        20世纪60年代以后，在影片中公开表现同性恋题材越来越平常，特别是在美国和欧洲。老的制片法典，好莱坞电影业的这一审查武器，已被现行的分级制度所取代是部分原因。许多这类影片把同性恋者表现为极度神经质的、沉迷于性的、自厌式的人物。结局往往是同性恋者以自杀而告终。不过有一些重要影片，如《炎热的午后》、《歌舞酒吧》、《另一个国家》、《午夜牛郎》、《星期天，血腥的星期天》、《我美丽的洗衣店》、《上班女郎》、《演出》、《疯人院》、《蒙娜·丽莎》、《长年伴侣》、《费城》以及德国导演赖纳·维尔纳·法斯宾德的和西班牙导演佩德罗·阿尔莫多瓦的许多影片，却是多角度地表现了同性恋的人物。</p>
-<p>        粗俗感往往同男性同性恋者的表现相联系，虽然这并不是他们独有的特征。女性异性恋者如梅·惠斯特、卡罗尔·伯内特、蓓蒂·米德勒的表演也是相当粗俗的。也不是所有男同性恋者都以粗俗为特征。例如爱森斯坦、茂瑙、让·维果和乔治顾柯都是同性恋者，但他们的影片却没有任何粗俗的东西（或许顾柯的《女人们》是这样的）。佩德罗·阿尔莫多瓦在《斗牛士》、《濒临精神崩溃的女人》和《高跟鞋》这些现代社会喜剧里把粗俗的气氛表现得淋漓尽致。</p>
-<p>        滑稽的嘲弄是粗俗影片的普遍特征，尤其当它们涉及一些古怪的和出格的事物时更是这样，如在影片《洛基恐怖片大展》（图6-25）中的那些角色。粗俗片常使用艺术上过火的、人为的、低俗的、花里胡哨的手法—比如卡门·米兰达在影片《团伙大聚会》中的花哨的滑稽舞，这段舞蹈是由粗俗表演大师巴斯比·柏克莱编舞的。</p>
-<p>        粗俗片常使用舞台的隐喻手法：做戏式的、过火的表演和做戏式的比拟手法，如索尼娅·布拉加在影片《蜘蛛女之吻》（图1031）中的那个“备受折磨的女主角”。过分绚丽的服装和布景—所有各种实在低俗的东西，也是粗俗片的特点。粗俗片常喜用一些女明星作为崇拜的偶像，特别是那些可塑性很强的演员，如琼·克劳馥和拉娜·特纳，她们那些珠光宝气的妇女片原是企图让人们严肃看待的。这些殉情者的爱情不是明智的，但是强烈的。她们备受磨难，而这一切却是在五光十色的服装下和豪华富丽的住所里进行的。</p>
-<p>        迪特里希（Dietrich）于1920年代令人瞩目的柏林盛行，当时柏林是欧洲最性感，容忍度最高的城市。当她初到好莱坞时，开放的双性恋引起了丑闻，但电影制片人经常利用她的am昧性行为获得巨大成功。她的职业生涯经历了惊人的六十年。当她拍这部电影时，她已经48岁了。正如这张照片所记录的那样，著名的Dietrich gams仍然令人着迷。 （至高无上的图片）</p>
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/xioafanwu/Figurebed/master/img/20200507165445.png" alt="" loading="lazy"></figure>
-<center> [电影]“外交”事件;</center>
-<p>        在整个漫长的职业生涯中，Rock Hudson都是动作/冒险英雄，浪漫的领袖人物和狡猾的喜剧演员（如图）。他漂亮的外表和阳刚的态度使他成为男人和女人的最爱。在电影界，人们普遍知道哈德森是同性恋，但他在好莱坞广受欢迎，而且公众大多不知道他的性身份，直到感染艾滋病为止。当他在1985年去世前不久因病去世时，他在美国创造了一种新的同情心。美国人终于开始认真对待艾滋病的流行。即使在我们这个时代，由于公众中普遍存在的恐同症，许多演员仍然处于封闭状态。英国舞台，电视和电视演员鲁珀特·埃弗里特（Rupert Everett）最近公开承认了他年轻时的同性恋，他说：“如果他真正考虑到自己的职业，我不建议任何同性恋演员公开露面。”在现场剧院里，埃弗里特没有受到任何歧视，但他在电影中的角色几乎完全是同性恋角色。另请参见史蒂文·保罗·戴维斯（Steven Paul Davies），《电影出游》（英格兰哈彭登：卡梅拉，2008年），深入了解电影中的同性恋，从《绿野仙踪》到《断背山》。 （通用图片）</p>
-<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2020/05/07/QhHcKxpZrT1Av7M.png" alt="image.png" loading="lazy"></figure>
-<center>枕边细语</center>
-<p>        同性恋电影是1990年代（主要是同性恋电影艺术家和评论家）创造的一个术语。但是您不必是同性恋就可以加入。例如，这部电影的所有主要才华都是异性恋，并为此感到自豪。该图片也没有销售给狭窄的小众受众。这部电影取得了令人惊讶的主流成功，全球票房收入超过1.65亿美元。它成为一种文化现象，为深夜喜剧演员（他们称其为“同性恋牛仔电影”）提供了看似不尽的素材，同时也为文化记者提供了无数评论。这是有史以来处理同性恋问题最关键和最商业上成功的电影。该图片获得了许多荣誉，包括十二项奥斯卡金像奖提名。它获得了普遍好评，并赢得了许多奖项，包括安·李（Ang Lee）的奥斯卡最佳导演奖，拉里·麦克默特里（Larry McMurtry）和戴安娜·奥萨纳（Diana Ossana）的最佳改编剧本奖。 （重点功能）</p>
-<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2020/05/07/ZhJzbUxVYQ2i9CE.png" alt="image.png" loading="lazy"></figure>
-<center>断背山</center>
-<p>        最近一段时间，壁橱里有很多演员公开露面，最著名的是英国最著名的莎士比亚演员之一伊恩·麦凯伦爵士。他曾在广播电视，电影和舞台上表演过。他在百老汇赢得了托尼奖，并多次获得奥斯卡和艾美奖提名。他通常扮演异性恋者，通常表现出色。他最著名的角色可能是《指环王》三部曲中的巫师甘道夫。麦凯伦（McKellen）是一位领先的同性恋活动家，直率而机智。他最近谈到1988年问世：“作为同性恋偶像，我受够了！自从我出来以来，我一直都在从事这些工作，事业蒸蒸日上。我要安静的生活。我要回到壁橱里。但是我不能回到壁橱里，因为它挤满了其他演员。” （新线/ Saul Zaentz / Wing Nut。照片：Pierre Vinet）</p>
-<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2020/05/07/g17v9jqtPsYJ5ez.png" alt="image.png" loading="lazy"></figure>
-<center>指环王</center>
-<p>        有时电影中存在同性恋色情文字，表面看来是关于友谊的。这部电影琐，不匹配的主角经常发泄出他们对同性恋的强烈偏见。然而，他们之间发展出一种奇特的温柔，一种爱的纽带。当然，没有任何物理提示。好吧，也许有提示。但这就是全部。 （联合艺术家）</p>
-<figure data-type="image" tabindex="5"><img src="https://i.loli.net/2020/05/07/iGz8RD6edjku9pU.png" alt="image.png" loading="lazy"></figure>
-<center>午夜牛仔</center>
-<p>        分析影片对家庭等主要社会机构的刻画，对于了解影片的思想基础非常有用。 《灰姑娘男人》是根据1930年代大萧条期间美国拳击冠军吉姆·布拉多克（Jim Braddock）的真实故事改编的。他是一个温柔而充满爱心的人，他在绝望和艰辛的时期绝望地奋斗，以养活家人。在此过程中，他成为数百万人的民族英雄，在压力下象征着恩典。这部电影坚定地支持家庭，将其作为力量，爱心和舒适的支柱。 （Miramax /环球影业。照片：George Kraychyk）</p>
-<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2020/05/07/IcxN3fy49SBk2v1.png" alt="image.png" loading="lazy"></figure>
-<center>灰姑娘男人</center>]]></content>
     </entry>
 </feed>
