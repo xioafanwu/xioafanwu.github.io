@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
     <title>LSG</title>
-    <updated>2021-05-23T11:56:45.297Z</updated>
+    <updated>2021-05-25T08:58:18.923Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
@@ -17,7 +17,8 @@
         </link>
         <updated>2021-05-23T10:03:44.000Z</updated>
         <content type="html"><![CDATA[<hr>
-<h2 id="keywords-gproperation-dataonline-learningdaily-ageingreadtime-2021523publishtime-20200801rating-82author-mattin-lucujournal-journal-of-energy-storagecitation-5doi-httpsdoiorg101016jest2020101409">Keywords: GPR;Operation data;Online learning;Daily ageing<br>
+<h2 id="keywords-gproperation-dataonline-learningdaily-ageingobject-ncmreadtime-2021523publishtime-20200801rating-82author-mattin-lucujournal-journal-of-energy-storagecitation-5doi-httpsdoiorg101016jest2020101409">Keywords: GPR;Operation data;Online learning;Daily ageing<br>
+Object: NCM<br>
 ReadTime: 2021/5/23<br>
 PublishTime: 2020/08/01<br>
 Rating: 8.2<br>
@@ -30,15 +31,25 @@ Doi: https://doi.org/10.1016/j.est.2020.101409</h2>
 <ul>
 <li>期刊：[[Journal of Energy Storage]]</li>
 <li>机构：[[Basque Research and Technology Alliance (BRTA)]]</li>
+<li>摘录笔记：[[019-Data-driven nonparametric Li-ion battery ageing model aiming at learning from real operation data – Part A Storage operation]]</li>
 </ul>
 <h2 id="️主要贡献">✏️主要贡献</h2>
+<ul>
+<li>高斯过程核函数的设计</li>
+<li>说说明了高斯过程随着数据增长性能提高这个现象</li>
+</ul>
 <h2 id="主体框架">🚩主体框架</h2>
 <p>![[Pasted image 20210522113453.png]]</p>
-<pre><code class="language-mermaid">graph LR
+<pre><code class="language-mermaid">graph TD
 A[019]  --&gt; B(摘要:利用高斯过程方法开发老化模型,可以从实时数据中更新,解决以前的方法需要大量实验的痛点)
-A --&gt; C(1.引言:)
-B --&gt; D{菱形}
-C --&gt; D
+B --&gt; C(1.引言:研究的背景意义和研究内容)
+C --&gt; D(2.实验老化数据:说明实验对象和试验方案)
+D --&gt; E(3.数据预处理:结合衰退四个阶段选取一些有用的数据)
+E --&gt; F(4.高斯过程理论介绍)
+F --&gt; G(5.模型构建)
+G --&gt; H(6.静态数据学习)
+H --&gt; I(7.实时数据学习)
+I --&gt; J(8.讨论)
 </code></pre>
 <h3 id="主要解决的问题">主要解决的问题</h3>
 <ul>
@@ -66,6 +77,31 @@ C --&gt; D
 </ul>
 <h2 id="️写法">✍️写法</h2>
 <h3 id="怎么论述的">怎么论述的</h3>
+<h4 id="1引言">1.引言</h4>
+<pre><code class="language-mermaid">graph TD
+A[引言]  --&gt; B(精确预测寿命状态的重要性)
+B --&gt; C(以往文献的弱点)
+C --&gt; D(本文方法的优点)
+D --&gt; E(本文主要研究内容)
+</code></pre>
+<h4 id="2实验日历老化数据">2.实验日历老化数据</h4>
+<pre><code class="language-mermaid">graph TD
+A[实验数据处理]  --&gt; B(介绍实验电池信息和试验方案)
+B --&gt; C(静态老化实验)
+C --&gt; D(动态老化实验)
+</code></pre>
+<h4 id="3数据预处理">3.数据预处理</h4>
+<h4 id="5模型构建">5.模型构建</h4>
+<pre><code class="language-mermaid">graph TD
+A[构建模型]  --&gt; B(选择输入和输出)
+B --&gt; C(核函数构建说明)
+</code></pre>
+<h4 id="6从静态数据中学习">6.从静态数据中学习</h4>
+<pre><code class="language-mermaid">graph TD
+A[静态数据学习]  --&gt; B(定义评价指标)
+B --&gt; C(设计训练案例集)
+C --&gt; D(模型结果分析)
+</code></pre>
 <h4 id="7从动态操作过程中学习">7.从动态操作过程中学习</h4>
 <pre><code class="language-ad-note">title: 为什么要研究动态工况
 content: 在实际应用中，锂离子电池的操作条件几乎是恒定的。这意味着在恒定操作条件下实现的老化测试基础上开发的老化模型必须在动态操作条件下得到验证。此外，由于本研究的重点是开发面向从实际操作中收集的老化数据学习的老化模型，分析直接从动态操作曲线推断不同应力因素和容量损失之间的关联的可能性是必要的。
@@ -74,19 +110,52 @@ collapse: open
 <ol>
 <li>为什么要研究动态工况</li>
 </ol>
+<h4 id="对结果的解释">对结果的解释</h4>
+<p>Method: <span style="background-color: rgba(66,165,245,.25);"><strong>(Blue)</strong> - It is noteworthy that the lowest standard deviation values are observable at 35 °C, Fig. 5(d), as the SOC input space was explored at this temperature. Besides, the standard deviation of the predictions at 15 °C, Fig. 5(b), achieved highest values for the training case 7. This is due to the higher relevance associated to the temperature in such training case (see sensitivity analysis in Section 6.3.3), which led to a higher gradient in</span> (<a href="zotero://open-pdf/library/items/VYZ7JNXX?page=9">Lucu et al 2020:101417</a>)</p>
+<blockquote>
+<p>[[xiaofan]] 值得注意的是，最低的标准偏差值是在35℃时观察到的，图5（d），因为SOC输入空间是在这个温度下探索的。此外，15℃时的预测标准偏差（图5(b)）在训练案例7中达到最高值。这是由于在这种训练情况下，与温度的相关性较高（见第6.3.3节中的敏感性分析），这导致了更高的梯度。<br>
+对模型结果的解释，还算可以 (<a href="zotero://open-pdf/library/items/VYZ7JNXX?page=9">note on p.101417)</a></p>
+</blockquote>
+<p>Method: <span style="background-color: rgba(66,165,245,.25);"><strong>(Blue)</strong> - Fig. 6. Evolution of the relative relevance of the different stress-factors, from the training case 1 to 7.</span> (<a href="zotero://open-pdf/library/items/VYZ7JNXX?page=10">Lucu et al 2020:101418</a>)</p>
+<blockquote>
+<p>[[xiaofan]] 在训练案例1和2中，只有温度涉及训练数据集中的不同存储值，因为SOC输入的单一值为80%。在没有数据指导相应的超参数优化的情况下，对SOC输入施加了一个高的初始超参数值，以阻碍其优化，然后在推理中消除其影响。在这种情况下，GP模型的唯一相关压力因素是温度。从训练案例3到7，不同的SOC水平被逐渐包含在训练数据集中，相应的超参数被 &quot;释放 &quot;以进行优化。在图6中可以看到，在训练案例3中，SOC输入与容量损失的相对相关性增加了；但是，温度变化对容量损失的影响仍然被认为比SOC变化略大。训练案例4包括对应于100%SOC存储条件的数据，它呈现出相对较高的容量损失加速度：这增加了SOC相对于温度的相对权重。接下来的案例5、6和7包括了与较低的SOC水平相对应的数据，强调SOC在低值时的变化对容量损失的影响较小（在图2（b）中可以观察到）。这导致了与温度相比，SOC输入的相对相关性得到了缓解。在这一点上，需要强调的是，尽管这种比较可以澄清GP模型如何理解数据，但它并不意味着因果关系。<br>
+对这张图的解释很到位，为什么增加，为什么较少说的很清楚<br>
+(<a href="zotero://open-pdf/library/items/VYZ7JNXX?page=10">note on p.101418)</a></p>
+</blockquote>
+<h4 id=""></h4>
 <h2 id="知识">🌟知识</h2>
 <ul>
 <li>三元电池日历老化的四个阶段，每个阶段都有不一样的原因，第一阶段容量上升和老化机制没什么关系</li>
 <li>高SOC状态下老化更快</li>
+<li>[[阿伦尼乌斯定律]]</li>
+<li>[[高斯过程回归(GPR)]]种核函数的作用：赋予高斯过程平滑性（smoothness）、各向同性（isotropy）、周期性和平稳性。</li>
+<li>[[使用高斯过程的核函数的选择]]
+<ul>
+<li>SOC核函数分量用各向同性核表示：使用欧氏距离定义相似性似乎是合适的，因为它可以使模型在观察到几个数据点后覆盖整个SOC范围。因此，与SOC输入空间相对应的核分量可以用各向同性核来表示。</li>
+<li>温度倒数核分量：奥恩斯坦-乌伦贝克核函数(见文献[48])被认为过于粗糙，无法描述应力因子对老化的影响。此外，虽然平方指数核函数是应用最广泛的各向同性核函数，但它的强光滑性假设对于许多物理过程的建模是不现实的(例如，它暗示了充电 c 级偏差对底层容量损失的影响) ，因此推荐使用 Matérn 核函数类</li>
+<li>存储时间核分量：容量损失似乎相对于Δt是线性的。因此，为此输入维选择了线性核成分</li>
+</ul>
+</li>
+<li>[[模型评价指标]]</li>
 </ul>
 <h2 id="问题">❓问题</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7363100"><label class="task-list-item-label" for="task-item-7363100"> 高斯过程核函数的性质，学习数学理论</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7441408"><label class="task-list-item-label" for="task-item-7441408"> 高斯过程核函数的超参数的意义，学习数学理论</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4851587"><label class="task-list-item-label" for="task-item-4851587"> 老化因素的路径依赖性</label></li>
+</ul>
 <h2 id="进一步研究">⏩进一步研究</h2>
 <h3 id="是否基于前人研究">是否基于前人研究</h3>
+<ul>
+<li>基于前人的高斯方法</li>
+<li>改进了核函数的选择</li>
+</ul>
 <h3 id="进一步可以做什么">进一步可以做什么</h3>
 <ul>
 <li>新添多少数据时更新一波模型</li>
 <li>融合日历模型和周期模型</li>
 <li>数据集增大时需要考虑如何提高计算速度</li>
+<li>不确定性在整个长期老化预测过程中的传播情况</li>
 </ul>
 <h2 id="️图片">🖼️图片</h2>
 <p>![[Pasted image 20210523164425.png]]<br>
@@ -104,7 +173,8 @@ collapse: open
 <li>Remaining useful life prediction of lithium batteries in calendar ageing for automotive applications, Microelectron.</li>
 </ul>
 </li>
-<li>高斯过程回归方法论文</li>
+<li>[[量化影响应力程度的论文]]</li>
+<li></li>
 </ul>
 ]]></content>
     </entry>
