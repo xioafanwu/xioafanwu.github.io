@@ -1,0 +1,796 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>电动汽车动力电池充电能量预测 | Gridea</title>
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1637374495426">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="电动汽车动力电池充电能量预测 | Gridea - Atom Feed" href="https://xioafanwu.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="1.数据的属性分析
+
+充电能量与充电起止时刻的SOC变化值强相关
+充电电压与充电量有具有强相关
+充电电流与充电量有一定关系
+vehicle_id对应不同的电动汽车，不同汽车有不同充电电压、电流，对应着不同的模型
+charge_start_t..." />
+    <meta name="keywords" content="大数据分析" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xioafanwu.github.io">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1637374495426" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              电动汽车动力电池充电能量预测
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-01-03
+              </span>
+              <span>
+                25 min read
+              </span>
+              
+                <a href="https://xioafanwu.github.io/tag/IBbYfbwTvk/" class="post-tag">
+                  # 大数据分析
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/dian-dong-qi-che-dong-li-dian-chi-chong-dian-neng-liang-yu-ce.jpg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="1数据的属性分析">1.数据的属性分析</h2>
+<ol>
+<li>充电能量与充电起止时刻的SOC变化值强相关</li>
+<li>充电电压与充电量有具有强相关</li>
+<li>充电电流与充电量有一定关系</li>
+<li>vehicle_id对应不同的电动汽车，不同汽车有不同充电电压、电流，对应着不同的模型</li>
+<li>charge_start_time和charge_end_time可以求得充电时间，充电时间和充电量强相关，可以用来作于预测缺失SOC的一个自变量</li>
+<li>行驶里程为离散值，无用于预测充电能量</li>
+</ol>
+<h2 id="2数据预处理">2.数据预处理</h2>
+<ol>
+<li>
+<h3 id="数据缺失值分析">数据缺失值分析</h3>
+<ol>
+<li>
+<p>导入训练数据集</p>
+<pre><code class="language-python">x = pd.read_csv('G:/self/py/energy_train1029.csv') 
+a=x[x['vehicle_id']==1] #数据切片 
+</code></pre>
+</li>
+<li>
+<p>缺失值分布及数目</p>
+<figure data-type="image" tabindex="1"><img src="https://tvax4.sinaimg.cn/large/00705hvsly1gaft56ojw4j30fe08l3yv.jpg" alt="image" loading="lazy"></figure>
+<pre><code class="language-python">In[368]:a.isnull().sum().sort_values(ascending=False) #检查缺失值
+Out[368]: 
+Unnamed: 13          265
+charge_end_soc        60
+charge_start_soc      37
+charge_energy          0
+charge_min_temp        0
+charge_max_temp        0
+charge_end_I           0
+charge_start_I         0
+charge_end_U           0
+charge_start_U         0
+mileage                0
+charge_end_time        0
+charge_start_time      0
+vehicle_id             0
+dtype: int64
+</code></pre>
+<p>可以看出缺失值SOC占总数据的23%和14%左右，需要对其进行填补</p>
+</li>
+<li>
+<p>补充SOC缺失值</p>
+<ol>
+<li>删除有缺失值的数据行，利用剩余数据对其回归分析得到缺失的SOC值</li>
+</ol>
+<pre><code class="language-python">a.dropna(axis=0, how='any', inplace=True)
+</code></pre>
+<ol start="2">
+<li>增加充电时长数据和SOC差值数据</li>
+</ol>
+<pre><code class="language-python">a1['charge_time']=a['charge_end_time']-a['charge_start_time']
+a1['SOC_change']=a1['charge_end_soc']-a1['charge_start_soc']
+</code></pre>
+<ol start="3">
+<li>利用充电时长和充电电压电流预测缺失SOC值
+<ol>
+<li>慢充情况:I&lt;10A</li>
+<li>快充情况：I&gt;10A</li>
+<li>缺失SOC差值补充</li>
+</ol>
+</li>
+</ol>
+<pre><code class="language-python">x=a2['charge_minutes']
+y=a2['SOC_change']
+x=x.values.reshape(-1,1)
+y=y.values.reshape(-1,1)
+linreg = LinearRegression()
+linreg.fit(x, y)
+print(&quot;一元回归方程为:  Y = %.5fX + (%.5f)&quot; % (linreg.coef_[0][0], linreg.intercept_[0]))
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://tvax2.sinaimg.cn/large/00705hvsly1gag0c0kl91j30ag06xgll.jpg" alt="image" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://tvax4.sinaimg.cn/large/00705hvsly1gag0vgquq0j30d808xt8s.jpg" alt="image" loading="lazy"></figure>
+<p>​	慢充情况回归方程：Y = 0.00250X + (-0.69490)</p>
+<p>​	快充情况回归方程：Y = 0.01305X + (1.58321)</p>
+<p>得到补充的SOC差值：</p>
+<pre><code class="language-python">     charge_energy charge_time  charge_minutes      SOC  
+176         21.009    07:14:44         26084.0  64.5151  
+178         18.531    06:23:00         22980.0  56.7551  
+180         14.218    04:53:29         17609.0  43.3276  
+182         15.285    05:15:30         18930.0  46.6301  
+184         19.653    06:46:28         24388.0  60.2751  
+185          8.373    02:54:51         10491.0  25.5326  
+187         16.844    05:48:19         20899.0  51.5526  
+189         23.380    08:04:20         29060.0  71.9551  
+191         19.303    06:39:20         23960.0  59.2051  
+192          0.212    00:05:58           358.0   0.2001  
+193          0.064    00:01:30            90.0  -0.4699  
+194          9.963    03:24:30         12270.0  29.9801  
+197         16.784    05:46:59         20819.0  51.3526  
+199         13.935    04:47:40         17260.0  42.4551  
+201         21.222    07:19:10         26350.0  65.1801  
+203         16.369    05:38:19         20299.0  50.0526  
+204          8.606    02:57:20         10640.0  25.9051  
+205         19.505    06:43:50         24230.0  59.8801  
+207         22.334    07:42:42         27762.0  68.7101  
+209         10.230    03:30:10         12610.0  30.8301  
+211         12.045    04:08:30         14910.0  36.5801  
+212         16.035    05:31:30         19890.0  49.0301  
+213         16.621    05:43:20         20600.0  50.8051  
+215         20.311    07:00:10         25210.0  62.3301  
+216          6.255    02:09:00          7740.0  18.6551  
+217         23.579    08:08:50         29330.0  72.6301  
+220         18.825    06:30:29         23429.0  57.8776  
+221          3.179    01:04:50          3890.0   9.0301  
+223         19.713    06:47:39         24459.0  60.4526  
+225         18.521    06:23:09         22989.0  56.7776  
+228         13.837    04:45:29         17129.0  42.1276  
+231         19.081    06:34:30         23670.0  58.4801  
+234         10.136    03:31:41         12701.0  31.0576    
+175         20.373    01:19:40          4780.0  63.96221  
+177         17.500    01:08:00          4080.0  54.82721  
+179         18.384    01:11:20          4280.0  57.43721  
+181         20.089    01:18:30          4710.0  63.04871  
+183         17.878    01:09:10          4150.0  55.74071  
+186          7.032    00:23:50          1430.0  20.24471  
+188         17.134    01:06:10          3970.0  53.39171  
+190         20.080    01:18:20          4700.0  62.91821  
+195         15.798    01:01:10          3670.0  49.47671  
+196         22.185    01:26:20          5180.0  69.18221  
+198         22.098    01:24:50          5090.0  68.00771  
+200         16.116    01:02:50          3770.0  50.78171  
+202         22.695    01:27:50          5270.0  70.35671  
+206         20.586    01:20:50          4850.0  64.87571  
+208          7.331    00:28:40          1720.0  24.02921  
+210         13.482    00:45:40          2740.0  37.34021  
+214         19.441    01:06:00          3960.0  53.26121  
+218          6.599    00:22:30          1350.0  19.20071  
+219         10.066    00:34:00          2040.0  28.20521  
+222         23.149    01:30:40          5440.0  72.57521  
+224         16.818    01:05:40          3940.0  53.00021  
+226          4.335    00:14:10           850.0  12.67571  
+227         10.905    00:35:30          2130.0  29.37971  
+229          5.409    00:22:00          1320.0  18.80921  
+230         10.037    00:37:50          2270.0  31.20671  
+232          6.331    00:20:50          1250.0  17.89571  
+233          8.937    00:29:00          1740.0  24.29021  
+</code></pre>
+</li>
+</ol>
+</li>
+<li>
+<h3 id="数据类型转换">数据类型转换</h3>
+<ol>
+<li>
+<p>充电起止时间int型数据转datetime型数据</p>
+<pre><code class="language-python">In[372]:a.info()
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 265 entries, 0 to 264
+Data columns (total 14 columns):
+vehicle_id           265 non-null int64
+charge_start_time    265 non-null int64
+charge_end_time      265 non-null int64
+mileage              265 non-null float64
+charge_start_soc     228 non-null float64
+charge_end_soc       205 non-null float64
+charge_start_U       265 non-null float64
+charge_end_U         265 non-null float64
+charge_start_I       265 non-null float64
+charge_end_I         265 non-null float64
+charge_max_temp      265 non-null int64
+charge_min_temp      265 non-null int64
+charge_energy        265 non-null float64
+Unnamed: 13          0 non-null float64
+dtypes: float64(9), int64(5)
+memory usage: 31.1 KB
+Int[373]:a['charge_start_time']=pd.to_datetime(a2['charge_start_time'], format='%Y%m%d%H%M%S')
+a['charge_end_time']=pd.to_datetime(a2['charge_end_time'], format='%Y%m%d%H%M%S')
+Int[374]:a.info()
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 265 entries, 0 to 264
+Data columns (total 14 columns):
+vehicle_id           265 non-null int64
+charge_start_time    205 non-null datetime64[ns]
+charge_end_time      205 non-null datetime64[ns]
+mileage              265 non-null float64
+charge_start_soc     228 non-null float64
+charge_end_soc       205 non-null float64
+charge_start_U       265 non-null float64
+charge_end_U         265 non-null float64
+charge_start_I       265 non-null float64
+charge_end_I         265 non-null float64
+charge_max_temp      265 non-null int64
+charge_min_temp      265 non-null int64
+charge_energy        265 non-null float64
+Unnamed: 13          0 non-null float64
+dtypes: datetime64[ns](2), float64(9), int64(3)
+memory usage: 31.1 KB
+</code></pre>
+</li>
+</ol>
+</li>
+<li>
+<h3 id="异常值删除">异常值删除</h3>
+<ol>
+<li>
+<p>绘制数据散点图发现存在异常数据</p>
+<pre><code class="language-python">sns.jointplot(x=&quot;charge_minutes&quot;, y=&quot;SOC_change&quot;, data=a1);
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://tvax3.sinaimg.cn/large/00705hvsly1gafulptnibj30es0eqaad.jpg" alt="image" loading="lazy"></figure>
+</li>
+<li>
+<p>删除异常数据</p>
+<figure data-type="image" tabindex="5"><img src="https://tvax4.sinaimg.cn/large/00705hvsly1gag0tbcs6aj30f60f2aae.jpg" alt="image" loading="lazy"></figure>
+<p>从散点图来看，充电时间和SOC变化值呈现线性关系，根据充电电流的大小分为快充和慢充两种情况，快充充电电流较大，充电效率高。</p>
+</li>
+</ol>
+</li>
+<li>
+<h3 id="数据清洗后的测试数据">数据清洗后的测试数据</h3>
+<pre><code class="language-python">charge_energy	charge_minutes	SOC_change	U_change	charge_end_I
+21.11	26220	66	34.4	-7.7
+17.705	4130	56	20.5	-40.4
+16.166	20030	49.6	30.1	-7.8
+20.595	4880	65.6	21	-40.5
+23.765	29519	72.8	40.9	-7.6
+20.668	4840	65.6	20.1	-40.4
+24.67	30670	75.6	41.1	-7.7
+10.058	2360	32	11.3	-40.6
+19.344	23969	59.6	31.9	-7.7
+14.944	3780	47.2	12	-37.8
+24.956	31030	76	40	-7.6
+14.848	3500	47.2	12.8	-40.3
+19.015	23559	58	33.1	-7.7
+5.493	1290	16.8	10.5	-40.6
+17.101	21189	52.8	31.9	-7.7
+11.865	2980	37.2	21.8	-38.1
+9.977	2350	31.6	13.6	-40.2
+18.941	23479	57.6	32	-7.7
+12.724	3290	40	16.4	-36.3
+24.138	30010	74.8	40.1	-7.8
+13.713	3760	42.8	13.2	-34.6
+22.233	27609	68.8	34.2	-7.7
+22.309	27699	68.8	39.3	-7.8
+12.903	2960	40.8	19.6	-42
+7.579	1720	23.6	15.4	-42.5
+20.813	25840	64	36.9	-7.8
+0.93	270	2.8	14	-34.7
+20.02	5520	63.2	19.6	-34.1
+16.694	20689	50.8	32.6	-7.7
+11.476	2670	36	13.6	-40.5
+18.356	22769	56.4	34.4	-7.6
+19.254	4510	61.2	19.8	-40.5
+14.732	18253	45.2	31.6	-7.7
+9.094	2050	28	15.5	-41.2
+19.267	23910	59.6	34.6	-7.6
+3.495	810	10.8	16.5	-40.9
+5.821	1330	18	5.5	-40.6
+5.767	1310	18.4	5.4	-41.3
+20.252	25150	62.8	34.9	-7.7
+18.139	4240	56.8	20.5	-40.3
+21.658	26890	66.4	38.5	-7.7
+20.966	4920	66.8	24.2	-40
+21.38	26560	65.2	36.8	-7.7
+20.728	25740	64	33.3	-7.7
+17.621	4120	55.2	22	-40.4
+22.6	28080	70	40.2	-7.6
+19.332	4580	60.8	22.2	-39.7
+22.897	28474	70.8	40.4	-7.7
+20.431	25371	62.8	34.7	-7.6
+15.131	3540	47.2	19.3	-40.1
+21.422	26600	66	37.4	-7.7
+18.659	4370	58.8	18.8	-40.7
+17.406	21579	52.4	33.3	-7.6
+14.966	3440	46.4	16.2	-40.7
+18.879	23430	58	33.8	-7.7
+15.884	3100	49.6	24.5	-48
+10.181	12580	30.4	30.8	-7.8
+14.769	3350	46.4	25.5	-41.7
+19.292	23949	59.6	34.4	-7.7
+17.652	3720	55.2	17.7	-44.3
+23.539	29280	72.4	39.1	-7.7
+3.012	640	9.6	7.9	-45.6
+10.744	2260	33.2	20.6	-44.5
+17.535	21759	53.6	32.6	-7.8
+19.244	23860	58.8	31.9	-7.6
+10.976	13580	33.6	32.1	-7.7
+23.038	28619	71.6	36.5	-7.7
+3.553	840	11.2	12.7	-40.1
+22.022	27329	68	37.7	-7.7
+20.223	4660	63.2	22.3	-41
+15.08	18690	45.6	31.2	-7.7
+15.529	3650	49.2	15.9	-40.4
+12.029	2820	37.6	16.4	-40.7
+14.339	3320	45.2	12.7	-41.2
+21.557	26789	66.8	37.2	-7.6
+0.449	560	1.2	4.1	-7.7
+21.526	26739	66.8	35.2	-7.7
+3.781	890	11.6	12.1	-40.1
+8.242	1920	25.6	13.8	-40
+8.53	2010	26.8	12.7	-40
+20.359	25280	62.8	35.1	-7.6
+4.947	6140	15.6	7.4	-7.7
+3.269	770	10	10.5	-40.5
+20.941	25999	64.8	36.2	-7.8
+14.191	3100	44.4	17.3	-43.1
+23.034	28653	71.2	37.4	-7.8
+20.818	4850	66	24.7	-40.6
+21.048	26164	64.8	35.1	-7.7
+8.609	1840	26.4	20.2	-44.6
+7.117	1510	22	14.3	-44
+2.928	620	9.2	16	-45.7
+23.09	28709	70.8	38.8	-7.7
+8.169	1650	25.2	15.9	-46.2
+2.677	3280	7.2	26.8	-7.7
+10.713	2160	33.2	15.9	-45.3
+20.559	25529	63.2	35.6	-7.8
+1.674	350	5.2	15.6	-45.3
+13.127	2660	40.8	18.6	-45.6
+19.687	24439	60.4	36.3	-7.8
+3.738	790	11.6	7.4	-46.4
+1.045	230	3.6	11.3	-43.8
+4.913	1040	15.6	8.1	-43.9
+7.657	1610	23.6	16.8	-44.1
+23.346	29030	72.4	38.9	-7.7
+12.71	2970	40	18.3	-40.3
+8.577	1980	26.4	12.6	-41.1
+10.621	13130	32.4	26.6	-7.7
+11.738	2740	36.8	13.8	-40.9
+16.578	20539	50.4	33.5	-7.7
+13.437	3130	42	14.8	-40.7
+23.541	29280	72.8	39.4	-7.7
+16.747	3900	52.4	17.6	-40.7
+17.791	22080	54	32	-7.7
+17.38	4040	54.4	21.4	-40.3
+24.748	30810	76	42	-7.6
+15.828	3690	49.2	19.6	-40.1
+13.731	3000	42.8	17.5	-42.8
+23.531	29269	72.4	39	-7.7
+13.598	2760	42.4	17.6	-45.3
+22.725	28249	70	36.9	-7.7
+11.955	2730	37.6	19.8	-41
+3.181	720	10	6	-41.6
+3.936	890	12.4	15.3	-42.4
+24.21	30139	74.4	41.1	-7.6
+21.199	4990	66.8	25.6	-10.7
+21.176	26304	64.8	36.9	-7.8
+21.984	5130	69.6	27.8	-40.3
+21.163	26289	64.8	35.1	-7.8
+17.183	3991	54	20.5	-40.8
+22.169	27554	68	38.4	-7.7
+21.471	4990	67.6	26.6	-40.7
+16.871	20930	51.6	30.4	-7.8
+8.211	1850	25.6	16.5	-41.6
+20.547	25520	64	36.1	-7.7
+14.872	3470	46.4	18.9	-40.5
+24.036	29909	74.8	39.6	-7.6
+17.659	4150	55.2	20.1	-40.2
+18.569	23050	57.2	33.4	-7.7
+13.482	3100	42.4	11.9	-40.1
+20.405	25350	62.8	36	-7.6
+15.494	3580	48	15.7	-40.7
+17.738	22010	54	32.8	-7.7
+16.562	3860	51.6	17	-40.5
+21.591	26820	66	36.4	-7.6
+5.327	1130	16.8	10.9	-43.7
+9.329	1950	28.8	12.4	-45.7
+12.89	3010	40.4	13.1	-40.6
+20.097	24959	61.2	35.2	-7.7
+9.763	1970	30.4	16.5	-46.2
+23.24	28890	71.6	39	-7.8
+4.773	1010	15.2	9.8	-43.9
+9.87	2060	30.4	8.8	-44.1
+15.476	19179	47.2	31.1	-7.7
+8.735	1840	27.2	14.8	-44.2
+1.062	230	3.2	15.5	-43.9
+0.232	50	0.8	10.7	-43.9
+20.666	25670	64	35.4	-7.7
+18.803	4440	58.8	21.2	-40.3
+9.654	11909	28.8	30.8	-7.8
+18.495	4340	58	22.3	-40.3
+20.63	25619	64	34.2	-7.7
+15.807	3690	49.6	18.3	-40.3
+14.671	18170	44.4	31	-7.7
+17.088	3980	53.6	18.5	-40.4
+17.856	22150	54.8	33.2	-7.7
+21.233	4970	66.8	22.7	-40.6
+11.405	14120	34	28.9	-7.7
+13.288	3080	41.6	16.3	-40.7
+13.305	16460	40	31.1	-7.8
+20.342	4720	64.4	21.4	-40.5
+17.867	22140	55.2	32.9	-7.7
+19.878	4640	62.8	22.3	-40.3
+0.94	220	1.2	0.3	-40.7
+20.056	4723	24	20.7	-40.3
+11.586	2690	14.8	17.8	-40.9
+10.936	2550	13.6	10.2	-40.6
+10.197	2390	12.8	8.9	-40.3
+14.816	3460	18.8	12.9	-40.5
+6.929	1640	8.8	9.4	-40.4
+13.643	2680	17.2	11.8	-47.7
+1.594	310	2	8.4	-47.7
+5.04	1150	6.4	9.4	-41.7
+5.509	1250	6.8	10.2	-40.3
+4.429	920	5.6	12.6	-47.9
+4.137	850	5.2	8.1	-47.8
+6.693	1360	8.4	8.2	-46.5
+14.762	3470	18.8	18.1	-40.6
+10.104	2340	12.8	11.3	-40.9
+20.373	4780	63.96221	22.9	-40.2
+17.5	4080	54.82721	18.4	-40.3
+18.384	4280	57.43721	19.7	-40.9
+20.089	4710	63.04871	21.8	-16.3
+17.878	4150	55.74071	20.2	-40.5
+7.032	1430	20.24471	14.4	-46
+17.134	3970	53.39171	18.9	-40.3
+20.08	4700	62.91821	22.3	-40.3
+15.798	3670	49.47671	16.8	-40.5
+22.185	5180	69.18221	25.9	-40.7
+22.098	5090	68.00771	26.3	-41.1
+16.116	3770	50.78171	15.8	-40.5
+22.695	5270	70.35671	27.9	-40.9
+20.586	4850	64.87571	24.2	-40.1
+7.331	1720	24.02921	8.1	-40.2
+13.482	2740	37.34021	17.6	-46.4
+19.441	3960	53.26121	21.6	-46.1
+6.599	1350	19.20071	10.7	-45.5
+10.066	2040	28.20521	14.6	-46.3
+23.149	5440	72.57521	27.3	-40.6
+16.818	3940	53.00021	19.2	-40.3
+4.335	850	12.67571	6.7	-47.2
+10.905	2130	29.37971	19.4	-49.1
+5.409	1320	18.80921	9.1	-39.5
+10.037	2270	31.20671	14.3	-41.8
+6.331	1250	17.89571	16	-47.8
+8.937	1740	24.29021	17.3	-48.7
+21.009	26084	64.5151	36.8	-7.6
+18.531	22980	56.7551	33.8	-7.7
+14.218	17609	43.3276	29.4	-7.7
+15.285	18930	46.6301	29.6	-7.7
+19.653	24388	60.2751	34	-7.7
+8.373	10491	25.5326	11	-7.8
+16.844	20899	51.5526	33	-7.6
+23.38	29060	71.9551	38.8	-7.6
+19.303	23960	59.2051	34.9	-7.8
+0.212	358	0.2001	1.8	-6.1
+0.064	90	-0.4699	2.4	-7
+9.963	12270	29.9801	30.6	-7.7
+16.784	20819	51.3526	29.3	-7.7
+13.935	17260	42.4551	28.4	-7.6
+21.222	26350	65.1801	36.9	-7.7
+16.369	20299	50.0526	30.7	-7.6
+8.606	10640	25.9051	31.4	-7.7
+19.505	24230	59.8801	33.8	-7.7
+22.334	27762	68.7101	39.4	-7.8
+10.23	12610	30.8301	29.8	-7.6
+12.045	14910	36.5801	30.5	-7.7
+16.035	19890	49.0301	32.9	-7.6
+16.621	20600	50.8051	31.4	-7.8
+20.311	25210	62.3301	35.3	-7.7
+6.255	7740	18.6551	27.1	-7.7
+23.579	29330	72.6301	38.3	-7.7
+18.825	23429	57.8776	17.5	-7.7
+3.179	3890	9.0301	18.7	-7.7
+19.713	24459	60.4526	35.5	-7.7
+18.521	22989	56.7776	34.2	-7.7
+13.837	17129	42.1276	30.8	-7.7
+19.081	23670	58.4801	34.3	-7.8
+10.136	12701	31.0576	14.1	-7.7
+
+</code></pre>
+</li>
+</ol>
+<h2 id="数据挖掘模型选择">数据挖掘模型选择</h2>
+<ol>
+<li>
+<h3 id="数据相关性分析">数据相关性分析</h3>
+<ol>
+<li>
+<p>变量之间皮尔逊系数</p>
+<pre><code class="language-python">In[436]:a1.corr()
+Out[436]: 
+                  charge_start_soc  charge_end_soc  charge_start_U  \
+charge_start_soc          1.000000        0.440655        0.582655   
+charge_end_soc            0.440655        1.000000       -0.217747   
+charge_start_U            0.582655       -0.217747        1.000000   
+charge_end_U             -0.039551        0.586353       -0.504950   
+charge_start_I           -0.114494        0.140997       -0.639101   
+charge_end_I             -0.254199        0.239007       -0.632937   
+charge_energy            -0.531104        0.482813       -0.738103   
+charge_minutes           -0.395169        0.320061       -0.763234   
+SOC_change               -0.285750        0.734330       -0.673037   
+U_change                 -0.308760        0.494545       -0.819852   
+
+                  charge_end_U  charge_start_I  charge_end_I  charge_energy  \
+charge_start_soc     -0.039551       -0.114494     -0.254199      -0.531104   
+charge_end_soc        0.586353        0.140997      0.239007       0.482813   
+charge_start_U       -0.504950       -0.639101     -0.632937      -0.738103   
+charge_end_U          1.000000        0.506044      0.762263       0.685489   
+charge_start_I        0.506044        1.000000      0.691410       0.286264   
+charge_end_I          0.762263        0.691410      1.000000       0.555986   
+charge_energy         0.685489        0.286264      0.555986       1.000000   
+charge_minutes        0.826196        0.636456      0.914596       0.738508   
+SOC_change            0.655862        0.237097      0.447366       0.917025   
+U_change              0.908202        0.645581      0.812557       0.812622   
+
+                  charge_minutes  SOC_change  U_change  
+charge_start_soc       -0.395169   -0.285750 -0.308760  
+charge_end_soc          0.320061    0.734330  0.494545  
+charge_start_U         -0.763234   -0.673037 -0.819852  
+charge_end_U            0.826196    0.655862  0.908202  
+charge_start_I          0.636456    0.237097  0.645581  
+charge_end_I            0.914596    0.447366  0.812557  
+charge_energy           0.738508    0.917025  0.812622  
+charge_minutes          1.000000    0.640491  0.918147  
+SOC_change              0.640491    1.000000  0.761419  
+U_change                0.918147    0.761419  1.000000  
+</code></pre>
+<p>可以看出充电量和充电时间以及SOC变化值强相关，但因测试集没有给出充电时间，所以舍弃充电时间自变量。</p>
+</li>
+<li>
+<p>数据散点图</p>
+<figure data-type="image" tabindex="6"><img src="https://tvax4.sinaimg.cn/large/00705hvsly1gag6b0cqe7j30ed0ey74m.jpg" alt="image" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://tva3.sinaimg.cn/large/00705hvsly1gag6csle3ij30es0evglx.jpg" alt="image" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://tva1.sinaimg.cn/large/00705hvsly1gag6dvlzqpj30ee0eu3ys.jpg" alt="image" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="C:%5CUsers%5Cxiaofan%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191231210640973.png" alt="image-20191231210640973" loading="lazy"></figure>
+</li>
+<li>
+<p>多元线性回归</p>
+<p>应用python sklearn库中的回归器进行多元线性回归。</p>
+<pre><code class="language-python">from sklearn.linear_model import LinearRegression
+cols=['charge_end_I','SOC_change','U_change']
+x=c[cols]
+y=c['charge_energy']
+linreg = LinearRegression()
+model=linreg.fit(x, y)
+print(linreg.coef_)
+print (linreg.intercept_)
+</code></pre>
+<p>得到：[-0.0238558   0.27817685  0.07779472]<br>
+-0.09757404381251078</p>
+<p>回归方程：charge_energy=-0.09757404381251078+-0.0238558 ∗charge_end_I+0.27817685∗SOC_change+0.07779472∗U_change</p>
+</li>
+<li>
+<p>导入测试集测试</p>
+<pre><code class="language-python">x = pd.read_csv('G:/self/py/energy_test1029.csv')
+i=x[x['vehicle_id']==1] #数据切片
+i['SOC_change']=i['charge_end_soc']-i['charge_start_soc']
+i['U_change']=i['charge_end_U']-i['charge_start_U']
+p=i[cols]
+y_pred=linreg.predict(p)
+numpy.savetxt(&quot;result.csv&quot;, y_pred, delimiter=',')
+</code></pre>
+<p>输出结果</p>
+<pre><code class="language-python">array([13.97665963, 22.82519566, 19.20605916, 16.83308263,  8.28995141,
+       13.25753761, 11.6966566 , 21.3788354 , 23.79077072, 20.11717792,
+       22.11823793, 11.27989872,  5.03152524, 19.51777843, 20.35387351])
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="数据展示">数据展示</h2>
+<h3 id="1预测结果的误差统计分布直方图">1.预测结果的误差统计分布直方图</h3>
+<figure data-type="image" tabindex="10"><img src="https://tvax2.sinaimg.cn/large/00705hvsly1gah3rzi2m6j30ac06vweh.jpg" alt="image" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="https://tvax3.sinaimg.cn/large/00705hvsly1gah46vdj97j30ba079wek.jpg" alt="image" loading="lazy"></figure>
+<p>可以看出预测误差较大主要集中在前两辆车型</p>
+<h3 id="3实际值与预测值分布散点图对比">3.实际值与预测值分布散点图对比</h3>
+<figure data-type="image" tabindex="12"><img src="https://tvax2.sinaimg.cn/large/00705hvsly1gah46lphorj30aq07b0sy.jpg" alt="image" loading="lazy"></figure>
+<h2 id="模型评估">模型评估</h2>
+<h3 id="1sklearn回归模型评估">1.sklearn回归模型评估</h3>
+<ol>
+<li>
+<p>均方误差RMSE</p>
+<pre><code class="language-python">np.sqrt(mean_squared_error(x['charge_energy'],x['charge_pred']))
+Out[1196]: 2.1148376421830477
+</code></pre>
+</li>
+<li>
+<p>中值绝对误差MAE</p>
+<pre><code class="language-python">np.median(np.abs(x['charge_energy']-x['charge_pred']))
+Out[9]: 0.4841196700000001
+</code></pre>
+</li>
+<li>
+<p>决定系数分数</p>
+<pre><code class="language-python">r2_score(x['charge_energy'],x['charge_pred'])
+Out[13]: 0.9131783967106363
+</code></pre>
+</li>
+</ol>
+<h3 id="2运行分数计算程序">2.运行分数计算程序</h3>
+<figure data-type="image" tabindex="13"><img src="https://tvax3.sinaimg.cn/large/00705hvsly1gah4uw634fj30fx012mx2.jpg" alt="image" loading="lazy"></figure>
+<ul>
+<li>最终评分0.2787</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B1%9E%E6%80%A7%E5%88%86%E6%9E%90">1.数据的属性分析</a></li>
+<li><a href="#2%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86">2.数据预处理</a>
+<ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%88%86%E6%9E%90">数据缺失值分析</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">数据类型转换</a></li>
+<li><a href="#%E5%BC%82%E5%B8%B8%E5%80%BC%E5%88%A0%E9%99%A4">异常值删除</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97%E5%90%8E%E7%9A%84%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE">数据清洗后的测试数据</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9">数据挖掘模型选择</a>
+<ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90">数据相关性分析</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA">数据展示</a>
+<ul>
+<li><a href="#1%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C%E7%9A%84%E8%AF%AF%E5%B7%AE%E7%BB%9F%E8%AE%A1%E5%88%86%E5%B8%83%E7%9B%B4%E6%96%B9%E5%9B%BE">1.预测结果的误差统计分布直方图</a></li>
+<li><a href="#3%E5%AE%9E%E9%99%85%E5%80%BC%E4%B8%8E%E9%A2%84%E6%B5%8B%E5%80%BC%E5%88%86%E5%B8%83%E6%95%A3%E7%82%B9%E5%9B%BE%E5%AF%B9%E6%AF%94">3.实际值与预测值分布散点图对比</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0">模型评估</a>
+<ul>
+<li><a href="#1sklearn%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0">1.sklearn回归模型评估</a></li>
+<li><a href="#2%E8%BF%90%E8%A1%8C%E5%88%86%E6%95%B0%E8%AE%A1%E7%AE%97%E7%A8%8B%E5%BA%8F">2.运行分数计算程序</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xioafanwu.github.io/post/che-liang-fang-zhen-ji-zhu-san/">
+              <h3 class="post-title">
+                车辆仿真技术（三）
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
