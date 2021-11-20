@@ -1,113 +1,161 @@
-<html>
-  <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>019-Data-driven nonparametric Li-ion battery ageing model aiming at learning from real operation data – Part A Storage operation | Gridea</title>
-<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1637376915193">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<meta HTTP-EQUIV="expires" CONTENT="0"> 
+<title>019-Data-driven nonparametric Li-ion battery ageing model aiming at learning from real operation data – Part A Storage operation | Gridea</title>	
+
 <link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="019-Data-driven nonparametric Li-ion battery ageing model aiming at learning from real operation data – Part A Storage operation | Gridea - Atom Feed" href="https://xioafanwu.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+            display = "https://xioafanwu.github.io/media/css/night.css";
+
+            display = "https://xioafanwu.github.io/media/css/night.css";   
+      
+            display = "https://xioafanwu.github.io/media/css/day.css";
+
+            display = "https://xioafanwu.github.io/media/css/day.css";
+      
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap" rel="stylesheet">
+<link href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<script type='text/javascript' src='https://xioafanwu.github.io/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
 
 
+ 	
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+        
+			
+		<header id="header" class="site-header" 
+		
+		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(https://xioafanwu.github.io/post-images/019-data-driven-nonparametric-li-ion-battery-ageing-model-aiming-at-learning-from-real-operation-data-part-a-storage-operation.png)"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://xioafanwu.github.io" rel="home">Gridea</a></h1>
+										
+					<h2 class="site-description">温故而知新</h2>
+										
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+     			
+<li>
+	 
+	<a  href="/"> 首页</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/archives"> 归档</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/tags"> 标签</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/post/about"> 关于</a></li>
+	
+    
 
-    <meta name="description" content="
-Keywords: GPR;Operation data;Online learning;Daily ageing
-Object: NCM
-ReadTime: 2021/5/23
-PublishTime: 2020/08/01
-Ratin..." />
-    <meta name="keywords" content="论文,高斯过程回归,三元电池" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-  </head>
-  <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://xioafanwu.github.io">
-  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1637376915193" alt="">
-  </a>
-  <h1 class="site-title">
-    Gridea
-  </h1>
-  <p class="site-description">
-    温故而知新
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
+</ul>
+</li>		
+		
+</ul>				</div>
+			</nav>
+						<div class="jingge">
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              019-Data-driven nonparametric Li-ion battery ageing model aiming at learning from real operation data – Part A Storage operation
-            </h2>
-            <div class="post-info">
-              <span>
-                2021-05-23
-              </span>
-              <span>
-                10 min read
-              </span>
-              
-                <a href="https://xioafanwu.github.io/tag/2_-QeqmON/" class="post-tag">
-                  # 论文
-                </a>
-              
-                <a href="https://xioafanwu.github.io/tag/d2f0yfsjSQ/" class="post-tag">
-                  # 高斯过程回归
-                </a>
-              
-                <a href="https://xioafanwu.github.io/tag/xDaO0_Hbnr/" class="post-tag">
-                  # 三元电池
-                </a>
-              
-            </div>
-            
-              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/019-data-driven-nonparametric-li-ion-battery-ageing-model-aiming-at-learning-from-real-operation-data-part-a-storage-operation.png" alt="">
-            
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <hr>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+				
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+	
+	                      
+		<div class="entry-content">
+			<h1 class="wow swing entry-title">019-Data-driven nonparametric Li-ion battery ageing model aiming at learning from real operation data – Part A Storage operation</h1>
+<div class="entry-meta">
+<div class="wow bounce">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2021-05-23 18:03:44" itemprop="datePublished" pubdate="">2021-05-23</time></i>
+	          </div>
+			
+</span>
+													 
+		</div>
+                  
+			<div class="wow slideInLeft entry-summary song">
+				<hr>
 <h2 id="keywords-gproperation-dataonline-learningdaily-ageingobject-ncmreadtime-2021523publishtime-20200801rating-82author-mattin-lucujournal-journal-of-energy-storagecitation-5doi-httpsdoiorg101016jest2020101409">Keywords: GPR;Operation data;Online learning;Daily ageing<br>
 Object: NCM<br>
 ReadTime: 2021/5/23<br>
@@ -231,9 +279,9 @@ collapse: open
 </ul>
 <h2 id="问题">❓问题</h2>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3466222"><label class="task-list-item-label" for="task-item-3466222"> 高斯过程核函数的性质，学习数学理论</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1653341"><label class="task-list-item-label" for="task-item-1653341"> 高斯过程核函数的超参数的意义，学习数学理论</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5972777"><label class="task-list-item-label" for="task-item-5972777"> 老化因素的路径依赖性</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1867196"><label class="task-list-item-label" for="task-item-1867196"> 高斯过程核函数的性质，学习数学理论</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3515842"><label class="task-list-item-label" for="task-item-3515842"> 高斯过程核函数的超参数的意义，学习数学理论</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1444340"><label class="task-list-item-label" for="task-item-1444340"> 老化因素的路径依赖性</label></li>
 </ul>
 <h2 id="进一步研究">⏩进一步研究</h2>
 <h3 id="是否基于前人研究">是否基于前人研究</h3>
@@ -269,128 +317,241 @@ collapse: open
 <li></li>
 </ul>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#keywords-gproperation-dataonline-learningdaily-ageingobject-ncmreadtime-2021523publishtime-20200801rating-82author-mattin-lucujournal-journal-of-energy-storagecitation-5doi-httpsdoiorg101016jest2020101409">Keywords: GPR;Operation data;Online learning;Daily ageing<br>
-Object: NCM<br>
-ReadTime: 2021/5/23<br>
-PublishTime: 2020/08/01<br>
-Rating: 8.2<br>
-Author: Mattin Lucu<br>
-Journal: Journal of Energy Storage<br>
-Citation: 5<br>
-Doi: https://doi.org/10.1016/j.est.2020.101409</a></li>
-<li><a href="#i%EF%B8%8F%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF">ℹ️基本信息</a></li>
-<li><a href="#%EF%B8%8F%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE">✏️主要贡献</a></li>
-<li><a href="#%E4%B8%BB%E4%BD%93%E6%A1%86%E6%9E%B6">🚩主体框架</a>
-<ul>
-<li><a href="#%E4%B8%BB%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98">主要解决的问题</a></li>
-<li><a href="#%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98">怎么解决的问题</a></li>
-<li><a href="#%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E7%9A%84">怎么设计方法的</a></li>
-<li><a href="#%E6%80%8E%E4%B9%88%E8%AF%84%E4%BB%B7%E7%9A%84%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E6%80%8E%E6%A0%B7">怎么评价的（实验设计怎样）</a></li>
-<li><a href="#%E7%BB%93%E8%AE%BA%E6%80%8E%E6%A0%B7%E5%BC%BA%E7%BB%93%E8%AE%BA%E5%92%8C%E5%BC%B1%E7%BB%93%E8%AE%BA">结论怎样（强结论和弱结论）</a></li>
-</ul>
-</li>
-<li><a href="#%EF%B8%8F%E5%86%99%E6%B3%95">✍️写法</a>
-<ul>
-<li><a href="#%E6%80%8E%E4%B9%88%E8%AE%BA%E8%BF%B0%E7%9A%84">怎么论述的</a>
-<ul>
-<li><a href="#1%E5%BC%95%E8%A8%80">1.引言</a></li>
-<li><a href="#2%E5%AE%9E%E9%AA%8C%E6%97%A5%E5%8E%86%E8%80%81%E5%8C%96%E6%95%B0%E6%8D%AE">2.实验日历老化数据</a></li>
-<li><a href="#3%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86">3.数据预处理</a></li>
-<li><a href="#5%E6%A8%A1%E5%9E%8B%E6%9E%84%E5%BB%BA">5.模型构建</a></li>
-<li><a href="#6%E4%BB%8E%E9%9D%99%E6%80%81%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%AD%A6%E4%B9%A0">6.从静态数据中学习</a></li>
-<li><a href="#7%E4%BB%8E%E5%8A%A8%E6%80%81%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%AD%A6%E4%B9%A0">7.从动态操作过程中学习</a></li>
-<li><a href="#%E5%AF%B9%E7%BB%93%E6%9E%9C%E7%9A%84%E8%A7%A3%E9%87%8A">对结果的解释</a></li>
-<li></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E7%9F%A5%E8%AF%86">🌟知识</a></li>
-<li><a href="#%E9%97%AE%E9%A2%98">❓问题</a></li>
-<li><a href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%A0%94%E7%A9%B6">⏩进一步研究</a>
-<ul>
-<li><a href="#%E6%98%AF%E5%90%A6%E5%9F%BA%E4%BA%8E%E5%89%8D%E4%BA%BA%E7%A0%94%E7%A9%B6">是否基于前人研究</a></li>
-<li><a href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%8F%AF%E4%BB%A5%E5%81%9A%E4%BB%80%E4%B9%88">进一步可以做什么</a></li>
-</ul>
-</li>
-<li><a href="#%EF%B8%8F%E5%9B%BE%E7%89%87">🖼️图片</a></li>
-<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a></li>
-</ul>
-</li>
-</ul>
+							</div>
+	<div class="wow bounceInDown vt-post-tags">
+ 
+				<a href="https://xioafanwu.github.io/tag/2_-QeqmON/" rel="tag">论文</a>	
+				 
+				<a href="https://xioafanwu.github.io/tag/d2f0yfsjSQ/" rel="tag">高斯过程回归</a>	
+				 
+				<a href="https://xioafanwu.github.io/tag/xDaO0_Hbnr/" rel="tag">三元电池</a>	
+				 
+					</div>						
+<nav class="navigation3 post-navigation3" role="navigation">
+		
+		<div class="nav-links3">
+      
+		<div class="wow bounceInLeft nav-previous3"><a href="https://xioafanwu.github.io/post/test/" rel="prev"> test</a></div>
+		 
+		 
+		<div class="wow bounceInRight nav-next3"><a href="https://xioafanwu.github.io/post/du-shu-bi-ji-005-lesslesszhen-que-greatergreater/" rel="next"> 读书笔记005-《真确》</a></div>
+		
+		</div>
+	</nav>
+	<div class="wow rollIn author-info" style="visibility: visible; animation-name: rollIn;">
+	<div class="author-avatar pull-left"><img src="https://xioafanwu.github.io/images/avatar.png" ></div>
+ 
 
-              </div>
-            </div>
-          </article>
+		</div>
+		
+ 
+		
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow bounceInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+		
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://xioafanwu.github.io/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+            av: AV, 
+            el: '.comment',
+            lang: 'zh-cn',
+            
+            
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     	
+      	
+          
+        });
+    </script> 
+
+
+   
+  
+ 
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+	
+        <div class="toc-widget">
+			
+            <div class="toc-title"></div>
+			
+            <div id="toc-content">
+			
+			
+			</div>
         </div>
-
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://xioafanwu.github.io/post/du-shu-bi-ji-005-lesslesszhen-que-greatergreater/">
-              <h3 class="post-title">
-                读书笔记005-《真确》
-              </h3>
-            </a>
-          </div>
-        
-
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
-      </div>
     </div>
 
-    <script>
-      hljs.initHighlightingOnLoad()
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
-
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
-
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
         });
-      });
 
-    </script>
-  </body>
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>										 
+
+ 
+       
+
+
+			</div>
+		</div>
+
+		
+		 	<footer id="colophon" class="site-footer">
+
+			<div class="container">
+	
+				<div class="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div>
+		
+		</footer>
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://xioafanwu.github.io/media/scripts/marlin-scripts.js'></script>
+ <script src="//tokinx.github.io/lately/lately.min.js"></script>
+  <script>jQuery(document).ready(function(){$.lately({'target':'.lately-a,.lately-b,.lately-c'})});</script>
+  <style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+		<script data-no-instant>
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $('.navigation:eq(0)').remove();
+                $("").attr("rel" , "external");
+                $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+                $("a.vi").attr("rel" , "");
+                $.viewImage({
+                    'target'  : 'img',
+                    'exclude' : '.vsmile-icons img,.gallery img',
+                    'delay'   : 300
+                });
+                $.lately({
+                    'target' : '.commentmetadata a,.infos time,.post-list time'
+                });
+                prettyPrint();
+                
+                $('ul.links li a').each(function(){
+                    if($(this).parent().find('.bg').length==0){
+                        $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+                    }
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
 </html>
