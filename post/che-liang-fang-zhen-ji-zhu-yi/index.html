@@ -2,18 +2,18 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>test | Gridea</title>
+<title>车辆仿真技术（一） | Gridea</title>
 <link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1637373293423">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="test | Gridea - Atom Feed" href="https://xioafanwu.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="车辆仿真技术（一） | Gridea - Atom Feed" href="https://xioafanwu.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="rgergerg
-" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="
+本节介绍了系统仿真的概念以及三要素（系统、计算机和模型），以及车辆仿真的分类：半实物仿真优点是早期进行软硬件全面测试，缺点是实时性较差；计算机仿真优点是成本低可以反复实验，缺点是不能形成闭环，不主观；人在回路仿真主观闭环但是成本高；物理实..." />
+    <meta name="keywords" content="Simulink,车辆仿真" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -75,25 +75,123 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              test
+              车辆仿真技术（一）
             </h2>
             <div class="post-info">
               <span>
-                2021-11-20
+                2019-12-11
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
+              
+                <a href="https://xioafanwu.github.io/tag/TfxpPPZYV/" class="post-tag">
+                  # Simulink
+                </a>
+              
+                <a href="https://xioafanwu.github.io/tag/FrqRiw4GnM/" class="post-tag">
+                  # 车辆仿真
+                </a>
               
             </div>
             
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/che-liang-fang-zhen-ji-zhu-yi.png" alt="">
+            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>rgergerg</p>
+                <blockquote>
+<p>本节介绍了系统仿真的概念以及三要素（系统、计算机和模型），以及车辆仿真的分类：半实物仿真优点是早期进行软硬件全面测试，缺点是实时性较差；计算机仿真优点是成本低可以反复实验，缺点是不能形成闭环，不主观；人在回路仿真主观闭环但是成本高；物理实物仿真直观形象，但是不好修改。</p>
+</blockquote>
+<h2 id="仿真的基本概念">仿真的基本概念</h2>
+<ol>
+<li>
+<p>系统仿真</p>
+<ul>
+<li>以数学理论、控制理论、相似理论、计算技术、信息技术等相关技术为基础，以计算机和各种物理效应设备为工具，利用系统模型对实际的或设想的系统进行实验研究的综合性技术</li>
+</ul>
+</li>
+<li>
+<p>系统仿真三要素</p>
+<ul>
+<li>系统
+<ul>
+<li>相互作用、相互依赖的若干组成部分结合而成，具有特定功能的有机整体</li>
+<li>系统分类
+<ul>
+<li>离散时间系统</li>
+<li>连续时间系统</li>
+<li>线性/非线性</li>
+<li>定常/时变</li>
+<li>集总参数/分布参数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>模型
+<ul>
+<li>系统/过程/现象的物理数学逻辑表达</li>
+<li>模型分类
+<ul>
+<li>几何模型</li>
+<li>数学模型</li>
+<li>描述模型</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>计算机</li>
+</ul>
+</li>
+<li>
+<p>车辆仿真的分类</p>
+<ol>
+<li>
+<p>计算机仿真</p>
+<ol>
+<li>优点：反复试验 投资小</li>
+<li>缺点：不能主观评价，不能实现闭环</li>
+</ol>
+</li>
+<li>
+<p>半实物仿真<br>
+<img src="https://tva3.sinaimg.cn/large/00705hvsly1g9xar5cffuj30d806dgn3.jpg" alt="image" loading="lazy"></p>
+<ol>
+<li>回路含有部分实物的仿真</li>
+<li>控制器硬件在环或者快速控制原型</li>
+<li>优点：早期进行控制器设计/软硬件全面测试</li>
+<li>缺点：模型太复杂，不能实时仿真</li>
+</ol>
+</li>
+<li>
+<p>人在回路仿真<br>
+<img src="https://tva1.sinaimg.cn/large/00705hvsly1g9xasmr5fpj30gh09xta4.jpg" alt="image" loading="lazy"></p>
+<ol>
+<li>优点：主观评价，闭环设计</li>
+<li>缺点：系统复杂，成本高</li>
+</ol>
+</li>
+<li>
+<p>物理仿真</p>
+<ol>
+<li>运用几何相似、环境相似条件，构造物理模型进行仿真</li>
+<li>优点：直观、形象</li>
+<li>缺点：修改困难，投资大</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BB%BF%E7%9C%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">仿真的基本概念</a></li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>
@@ -102,9 +200,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://xioafanwu.github.io/post/019-data-driven-nonparametric-li-ion-battery-ageing-model-aiming-at-learning-from-real-operation-data-part-a-storage-operation/">
+            <a href="https://xioafanwu.github.io/post/hello-gridea/">
               <h3 class="post-title">
-                019-Data-driven nonparametric Li-ion battery ageing model aiming at learning from real operation data – Part A Storage operation
+                Hello Gridea
               </h3>
             </a>
           </div>
