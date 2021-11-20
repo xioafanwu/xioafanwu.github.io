@@ -1,0 +1,1463 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>利用python进行数据分析 （五）—pandas | Gridea</title>
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1637374798517">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="利用python进行数据分析 （五）—pandas | Gridea - Atom Feed" href="https://xioafanwu.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="Series类型
+
+一维数组对象，包括值和标签
+索引可以自己定义赋值，可以分别查看索引和值
+可以索引单个值或一组值
+对数组进行运算会保留索引
+可以通过字典创建Series
+可以检测缺失数据：isnull notnull
+数据自动根据索引对齐..." />
+    <meta name="keywords" content="python,大数据分析" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xioafanwu.github.io">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1637374798517" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              利用python进行数据分析 （五）—pandas
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-01-04
+              </span>
+              <span>
+                30 min read
+              </span>
+              
+                <a href="https://xioafanwu.github.io/tag/j1guwJAEmT/" class="post-tag">
+                  # python
+                </a>
+              
+                <a href="https://xioafanwu.github.io/tag/IBbYfbwTvk/" class="post-tag">
+                  # 大数据分析
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/li-yong-python-jin-xing-shu-ju-fen-xi-wu-pandas.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="series类型">Series类型</h2>
+<ol>
+<li>一维数组对象，包括值和标签</li>
+<li>索引可以自己定义赋值，可以分别查看索引和值</li>
+<li>可以索引单个值或一组值</li>
+<li>对数组进行运算会保留索引</li>
+<li>可以通过字典创建Series</li>
+<li>可以检测缺失数据：isnull notnull</li>
+<li>数据自动根据索引对齐</li>
+</ol>
+<pre><code>In [11]: obj = pd.Series([4, 7, -5, 3])
+
+In [12]: obj
+Out[12]: 
+0    4
+1    7
+2   -5
+3    3
+dtype: int64
+In [13]: obj.values
+Out[13]: array([ 4,  7, -5,  3])
+
+In [14]: obj.index  # like range(4)
+Out[14]: RangeIndex(start=0, stop=4, step=1)
+In [15]: obj2 = pd.Series([4, 7, -5, 3], index=['d', 'b', 'a', 'c'])
+
+In [16]: obj2
+Out[16]: 
+d    4
+b    7
+a   -5
+c    3
+dtype: int64
+
+In [17]: obj2.index
+Out[17]: Index(['d', 'b', 'a', 'c'], dtype='object')
+In [18]: obj2['a']
+Out[18]: -5
+
+In [19]: obj2['d'] = 6
+
+In [20]: obj2[['c', 'a', 'd']]
+Out[20]: 
+c    3
+a   -5
+d    6
+dtype: int64
+In [21]: obj2[obj2 &gt; 0]
+Out[21]: 
+d    6
+b    7
+c    3
+dtype: int64
+
+In [22]: obj2 * 2
+Out[22]:
+d    12
+b    14
+a   -10
+c     6
+dtype: int64
+
+In [23]: np.exp(obj2)
+Out[23]: 
+d     403.428793
+b    1096.633158
+a       0.006738
+c      20.085537
+dtype: float64
+In [24]: 'b' in obj2
+Out[24]: True
+
+In [25]: 'e' in obj2
+Out[25]: False
+In [26]: sdata = {'Ohio': 35000, 'Texas': 71000, 'Oregon': 16000, 'Utah': 5000}
+
+In [27]: obj3 = pd.Series(sdata)
+
+In [28]: obj3
+Out[28]: 
+Ohio      35000
+Oregon    16000
+Texas     71000
+Utah       5000
+dtype: int64
+In [29]: states = ['California', 'Ohio', 'Oregon', 'Texas']
+
+In [30]: obj4 = pd.Series(sdata, index=states)
+
+In [31]: obj4
+Out[31]: 
+California        NaN
+Ohio          35000.0
+Oregon        16000.0
+Texas         71000.0
+dtype: float64
+In [32]: pd.isnull(obj4)
+Out[32]: 
+California     True
+Ohio          False
+Oregon        False
+Texas         False
+dtype: bool
+
+In [33]: pd.notnull(obj4)
+Out[33]: 
+California    False
+Ohio           True
+Oregon         True
+Texas          True
+dtype: bool
+In [34]: obj4.isnull()
+Out[34]: 
+California     True
+Ohio          False
+Oregon        False
+Texas         False
+dtype: bool
+In [35]: obj3
+Out[35]: 
+Ohio      35000
+Oregon    16000
+Texas     71000
+Utah       5000
+dtype: int64
+
+In [36]: obj4
+Out[36]: 
+California        NaN
+Ohio          35000.0
+Oregon        16000.0
+Texas         71000.0
+dtype: float64
+
+In [37]: obj3 + obj4
+Out[37]: 
+California         NaN
+Ohio           70000.0
+Oregon         32000.0
+Texas         142000.0
+Utah               NaN
+dtype: float64
+In [38]: obj4.name = 'population'
+
+In [39]: obj4.index.name = 'state'
+
+In [40]: obj4
+Out[40]: 
+state
+California        NaN
+Ohio          35000.0
+Oregon        16000.0
+Texas         71000.0
+Name: population, dtype: float64
+</code></pre>
+<h2 id="dataframe">DataFrame</h2>
+<h3 id="表格型数据结构">表格型数据结构</h3>
+<p>​     含有一组有序的列，每列可以是不同的值类型可以指定列排序</p>
+<h3 id="获取行数据loc">获取行数据：loc</h3>
+<h3 id="赋值列">赋值列</h3>
+<h3 id="删除列del">删除列：del</h3>
+<h3 id="嵌套字典传人dataframe">嵌套字典传人DataFrame</h3>
+<h3 id="可以设置dataframe的index和columns的name属性">可以设置DataFrame的index和columns的name属性</h3>
+<h3 id="索引对象">索引对象</h3>
+<ol>
+<li>构建Series或DataFrame时，所用到的任何数组或其他序列的标签都会被转换成一个Index</li>
+<li>Index对象是不可变的</li>
+</ol>
+<pre><code class="language-python">data = {'state': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
+        'year': [2000, 2001, 2002, 2001, 2002, 2003],
+        'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
+frame = pd.DataFrame(data)
+In [45]: frame
+Out[45]: 
+   pop   state  year
+0  1.5    Ohio  2000
+1  1.7    Ohio  2001
+2  3.6    Ohio  2002
+3  2.4  Nevada  2001
+4  2.9  Nevada  2002
+5  3.2  Nevada  2003
+In [46]: frame.head()
+Out[46]: 
+   pop   state  year
+0  1.5    Ohio  2000
+1  1.7    Ohio  2001
+2  3.6    Ohio  2002
+3  2.4  Nevada  2001
+4  2.9  Nevada  2002
+In [47]: pd.DataFrame(data, columns=['year', 'state', 'pop'])
+Out[47]: 
+   year   state  pop
+0  2000    Ohio  1.5
+1  2001    Ohio  1.7
+2  2002    Ohio  3.6
+3  2001  Nevada  2.4
+4  2002  Nevada  2.9
+5  2003  Nevada  3.2
+In [48]: frame2 = pd.DataFrame(data, columns=['year', 'state', 'pop', 'debt'],
+   ....:                       index=['one', 'two', 'three', 'four',
+   ....:                              'five', 'six'])
+
+In [49]: frame2
+Out[49]: 
+       year   state  pop debt
+one    2000    Ohio  1.5  NaN
+two    2001    Ohio  1.7  NaN
+three  2002    Ohio  3.6  NaN
+four   2001  Nevada  2.4  NaN
+five   2002  Nevada  2.9  NaN
+six    2003  Nevada  3.2  NaN
+
+In [50]: frame2.columns
+Out[50]: Index(['year', 'state', 'pop', 'debt'], dtype='object')
+In [53]: frame2.loc['three']
+Out[53]: 
+year     2002
+state    Ohio
+pop       3.6
+debt      NaN
+Name: three, dtype: object
+In [54]: frame2['debt'] = 16.5
+
+In [55]: frame2
+Out[55]: 
+       year   state  pop  debt
+one    2000    Ohio  1.5  16.5
+two    2001    Ohio  1.7  16.5
+three  2002    Ohio  3.6  16.5
+four   2001  Nevada  2.4  16.5
+five   2002  Nevada  2.9  16.5
+six    2003  Nevada  3.2  16.5
+
+In [56]: frame2['debt'] = np.arange(6.)
+
+In [57]: frame2
+Out[57]: 
+       year   state  pop  debt
+one    2000    Ohio  1.5   0.0
+two    2001    Ohio  1.7   1.0
+three  2002    Ohio  3.6   2.0
+four   2001  Nevada  2.4   3.0
+five   2002  Nevada  2.9   4.0
+six    2003  Nevada  3.2   5.0
+In [61]: frame2['eastern'] = frame2.state == 'Ohio'
+
+In [62]: frame2
+Out[62]: 
+       year   state  pop  debt  eastern
+one    2000    Ohio  1.5   NaN     True
+two    2001    Ohio  1.7  -1.2     True
+three  2002    Ohio  3.6   NaN     True
+four   2001  Nevada  2.4  -1.5    False
+five   2002  Nevada  2.9  -1.7    False
+six    2003  Nevada  3.2   NaN    False
+In [63]: del frame2['eastern']
+
+In [64]: frame2.columns
+Out[64]: Index(['year', 'state', 'pop', 'debt'], dtype='object')
+In [65]: pop = {'Nevada': {2001: 2.4, 2002: 2.9},
+....:        'Ohio': {2000: 1.5, 2001: 1.7, 2002: 3.6}}
+In [66]: frame3 = pd.DataFrame(pop)
+
+In [67]: frame3
+Out[67]: 
+      Nevada  Ohio
+2000     NaN   1.5
+2001     2.4   1.7
+2002     2.9   3.6
+In [68]: frame3.T
+Out[68]: 
+        2000  2001  2002
+Nevada   NaN   2.4   2.9
+Ohio     1.5   1.7   3.6
+In [69]: pd.DataFrame(pop, index=[2001, 2002, 2003])
+Out[69]: 
+      Nevada  Ohio
+2001     2.4   1.7
+2002     2.9   3.6
+2003     NaN   NaN
+In [70]: pdata = {'Ohio': frame3['Ohio'][:-1],
+....:          'Nevada': frame3['Nevada'][:2]}
+
+In [71]: pd.DataFrame(pdata)
+Out[71]: 
+      Nevada  Ohio
+2000     NaN   1.5
+2001     2.4   1.7
+In [76]: obj = pd.Series(range(3), index=['a', 'b', 'c'])
+
+In [77]: index = obj.index
+
+In [78]: index
+Out[78]: Index(['a', 'b', 'c'], dtype='object')
+
+In [79]: index[1:]
+Out[79]: Index(['b', 'c'], dtype='object')
+In [85]: frame3
+Out[85]: 
+state  Nevada  Ohio
+year               
+2000      NaN   1.5
+2001      2.4   1.7
+2002      2.9   3.6
+In [86]: frame3.columns
+Out[86]: Index(['Nevada', 'Ohio'], dtype='object', name='state')
+
+In [87]: 'Ohio' in frame3.columns
+Out[87]: True
+
+In [88]: 2003 in frame3.index
+Out[88]: False
+</code></pre>
+<h2 id="基本功能">基本功能</h2>
+<h3 id="重新索引reindex">重新索引：reindex</h3>
+<ol>
+<li>前向值填充：method=ffill</li>
+<li>列重新索引：columns</li>
+</ol>
+<pre><code class="language-python">In [91]: obj = pd.Series([4.5, 7.2, -5.3, 3.6], index=['d', 'b', 'a', 'c'])
+
+In [92]: obj
+Out[92]: 
+d    4.5
+b    7.2
+a   -5.3
+c    3.6
+dtype: float64
+In [93]: obj2 = obj.reindex(['a', 'b', 'c', 'd', 'e'])
+
+In [94]: obj2
+Out[94]: 
+a   -5.3
+b    7.2
+c    3.6
+d    4.5
+e    NaN
+dtype: float64
+In [95]: obj3 = pd.Series(['blue', 'purple', 'yellow'], index=[0, 2, 4])
+
+In [96]: obj3
+Out[96]: 
+0      blue
+2    purple
+4    yellow
+dtype: object
+
+In [97]: obj3.reindex(range(6), method='ffill')
+Out[97]: 
+0      blue
+1      blue
+2    purple
+3    purple
+4    yellow
+5    yellow
+dtype: object
+In [98]: frame = pd.DataFrame(np.arange(9).reshape((3, 3)),
+   ....:                      index=['a', 'c', 'd'],
+   ....:                      columns=['Ohio', 'Texas', 'California'])
+
+In [99]: frame
+Out[99]: 
+   Ohio  Texas  California
+a     0      1           2
+c     3      4           5
+d     6      7           8
+
+In [100]: frame2 = frame.reindex(['a', 'b', 'c', 'd'])
+
+In [101]: frame2
+Out[101]: 
+   Ohio  Texas  California
+a   0.0    1.0         2.0
+b   NaN    NaN         NaN
+c   3.0    4.0         5.0
+d   6.0    7.0         8.0
+In [102]: states = ['Texas', 'Utah', 'California']
+
+In [103]: frame.reindex(columns=states)
+Out[103]: 
+   Texas  Utah  California
+a      1   NaN           2
+c      4   NaN           5
+d      7   NaN           8
+</code></pre>
+<h3 id="丢弃指定轴上的项">丢弃指定轴上的项</h3>
+<ol>
+<li>drop方法：删除行产生一个新对象</li>
+<li>axis=1或columns删除列、</li>
+<li>inplace：就地修改对象</li>
+</ol>
+<pre><code class="language-python">In [105]: obj = pd.Series(np.arange(5.), index=['a', 'b', 'c', 'd', 'e'])
+
+In [106]: obj
+Out[106]: 
+a    0.0
+b    1.0
+c    2.0
+d    3.0
+e    4.0
+dtype: float64
+
+In [107]: new_obj = obj.drop('c')
+
+In [108]: new_obj
+Out[108]: 
+a    0.0
+b    1.0
+d    3.0
+e    4.0
+dtype: float64
+
+In [109]: obj.drop(['d', 'c'])
+Out[109]: 
+a    0.0
+b    1.0
+e    4.0
+dtype: float64
+In [110]: data = pd.DataFrame(np.arange(16).reshape((4, 4)),
+   .....:                     index=['Ohio', 'Colorado', 'Utah', 'New York'],
+   .....:                     columns=['one', 'two', 'three', 'four'])
+
+In [111]: data
+Out[111]: 
+          one  two  three  four
+Ohio        0    1      2     3
+Colorado    4    5      6     7
+Utah        8    9     10    11
+New York   12   13     14    15
+In [112]: data.drop(['Colorado', 'Ohio'])
+Out[112]: 
+          one  two  three  four
+Utah        8    9     10    11
+New York   12   13     14    15
+In [113]: data.drop('two', axis=1)
+Out[113]: 
+          one  three  four
+Ohio        0      2     3
+Colorado    4      6     7
+Utah        8     10    11
+New York   12     14    15
+
+In [114]: data.drop(['two', 'four'], axis='columns')
+Out[114]: 
+          one  three
+Ohio        0      2
+Colorado    4      6
+Utah        8     10
+New York   12     14
+In [115]: obj.drop('c', inplace=True)
+
+In [116]: obj
+Out[116]: 
+a    0.0
+b    1.0
+d    3.0
+e    4.0
+dtype: float64
+</code></pre>
+<h3 id="索引-选取和过滤">索引、选取和过滤</h3>
+<ol>
+<li>切片运算与普通的Python切片运算不同，其末端是包含的</li>
+<li>一个值或序列对DataFrame进行索引其实就是获取一个或多个列</li>
+</ol>
+<pre><code class="language-python">In [117]: obj = pd.Series(np.arange(4.), index=['a', 'b', 'c', 'd'])
+
+In [118]: obj
+Out[118]: 
+a    0.0
+b    1.0
+c    2.0
+d    3.0
+dtype: float64
+
+In [119]: obj['b']
+Out[119]: 1.0
+
+In [120]: obj[1]
+Out[120]: 1.0
+
+In [121]: obj[2:4]
+Out[121]: 
+c    2.0
+d    3.0
+dtype: float64
+
+In [122]: obj[['b', 'a', 'd']]
+Out[122]:
+b    1.0
+a    0.0
+d    3.0
+dtype: float64
+
+In [123]: obj[[1, 3]]
+Out[123]: 
+b    1.0
+d    3.0
+dtype: float64
+
+In [124]: obj[obj &lt; 2]
+Out[124]: 
+a    0.0
+b    1.0
+dtype: float64
+In [125]: obj['b':'c']
+Out[125]:
+b    1.0
+c    2.0
+dtype: float64
+In [126]: obj['b':'c'] = 5
+
+In [127]: obj
+Out[127]: 
+a    0.0
+b    5.0
+c    5.0
+d    3.0
+dtype: float64
+In [128]: data = pd.DataFrame(np.arange(16).reshape((4, 4)),
+   .....:                     index=['Ohio', 'Colorado', 'Utah', 'New York'],
+   .....:                     columns=['one', 'two', 'three', 'four'])
+
+In [129]: data
+Out[129]: 
+          one  two  three  four
+Ohio        0    1      2     3
+Colorado    4    5      6     7
+Utah        8    9     10    11
+New York   12   13     14    15
+
+In [130]: data['two']
+Out[130]: 
+Ohio         1
+Colorado     5
+Utah         9
+New York    13
+Name: two, dtype: int64
+
+In [131]: data[['three', 'one']]
+Out[131]: 
+          three  one
+Ohio          2    0
+Colorado      6    4
+Utah         10    8
+New York     14   12
+In [132]: data[:2]
+Out[132]: 
+          one  two  three  four
+Ohio        0    1      2     3
+Colorado    4    5      6     7
+
+In [133]: data[data['three'] &gt; 5]
+Out[133]: 
+          one  two  three  four
+Colorado    4    5      6     7
+Utah        8    9     10    11
+New York   12   13     14    15
+In [134]: data &lt; 5
+Out[134]: 
+            one    two  three   four
+Ohio       True   True   True   True
+Colorado   True  False  False  False
+Utah      False  False  False  False
+New York  False  False  False  False
+
+In [135]: data[data &lt; 5] = 0
+
+In [136]: data
+Out[136]: 
+          one  two  three  four
+Ohio        0    0      0     0
+Colorado    0    5      6     7
+Utah        8    9     10    11
+New York   12   13     14    15
+</code></pre>
+<h3 id="用loc和iloc进行选取">用loc和iloc进行选取</h3>
+<ol>
+<li>用类似NumPy的标记，使用轴标签（loc）或整数索引（iloc），从DataFrame选择行和列的子集</li>
+</ol>
+<pre><code class="language-python">In [137]: data.loc['Colorado', ['two', 'three']]
+Out[137]: 
+two      5
+three    6
+Name: Colorado, dtype: int64
+In [138]: data.iloc[2, [3, 0, 1]]
+Out[138]: 
+four    11
+one      8
+two      9
+Name: Utah, dtype: int64
+
+In [139]: data.iloc[2]
+Out[139]: 
+one       8
+two       9
+three    10
+four     11
+Name: Utah, dtype: int64
+
+In [140]: data.iloc[[1, 2], [3, 0, 1]]
+Out[140]: 
+          four  one  two
+Colorado     7    0    5
+Utah        11    8    9
+In [141]: data.loc[:'Utah', 'two']
+Out[141]: 
+Ohio        0
+Colorado    5
+Utah        9
+Name: two, dtype: int64
+
+In [142]: data.iloc[:, :3][data.three &gt; 5]
+Out[142]: 
+          one  two  three
+Colorado    0    5      6
+Utah        8    9     10
+New York   12   13     14
+</code></pre>
+<h3 id="算术运算和数据对齐">算术运算和数据对齐</h3>
+<ol>
+<li>在将对象相加时，如果存在不同的索引对，则结果的索引就是该索引对的并集</li>
+<li>自动的数据对齐操作在不重叠的索引处引入了NA值。缺失值会在算术运算过程中传播</li>
+</ol>
+<pre><code class="language-python">In [150]: s1 = pd.Series([7.3, -2.5, 3.4, 1.5], index=['a', 'c', 'd', 'e'])
+
+In [151]: s2 = pd.Series([-2.1, 3.6, -1.5, 4, 3.1],
+   .....:                index=['a', 'c', 'e', 'f', 'g'])
+
+In [152]: s1
+Out[152]: 
+a    7.3
+c   -2.5
+d    3.4
+e    1.5
+dtype: float64
+
+In [153]: s2
+Out[153]: 
+a   -2.1
+c    3.6
+e   -1.5
+f    4.0
+g    3.1
+dtype: float64
+In [154]: s1 + s2
+Out[154]: 
+a    5.2
+c    1.1
+d    NaN
+e    0.0
+f    NaN
+g    NaN
+dtype: float64
+In [155]: df1 = pd.DataFrame(np.arange(9.).reshape((3, 3)), columns=list('bcd'),
+   .....:                    index=['Ohio', 'Texas', 'Colorado'])
+
+In [156]: df2 = pd.DataFrame(np.arange(12.).reshape((4, 3)), columns=list('bde'),
+   .....:                    index=['Utah', 'Ohio', 'Texas', 'Oregon'])
+
+In [157]: df1
+Out[157]: 
+            b    c    d
+Ohio      0.0  1.0  2.0
+Texas     3.0  4.0  5.0
+Colorado  6.0  7.0  8.0
+
+In [158]: df2
+Out[158]: 
+          b     d     e
+Utah    0.0   1.0   2.0
+Ohio    3.0   4.0   5.0
+Texas   6.0   7.0   8.0
+Oregon  9.0  10.0  11.0
+In [159]: df1 + df2
+Out[159]: 
+            b   c     d   e
+Colorado  NaN NaN   NaN NaN
+Ohio      3.0 NaN   6.0 NaN
+Oregon    NaN NaN   NaN NaN
+Texas     9.0 NaN  12.0 NaN
+Utah      NaN NaN   NaN NaN
+In [160]: df1 = pd.DataFrame({'A': [1, 2]})
+
+In [161]: df2 = pd.DataFrame({'B': [3, 4]})
+
+In [162]: df1
+Out[162]: 
+   A
+0  1
+1  2
+
+In [163]: df2
+Out[163]: 
+   B
+0  3
+1  4
+
+In [164]: df1 - df2
+Out[164]: 
+    A   B
+0 NaN NaN
+1 NaN NaN
+</code></pre>
+<h3 id="在算术方法中填充值">在算术方法中填充值</h3>
+<ol>
+<li>
+<p>add方法传入fill_value参数</p>
+<pre><code class="language-python">In [165]: df1 = pd.DataFrame(np.arange(12.).reshape((3, 4)),
+   .....:                    columns=list('abcd'))
+
+In [166]: df2 = pd.DataFrame(np.arange(20.).reshape((4, 5)),
+   .....:                    columns=list('abcde'))
+
+In [167]: df2.loc[1, 'b'] = np.nan
+
+In [168]: df1
+Out[168]: 
+     a    b     c     d
+0  0.0  1.0   2.0   3.0
+1  4.0  5.0   6.0   7.0
+2  8.0  9.0  10.0  11.0
+
+In [169]: df2
+Out[169]: 
+      a     b     c     d     e
+0   0.0   1.0   2.0   3.0   4.0
+1   5.0   NaN   7.0   8.0   9.0
+2  10.0  11.0  12.0  13.0  14.0
+3  15.0  16.0  17.0  18.0  19.0
+In [171]: df1.add(df2, fill_value=0)
+Out[171]: 
+      a     b     c     d     e
+0   0.0   2.0   4.0   6.0   4.0
+1   9.0   5.0  13.0  15.0   9.0
+2  18.0  20.0  22.0  24.0  14.0
+3  15.0  16.0  17.0  18.0  19.0
+</code></pre>
+</li>
+<li>
+<p>算术运算函数</p>
+<figure data-type="image" tabindex="1"><img src="https://tva3.sinaimg.cn/large/00705hvsly1gajszub2a1j30az06z74b.jpg" alt="image" loading="lazy"></figure>
+</li>
+</ol>
+<h3 id="dataframe和series之间的运算">DataFrame和Series之间的运算</h3>
+<ol>
+<li>广播：当我们从arr减去arr[0]，每一行都会执行这个操作。</li>
+<li>DataFrame和Series之间的算术运算会将Series的索引匹配到DataFrame的列，然后沿着行一直向下广播</li>
+<li>如果某个索引值在DataFrame的列或Series的索引中找不到，则参与运算的两个对象就会被重新索引以形成并集</li>
+<li>如果你希望匹配行且在列上广播，则必须使用算术运算方法</li>
+</ol>
+<pre><code class="language-python">In [175]: arr = np.arange(12.).reshape((3, 4))
+
+In [176]: arr
+Out[176]: 
+array([[  0.,   1.,   2.,   3.],
+       [  4.,   5.,   6.,   7.],
+       [  8.,   9.,  10.,  11.]])
+
+In [177]: arr[0]
+Out[177]: array([ 0.,  1.,  2.,  3.])
+
+In [178]: arr - arr[0]
+Out[178]: 
+array([[ 0.,  0.,  0.,  0.],
+       [ 4.,  4.,  4.,  4.],
+       [ 8.,  8.,  8.,  8.]])
+In [179]: frame = pd.DataFrame(np.arange(12.).reshape((4, 3)),
+   .....:                      columns=list('bde'),
+   .....:                      index=['Utah', 'Ohio', 'Texas', 'Oregon'])
+
+In [180]: series = frame.iloc[0]
+
+In [181]: frame
+Out[181]: 
+          b     d     e
+Utah    0.0   1.0   2.0
+Ohio    3.0   4.0   5.0
+Texas   6.0   7.0   8.0
+Oregon  9.0  10.0  11.0
+
+In [182]: series
+Out[182]: 
+b    0.0
+d    1.0
+e    2.0
+Name: Utah, dtype: float64
+In [183]: frame - series
+Out[183]: 
+          b    d    e
+Utah    0.0  0.0  0.0
+Ohio    3.0  3.0  3.0
+Texas   6.0  6.0  6.0
+Oregon  9.0  9.0  9.0
+In [184]: series2 = pd.Series(range(3), index=['b', 'e', 'f'])
+
+In [185]: frame + series2
+Out[185]: 
+          b   d     e   f
+Utah    0.0 NaN   3.0 NaN
+Ohio    3.0 NaN   6.0 NaN
+Texas   6.0 NaN   9.0 NaN
+Oregon  9.0 NaN  12.0 NaN
+In [186]: series3 = frame['d']
+
+In [187]: frame
+Out[187]: 
+          b     d     e
+Utah    0.0   1.0   2.0
+Ohio    3.0   4.0   5.0
+Texas   6.0   7.0   8.0
+Oregon  9.0  10.0  11.0
+
+In [188]: series3
+Out[188]: 
+Utah       1.0
+Ohio       4.0
+Texas      7.0
+Oregon    10.0
+Name: d, dtype: float64
+
+In [189]: frame.sub(series3, axis='index')
+Out[189]: 
+          b    d    e
+Utah   -1.0  0.0  1.0
+Ohio   -1.0  0.0  1.0
+Texas  -1.0  0.0  1.0
+Oregon -1.0  0.0  1.0
+</code></pre>
+<h3 id="函数应用和映射">函数应用和映射</h3>
+<ol>
+<li>NumPy的ufuncs（元素级数组方法）也可用于操作pandas对象</li>
+<li>将函数应用到由各列或行所形成的一维数组上。DataFrame的apply方法即可实现此功能</li>
+<li>元素级的Python函数也是可以用的。假如你想得到frame中各个浮点值的格式化字符串，使用applymap即可</li>
+</ol>
+<pre><code class="language-python">In [190]: frame = pd.DataFrame(np.random.randn(4, 3), columns=list('bde'),
+   .....:                      index=['Utah', 'Ohio', 'Texas', 'Oregon'])
+
+In [191]: frame
+Out[191]: 
+               b         d         e
+Utah   -0.204708  0.478943 -0.519439
+Ohio   -0.555730  1.965781  1.393406
+Texas   0.092908  0.281746  0.769023
+Oregon  1.246435  1.007189 -1.296221
+
+In [192]: np.abs(frame)
+Out[192]: 
+               b         d         e
+Utah    0.204708  0.478943  0.519439
+Ohio    0.555730  1.965781  1.393406
+Texas   0.092908  0.281746  0.769023
+Oregon  1.246435  1.007189  1.296221
+In [193]: f = lambda x: x.max() - x.min()
+
+In [194]: frame.apply(f)
+Out[194]: 
+b    1.802165
+d    1.684034
+e    2.689627
+dtype: float64
+In [195]: frame.apply(f, axis='columns')
+Out[195]:
+Utah      0.998382
+Ohio      2.521511
+Texas     0.676115
+Oregon    2.542656
+dtype: float64
+In [196]: def f(x):
+   .....:     return pd.Series([x.min(), x.max()], index=['min', 'max'])
+
+In [197]: frame.apply(f)
+Out[197]: 
+            b         d         e
+min -0.555730  0.281746 -1.296221
+max  1.246435  1.965781  1.393406
+In [198]: format = lambda x: '%.2f' % x
+
+In [199]: frame.applymap(format)
+Out[199]: 
+            b     d      e
+Utah    -0.20  0.48  -0.52
+Ohio    -0.56  1.97   1.39
+Texas    0.09  0.28   0.77
+Oregon   1.25  1.01  -1.30
+In [200]: frame['e'].map(format)
+Out[200]: 
+Utah      -0.52
+Ohio       1.39
+Texas      0.77
+Oregon    -1.30
+Name: e, dtype: object
+</code></pre>
+<h3 id="排序和排名">排序和排名</h3>
+<ol>
+<li>
+<p>要对行或列索引进行排序（按字典顺序），可使用sort_index方法，它将返回一个已排序的新对象</p>
+</li>
+<li>
+<p>对于DataFrame，则可以根据任意一个轴上的索引进行排序</p>
+</li>
+<li>
+<p>数据默认是按升序排序的，但也可以降序排序</p>
+</li>
+<li>
+<p>若要按值对Series进行排序，可使用其sort_values方法</p>
+</li>
+<li>
+<p>在排序时，任何缺失值默认都会被放到Series的末尾</p>
+</li>
+<li>
+<p>你可能希望根据一个或多个列中的值进行排序。将一个或多个列的名字传递给sort_values的by选项即可达到该目的</p>
+</li>
+<li>
+<p>要根据多个列进行排序，传入名称的列表即可</p>
+</li>
+<li>
+<p>rank方法</p>
+<ol>
+<li>默认情况下，rank是通过“为各组分配一个平均排名”的方式破坏平级关系的</li>
+<li>可以根据值在原数据中出现的顺序给出排名</li>
+</ol>
+<figure data-type="image" tabindex="2"><img src="https://tva4.sinaimg.cn/large/00705hvsly1gakaovqlhsj30i0062q31.jpg" alt="image" loading="lazy"></figure>
+<pre><code class="language-python">In [201]: obj = pd.Series(range(4), index=['d', 'a', 'b', 'c'])
+
+In [202]: obj.sort_index()
+Out[202]:
+a    1
+b    2
+c    3
+d    0
+dtype: int64
+In [203]: frame = pd.DataFrame(np.arange(8).reshape((2, 4)),
+   .....:                      index=['three', 'one'],
+   .....:                      columns=['d', 'a', 'b', 'c'])
+
+In [204]: frame.sort_index()
+Out[204]: 
+       d  a  b  c
+one    4  5  6  7
+three  0  1  2  3
+
+In [205]: frame.sort_index(axis=1)
+Out[205]:
+       a  b  c  d
+three  1  2  3  0
+one    5  6  7  4
+In [206]: frame.sort_index(axis=1, ascending=False)
+Out[206]: 
+       d  c  b  a
+three  0  3  2  1
+one    4  7  6  5
+In [207]: obj = pd.Series([4, 7, -3, 2])
+
+In [208]: obj.sort_values()
+Out[208]: 
+2   -3
+3    2
+0    4
+1    7
+dtype: int64
+In [209]: obj = pd.Series([4, np.nan, 7, np.nan, -3, 2])
+
+In [210]: obj.sort_values()
+Out[210]: 
+4   -3.0
+5    2.0
+0    4.0
+2    7.0
+1    NaN
+3    NaN
+dtype: float64
+In [214]: frame.sort_values(by=['a', 'b'])
+Out[214]: 
+   a  b
+2  0 -3
+0  0  4
+3  1  2
+1  1  7
+In [215]: obj = pd.Series([7, -5, 7, 4, 2, 0, 4])
+In [216]: obj.rank()
+Out[216]: 
+0    6.5
+1    1.0
+2    6.5
+3    4.5
+4    3.0
+5    2.0
+6    4.5
+dtype: float64
+In [217]: obj.rank(method='first')
+Out[217]: 
+0    6.0
+1    1.0
+2    7.0
+3    4.0
+4    3.0
+5    2.0
+6    5.0
+dtype: float64
+# Assign tie values the maximum rank in the group
+In [218]: obj.rank(ascending=False, method='max')
+Out[218]: 
+0    2.0
+1    7.0
+2    2.0
+3    4.0
+4    5.0
+5    6.0
+6    4.0
+dtype: float64
+In [219]: frame = pd.DataFrame({'b': [4.3, 7, -3, 2], 'a': [0, 1, 0, 1],
+   .....:                       'c': [-2, 5, 8, -2.5]})
+
+In [220]: frame
+Out[220]: 
+   a    b    c
+0  0  4.3 -2.0
+1  1  7.0  5.0
+2  0 -3.0  8.0
+3  1  2.0 -2.5
+
+In [221]: frame.rank(axis='columns')
+Out[221]: 
+     a    b    c
+0  2.0  3.0  1.0
+1  1.0  3.0  2.0
+2  2.0  1.0  3.0
+3  2.0  3.0  1.0
+</code></pre>
+</li>
+</ol>
+<h3 id="带有重复标签的轴索引">带有重复标签的轴索引</h3>
+<ol>
+<li>检测索引是否唯一</li>
+</ol>
+<pre><code class="language-python">In [222]: obj = pd.Series(range(5), index=['a', 'a', 'b', 'b', 'c'])
+
+In [223]: obj
+Out[223]: 
+a    0
+a    1
+b    2
+b    3
+c    4
+dtype: int64
+In [224]: obj.index.is_unique
+Out[224]: False
+</code></pre>
+<h3 id="汇总和计算描述统计">汇总和计算描述统计</h3>
+<ol>
+<li>一组常用的数学和统计方法</li>
+<li>约简或者统计方式</li>
+</ol>
+<figure data-type="image" tabindex="3"><img src="https://tvax4.sinaimg.cn/large/00705hvsly1gakawdg1gfj30od05m0uc.jpg" alt="image" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://tvax3.sinaimg.cn/large/00705hvsly1gakawmer7fj30ob0n2dmq.jpg" alt="image" loading="lazy"></figure>
+<pre><code class="language-python">In [230]: df = pd.DataFrame([[1.4, np.nan], [7.1, -4.5],
+   .....:                    [np.nan, np.nan], [0.75, -1.3]],
+   .....:                   index=['a', 'b', 'c', 'd'],
+   .....:                   columns=['one', 'two'])
+
+In [231]: df
+Out[231]: 
+    one  two
+a  1.40  NaN
+b  7.10 -4.5
+c   NaN  NaN
+d  0.75 -1.3
+In [232]: df.sum()
+Out[232]: 
+one    9.25
+two   -5.80
+dtype: float64
+In [233]: df.sum(axis=1)
+Out[233]:
+a    1.40
+b    2.60
+c     NaN
+d   -0.55
+In [234]: df.mean(axis='columns', skipna=False)
+Out[234]: 
+a      NaN
+b    1.300
+c      NaN
+d   -0.275
+dtype: float64
+In [235]: df.idxmax()
+Out[235]: 
+one    b
+two    d
+dtype: object
+In [236]: df.cumsum()
+Out[236]: 
+    one  two
+a  1.40  NaN
+b  8.50 -4.5
+c   NaN  NaN
+d  9.25 -5.8
+In [237]: df.describe()
+Out[237]: 
+            one       two
+count  3.000000  2.000000
+mean   3.083333 -2.900000
+std    3.493685  2.262742
+min    0.750000 -4.500000
+25%    1.075000 -3.700000
+50%    1.400000 -2.900000
+75%    4.250000 -2.100000
+max    7.100000 -1.300000
+In [238]: obj = pd.Series(['a', 'a', 'b', 'c'] * 4)
+
+In [239]: obj.describe()
+Out[239]: 
+count     16
+unique     3
+top        a
+freq       8
+dtype: object
+</code></pre>
+<h3 id="相关系数与协方差">相关系数与协方差</h3>
+<ol>
+<li>corr方法用于计算两个Series中重叠的、非NA的、按索引对齐的值的相关系数</li>
+<li>cov用于计算协方差</li>
+<li>corrwith方法，你可以计算其列或行跟另一个Series或DataFrame之间的相关系数</li>
+</ol>
+<pre><code class="language-python">In [247]: returns.corr()
+Out[247]: 
+          AAPL      GOOG       IBM      MSFT
+AAPL  1.000000  0.407919  0.386817  0.389695
+GOOG  0.407919  1.000000  0.405099  0.465919
+IBM   0.386817  0.405099  1.000000  0.499764
+MSFT  0.389695  0.465919  0.499764  1.000000
+
+In [248]: returns.cov()
+Out[248]: 
+          AAPL      GOOG       IBM      MSFT
+AAPL  0.000277  0.000107  0.000078  0.000095
+GOOG  0.000107  0.000251  0.000078  0.000108
+IBM   0.000078  0.000078  0.000146  0.000089
+MSFT  0.000095  0.000108  0.000089  0.000215
+In [249]: returns.corrwith(returns.IBM)
+Out[249]: 
+AAPL    0.386817
+GOOG    0.405099
+IBM     1.000000
+MSFT    0.499764
+dtype: float64
+In [250]: returns.corrwith(volume)
+Out[250]: 
+AAPL   -0.075565
+GOOG   -0.007067
+IBM    -0.204849
+MSFT   -0.092950
+dtype: float64
+</code></pre>
+<h3 id="唯一值-值计数以及成员资格">唯一值、值计数以及成员资格</h3>
+<ol>
+<li>unique，它可以得到Series中的唯一值数组</li>
+<li>返回的唯一值是未排序的，如果需要的话，可以对结果再次进行排序（uniques.sort()）。相似的，value_counts用于计算一个Series中各值出现的频率</li>
+<li>isin用于判断矢量化集合的成员资格，可用于过滤Series中或DataFrame列中数据的子集</li>
+<li>Index.get_indexer方法，它可以给你一个索引数组，从可能包含重复值的数组到另一个不同值的数组</li>
+</ol>
+<figure data-type="image" tabindex="5"><img src="https://tvax4.sinaimg.cn/large/00705hvsly1gakb53bjzoj30nl054jrk.jpg" alt="image" loading="lazy"></figure>
+<pre><code class="language-python">In [251]: obj = pd.Series(['c', 'a', 'd', 'a', 'a', 'b', 'b', 'c', 'c'])
+In [252]: uniques = obj.unique()
+
+In [253]: uniques
+Out[253]: array(['c', 'a', 'd', 'b'], dtype=object)
+In [254]: obj.value_counts()
+Out[254]: 
+c    3
+a    3
+b    2
+d    1
+dtype: int64
+In [255]: pd.value_counts(obj.values, sort=False)
+Out[255]: 
+a    3
+b    2
+c    3
+d    1
+dtype: int64
+In [256]: obj
+Out[256]: 
+0    c
+1    a
+2    d
+3    a
+4    a
+5    b
+6    b
+7    c
+8    c
+dtype: object
+
+In [257]: mask = obj.isin(['b', 'c'])
+
+In [258]: mask
+Out[258]: 
+0     True
+1    False
+2    False
+3    False
+4    False
+5     True
+6     True
+7     True
+8     True
+dtype: bool
+
+In [259]: obj[mask]
+Out[259]: 
+0    c
+5    b
+6    b
+7    c
+8    c
+dtype: object
+In [260]: to_match = pd.Series(['c', 'a', 'b', 'b', 'c', 'a'])
+
+In [261]: unique_vals = pd.Series(['c', 'b', 'a'])
+
+In [262]: pd.Index(unique_vals).get_indexer(to_match)
+Out[262]: array([0, 2, 1, 1, 0, 2])
+In [263]: data = pd.DataFrame({'Qu1': [1, 3, 4, 3, 4],
+   .....:                      'Qu2': [2, 3, 1, 2, 3],
+   .....:                      'Qu3': [1, 5, 2, 4, 4]})
+
+In [264]: data
+Out[264]: 
+   Qu1  Qu2  Qu3
+0    1    2    1
+1    3    3    5
+2    4    1    2
+3    3    2    4
+4    4    3    4
+In [265]: result = data.apply(pd.value_counts).fillna(0)
+
+In [266]: result
+Out[266]: 
+   Qu1  Qu2  Qu3
+1  1.0  1.0  1.0
+2  0.0  2.0  1.0
+3  2.0  2.0  0.0
+4  2.0  0.0  2.0
+5  0.0  0.0  1.0
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#series%E7%B1%BB%E5%9E%8B">Series类型</a></li>
+<li><a href="#dataframe">DataFrame</a>
+<ul>
+<li><a href="#%E8%A1%A8%E6%A0%BC%E5%9E%8B%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">表格型数据结构</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AEloc">获取行数据：loc</a></li>
+<li><a href="#%E8%B5%8B%E5%80%BC%E5%88%97">赋值列</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E5%88%97del">删除列：del</a></li>
+<li><a href="#%E5%B5%8C%E5%A5%97%E5%AD%97%E5%85%B8%E4%BC%A0%E4%BA%BAdataframe">嵌套字典传人DataFrame</a></li>
+<li><a href="#%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AEdataframe%E7%9A%84index%E5%92%8Ccolumns%E7%9A%84name%E5%B1%9E%E6%80%A7">可以设置DataFrame的index和columns的name属性</a></li>
+<li><a href="#%E7%B4%A2%E5%BC%95%E5%AF%B9%E8%B1%A1">索引对象</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD">基本功能</a>
+<ul>
+<li><a href="#%E9%87%8D%E6%96%B0%E7%B4%A2%E5%BC%95reindex">重新索引：reindex</a></li>
+<li><a href="#%E4%B8%A2%E5%BC%83%E6%8C%87%E5%AE%9A%E8%BD%B4%E4%B8%8A%E7%9A%84%E9%A1%B9">丢弃指定轴上的项</a></li>
+<li><a href="#%E7%B4%A2%E5%BC%95-%E9%80%89%E5%8F%96%E5%92%8C%E8%BF%87%E6%BB%A4">索引、选取和过滤</a></li>
+<li><a href="#%E7%94%A8loc%E5%92%8Ciloc%E8%BF%9B%E8%A1%8C%E9%80%89%E5%8F%96">用loc和iloc进行选取</a></li>
+<li><a href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90">算术运算和数据对齐</a></li>
+<li><a href="#%E5%9C%A8%E7%AE%97%E6%9C%AF%E6%96%B9%E6%B3%95%E4%B8%AD%E5%A1%AB%E5%85%85%E5%80%BC">在算术方法中填充值</a></li>
+<li><a href="#dataframe%E5%92%8Cseries%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%90%E7%AE%97">DataFrame和Series之间的运算</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E5%BA%94%E7%94%A8%E5%92%8C%E6%98%A0%E5%B0%84">函数应用和映射</a></li>
+<li><a href="#%E6%8E%92%E5%BA%8F%E5%92%8C%E6%8E%92%E5%90%8D">排序和排名</a></li>
+<li><a href="#%E5%B8%A6%E6%9C%89%E9%87%8D%E5%A4%8D%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BD%B4%E7%B4%A2%E5%BC%95">带有重复标签的轴索引</a></li>
+<li><a href="#%E6%B1%87%E6%80%BB%E5%92%8C%E8%AE%A1%E7%AE%97%E6%8F%8F%E8%BF%B0%E7%BB%9F%E8%AE%A1">汇总和计算描述统计</a></li>
+<li><a href="#%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0%E4%B8%8E%E5%8D%8F%E6%96%B9%E5%B7%AE">相关系数与协方差</a></li>
+<li><a href="#%E5%94%AF%E4%B8%80%E5%80%BC-%E5%80%BC%E8%AE%A1%E6%95%B0%E4%BB%A5%E5%8F%8A%E6%88%90%E5%91%98%E8%B5%84%E6%A0%BC">唯一值、值计数以及成员资格</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xioafanwu.github.io/post/dian-dong-qi-che-dong-li-dian-chi-chong-dian-neng-liang-yu-ce/">
+              <h3 class="post-title">
+                电动汽车动力电池充电能量预测
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

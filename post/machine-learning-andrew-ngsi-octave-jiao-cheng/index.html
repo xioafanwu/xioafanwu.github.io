@@ -1,0 +1,257 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Machine Learning—Andrew Ng（四）—Octave教程 | Gridea</title>
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1637374798517">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Machine Learning—Andrew Ng（四）—Octave教程 | Gridea - Atom Feed" href="https://xioafanwu.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="基本操作-类似Matlab
+
+基本数学运算
+逻辑运算
+
+结果为假用0表示
+不等于：~=
+逻辑与：&amp;&amp; ||(或)
+
+
+显示
+
+disp:disp(sprintf('2 decimals:%0.2f',a))
+
+
+矩阵运算
+
+..." />
+    <meta name="keywords" content="机器学习" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xioafanwu.github.io">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1637374798517" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Machine Learning—Andrew Ng（四）—Octave教程
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-12-25
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+                <a href="https://xioafanwu.github.io/tag/17f5A6I7D/" class="post-tag">
+                  # 机器学习
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/machine-learning-andrew-ngsi-octave-jiao-cheng.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="基本操作-类似matlab">基本操作-类似Matlab</h2>
+<ol>
+<li>基本数学运算</li>
+<li>逻辑运算
+<ol>
+<li>结果为假用0表示</li>
+<li>不等于：~=</li>
+<li>逻辑与：&amp;&amp; ||(或)</li>
+</ol>
+</li>
+<li>显示
+<ol>
+<li>disp:disp(sprintf('2 decimals:%0.2f',a))</li>
+</ol>
+</li>
+<li>矩阵运算
+<ol>
+<li>ones</li>
+<li>zeros</li>
+<li>rand</li>
+<li>randn</li>
+<li>eye</li>
+<li>A(😃：将A中的所有元素放入一个单独的列向量</li>
+</ol>
+</li>
+</ol>
+<h2 id="移动数据">移动数据</h2>
+<ol>
+<li>size()：返回矩阵尺寸</li>
+<li>length:返回最大维度</li>
+<li>加载数据和移动数据
+<ol>
+<li>pwd：显示当前路径</li>
+<li>cd：切换路径</li>
+<li>ls：显示当前路径中的文件路径</li>
+<li>键入文件名</li>
+<li>liad('文件名')</li>
+<li>存储文件
+<ol>
+<li>save hello.mat v：将变量V存储到hello.mat文件</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>删除变量：clear+变量名</li>
+</ol>
+<h2 id="计算数据">计算数据</h2>
+<ol>
+<li>矩阵运算
+<ol>
+<li>A.^2对矩阵中的元素进行平方</li>
+<li>矩阵转置：A’</li>
+<li>向量乘法和求和
+<ol>
+<li>sum</li>
+<li>prod：乘积</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C-%E7%B1%BB%E4%BC%BCmatlab">基本操作-类似Matlab</a></li>
+<li><a href="#%E7%A7%BB%E5%8A%A8%E6%95%B0%E6%8D%AE">移动数据</a></li>
+<li><a href="#%E8%AE%A1%E7%AE%97%E6%95%B0%E6%8D%AE">计算数据</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xioafanwu.github.io/post/machine-learning-andrew-ngsan/">
+              <h3 class="post-title">
+                Machine Learning—Andrew Ng（三）
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
