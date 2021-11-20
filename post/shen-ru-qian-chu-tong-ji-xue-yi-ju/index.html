@@ -1,0 +1,255 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>深入浅出统计学（一）—距 | Gridea</title>
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1637374966224">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="深入浅出统计学（一）—距 | Gridea - Atom Feed" href="https://xioafanwu.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="全距（极差）
+
+作用：得到数据的变动情况、差异性
+定义：数据的宽度，最大数减去最小数
+局限性：仅用全距还是不能反映在最大值和最小值之间的分布情况
+
+四分位数
+
+
+作用：将数据一分为四
+
+
+定义
+
+
+
+百分位数
+
+
+作用：划分名词、排名
+
+
+..." />
+    <meta name="keywords" content="大数据分析" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xioafanwu.github.io">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1637374966224" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              深入浅出统计学（一）—距
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-12-25
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+                <a href="https://xioafanwu.github.io/tag/IBbYfbwTvk/" class="post-tag">
+                  # 大数据分析
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/shen-ru-qian-chu-tong-ji-xue-yi-ju.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="全距极差">全距（极差）</h2>
+<ol>
+<li>作用：得到数据的变动情况、差异性</li>
+<li>定义：数据的宽度，最大数减去最小数</li>
+<li>局限性：仅用全距还是不能反映在最大值和最小值之间的分布情况</li>
+</ol>
+<h2 id="四分位数">四分位数</h2>
+<ol>
+<li>
+<p>作用：将数据一分为四</p>
+</li>
+<li>
+<p>定义</p>
+<figure data-type="image" tabindex="1"><img src="https://tvax3.sinaimg.cn/large/00705hvsly1ga90hb0u3hj30fn0cx0vy.jpg" alt="image" loading="lazy"></figure>
+</li>
+</ol>
+<h2 id="百分位数">百分位数</h2>
+<ol>
+<li>
+<p>作用：划分名词、排名</p>
+</li>
+<li>
+<p>计算</p>
+<figure data-type="image" tabindex="2"><img src="https://tvax1.sinaimg.cn/large/00705hvsly1ga90j5tnnrj30db081jt5.jpg" alt="image" loading="lazy"></figure>
+</li>
+</ol>
+<h2 id="箱线图">箱线图</h2>
+<ol>
+<li>
+<p>显示数据的全距、四分位距以及中位数</p>
+<figure data-type="image" tabindex="3"><img src="https://tva4.sinaimg.cn/large/00705hvsly1ga9101taxvj30fx07emyi.jpg" alt="image" loading="lazy"></figure>
+</li>
+</ol>
+<h2 id="方差">方差</h2>
+<ol>
+<li>
+<p>作用：度量数据的变异性，稳定程度</p>
+</li>
+<li>
+<p>与均值的距离</p>
+</li>
+<li>
+<p>计算</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mo>∑</mo><mo>(</mo><mi>x</mi><mo>−</mo><mi>μ</mi><msup><mo>)</mo><mn>2</mn></msup></mrow><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{\sum(x-\mu)^{2}}{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.453927em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.108927em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485007em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop op-symbol small-op mtight" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">x</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">μ</span><span class="mclose mtight"><span class="mclose mtight">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+</li>
+</ol>
+<h2 id="标准分">标准分</h2>
+<ol>
+<li>定义：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>z</mi><mo>=</mo><mfrac><mrow><mi>x</mi><mo>−</mo><mi>μ</mi></mrow><mi>σ</mi></mfrac></mrow><annotation encoding="application/x-tex">z=\frac{x-\mu}{\sigma}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.199439em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.854439em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">σ</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">μ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></li>
+<li>作用：标准分的作用是将几个数据集转换成一个理论上的新分布，这个分布的均值为0，标准差为1，这是一种可用于进行比较的通用分布。标准分将你的数据有效地转化为符合这个模型的数据，同时确保数据的基本形状不变。</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%85%A8%E8%B7%9D%E6%9E%81%E5%B7%AE">全距（极差）</a></li>
+<li><a href="#%E5%9B%9B%E5%88%86%E4%BD%8D%E6%95%B0">四分位数</a></li>
+<li><a href="#%E7%99%BE%E5%88%86%E4%BD%8D%E6%95%B0">百分位数</a></li>
+<li><a href="#%E7%AE%B1%E7%BA%BF%E5%9B%BE">箱线图</a></li>
+<li><a href="#%E6%96%B9%E5%B7%AE">方差</a></li>
+<li><a href="#%E6%A0%87%E5%87%86%E5%88%86">标准分</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xioafanwu.github.io/post/machine-learning-andrew-ngsi-octave-jiao-cheng/">
+              <h3 class="post-title">
+                Machine Learning—Andrew Ng（四）—Octave教程
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

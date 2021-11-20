@@ -1,0 +1,262 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Race Car Vehicle Dynamics-17.3 | Gridea</title>
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1637374966224">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Race Car Vehicle Dynamics-17.3 | Gridea - Atom Feed" href="https://xioafanwu.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="17.3独立悬架
+        所有的独立悬架都有两个瞬心（随上升和下降变化）这个决定了所设计悬架的性能。侧视图上的瞬心控制着于纵向加速度相关的力和运动因素，同时正视图上的侧倾中心控制着与侧向加速度有关的力和运动因素。
+
+正视图悬架几何
+..." />
+    <meta name="keywords" content="悬架,汽车动力学" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xioafanwu.github.io">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1637374966224" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Race Car Vehicle Dynamics-17.3
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-27
+              </span>
+              <span>
+                12 min read
+              </span>
+              
+                <a href="https://xioafanwu.github.io/tag/Ikv2i5dnY/" class="post-tag">
+                  # 悬架
+                </a>
+              
+                <a href="https://xioafanwu.github.io/tag/rVnjqpusBx/" class="post-tag">
+                  # 汽车动力学
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/race-car-vehicle-dynamics-173.jpg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h3 id="173独立悬架">17.3独立悬架</h3>
+<p>        所有的独立悬架都有两个瞬心（随上升和下降变化）这个决定了所设计悬架的性能。<font color=#dd0000>侧视图上的瞬心控制着于纵向加速度相关的力和运动因素，同时正视图上的侧倾中心控制着与侧向加速度有关的力和运动因素。</font></p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/xioafanwu/Figurebed/master/img/20200326164749.png" alt="" loading="lazy"></figure>
+<h4 id="正视图悬架几何">正视图悬架几何</h4>
+<p>        正视图控制臂的瞬心位置决定了侧倾中心高度，轮胎外倾变化率和轮胎侧向磨损。这个瞬心可以在轮胎的内侧也可以在轮胎的外侧。它可以在地面以上或以下。这个位置取决于设计者对性能的要求。</p>
+<h4 id="侧倾中心">侧倾中心</h4>
+<p>        侧倾中心高度是通过投影从车轮接地面中心到正视图瞬心连线建立的如图17.7。在车的每一侧都重复做。这两条线的交点就是这辆车簧载质量相对地面的侧倾中心。它不是必须在车的中心线上，特别是在非对称的悬架几何上或是假设车在转向侧倾时。很明显侧倾中心高于或低于地面是受到瞬心的高度控制的，这其中包括轮胎瞬心的位置，瞬心是在轮胎接地点的内侧还是外侧。</p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/xioafanwu/Figurebed/master/img/20200326170356.png" alt="" loading="lazy"></figure>
+<p>        既然现在你知道如何找到侧倾中心，那它意味着什么？<font color=#dd0000>侧倾中心建立了簧载和非簧载质量的力连接点。当汽车转向时，重心处的离心力由轮胎来抵抗。</font><font color=#dd0000>正如图中的那样作用在重心的侧向力可以被转换到侧倾中心上变成适当的力和力矩。越高的侧倾中心对应更小的侧倾力矩，越低的侧倾中心对应更大的侧倾力矩。</font>你同样会注意到高的侧倾中心使作用在侧倾中心上的侧向力是高于地面的。侧倾力乘以到地面的距离可以被称为非侧倾力矩。所以侧倾中心的高度用来权衡侧倾力矩和非侧倾力矩的效果（具体见18章）</p>
+<p>        上面提到的这些是简单的和直接的。当然另一个建立理想侧倾中心高度的因素是水平和垂直方向的综合作用。<font color=#dd0000>如果侧倾中心在地面以上由车轮传来的侧向力会在瞬心产生一个力矩。这个力矩向下压轮胎同时向上抬簧载质量，这被称为千斤顶效应（图a）。</font>如果侧倾中心在地面下这些力会向下压簧载质量。无论哪种情况簧载质量都会因为侧向力而产生一个垂直方向的偏移！这点经常出现在摆动桥后悬架的老式车上。另一种分析这个现象的方法如图B，这个在轮胎接地点的合力是用图示法画出在瞬心处的合力的反作用力，同时侧向和垂直的分力也被画出，这个画出的垂直分力会举起簧载质量。</p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/xioafanwu/Figurebed/master/img/20200326170943.png" alt="" loading="lazy"></figure>
+<h4 id="车轮外倾角变化率">车轮外倾角变化率</h4>
+<p>        轮胎外倾角变化率只与正视图等效摆臂的长度有关，然而侧倾中心是正视图等效摆臂的长度和高度决定了侧倾中心（figure17.9）。如果你用一根从转向节到瞬心的单独杆来代替悬架控制臂，这个轮胎外倾角的变化率是即车轮每运动一英寸对应的车轮外倾角camber chang=arctan（l/fvsa length）。注：这有别于静态车轮外倾设置和定位。</p>
+<h4 id="正视图悬架几何变化率">正视图悬架几何变化率</h4>
+<p>        早先提及的控制臂摆臂的定义和瞬心中瞬间的意思是指在悬架行程的某个位置上。记住这个瞬心是会随着轮胎运动的。它运动的速度多快取决于在正视图和侧视图上控制臂绝对和相对的长度。外倾角变化曲线可以通过选择不同长度的上控制臂来得到，随车轮运动或多或少的外倾角变化尽管此时悬架机构的瞬心高度是相同的。这里要做的是保持在同一车身高度的横摆臂长度但它变长或变短会随着车轮的运动或快或慢的变化。</p>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/xioafanwu/Figurebed/master/img/20200327211346.png" alt="" loading="lazy"></figure>
+<h4 id="拖距">拖距</h4>
+<p>        另一个可以从正视图上得到的是轮胎拖距。这是因为轮胎垂直方向上的运动造成的相对于地面侧向运动。轮胎侧偏在每种悬架系统上都存在。轮胎侧偏的数值由控制臂的长度和正视图瞬心相对于地面的位置所决定的。当正视图上的瞬心在除了地面外的任何地方上时，轮胎侧偏是被增加的。如果瞬心在地面以上并在车轮内侧时，轮胎在上跳时会向外运动。如果瞬心是在地面以下并车轮内侧时轮胎上跳时是想内侧运动的。在他运动时这个数值变化多少是由摆臂的长度和摆臂的离地高度有关。</p>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/xioafanwu/Figurebed/master/img/20200327212018.png" alt="" loading="lazy"></figure>
+<p>        高低不平的路上如果有磨胎半径那轮胎的轨迹就不是一条严格的直线。（如图17.11）一定的磨胎半径会使得轮胎产生侧向加速度，当向前加速时会改变轮胎的侧偏角。这就会反过来影响车辆的侧向运动。在相同的侧偏角下垂直运动时会增加粘性阻尼。</p>
+<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2020/03/27/jGCw32MXfuZDiOd.png" alt="image.png" loading="lazy"></figure>
+<h4 id="侧视图摆臂几何">侧视图摆臂几何</h4>
+<p>        侧视图摆臂（svsa）控制前后方向上的控制运动和力。典型的悬架参数是抗减速前俯（抗点头），加速抗抬头，抗后悬下沉和轮胎轨迹。侧视图摆臂的位置可以在车轮中心前或后，上或下是所有前后悬架可能用的悬架结构。典型的侧倾中心是前悬架在车轮中心的后上方，但多数后悬架的侧倾中心是在前上方。</p>
+<h4 id="抵抗能力">抵抗能力</h4>
+<p>        抵抗能力是悬架上的一个术语，他指的是簧载质量和非簧载质量上垂直力和纵向力的连接。它仅仅和侧视图摆臂的倾斜和角度有关。</p>
+<p>        悬架的抵抗并不会改变在轮胎接地点上的稳态载荷转移。这个在恒定加速度或减速度的情况下的纵向载荷转移只和轴距，质心高度，减速度braking force（weight）x（ax/g）有关，就像在图17.12中所示的车。这里的轮荷变化</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span></span></span></span> Load <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>×</mo><mi mathvariant="normal">ℓ</mi><mo>=</mo><mi mathvariant="normal">W</mi><mo>×</mo><mfrac><msub><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></msub><mi mathvariant="normal">g</mi></mfrac><mo>×</mo><mi mathvariant="normal">h</mi></mrow><annotation encoding="application/x-tex">\times \ell=\mathrm{W} \times \frac{\mathrm{a}_{\mathrm{x}}}{\mathrm{g}} \times \mathrm{h}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord">×</span><span class="mord">ℓ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">W</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1925999999999999em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7114919999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight" style="margin-right:0.01389em;">g</span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">a</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">x</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">h</span></span></span></span></span><br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span></span></span></span> Load <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mi mathvariant="normal">W</mi><mo>×</mo><mfrac><msub><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></msub><mi mathvariant="normal">g</mi></mfrac><mo>×</mo><mfrac><mi mathvariant="normal">h</mi><mi mathvariant="normal">ℓ</mi></mfrac></mrow><annotation encoding="application/x-tex">=\mathrm{W} \times \frac{\mathrm{a}_{\mathrm{x}}}{\mathrm{g}} \times \frac{\mathrm{h}}{\ell}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">W</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1925999999999999em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7114919999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight" style="margin-right:0.01389em;">g</span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">a</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">x</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.2251079999999999em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">ℓ</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">h</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<figure data-type="image" tabindex="7"><img src="https://raw.githubusercontent.com/xioafanwu/Figurebed/master/img/20200327214255.png" alt="" loading="lazy"></figure>
+<p>        悬架抵抗能力的大小不会改变由弹簧和车身姿态决定的载荷分配。图17.12所示的是一辆轮边制动的车，用图示法表示了由抗减速前俯，加速抗后蹲几何结构所产生的反作用力。这个制动力分配（或制动力平衡）决定了纵向合力中一部分力。前面的抗前俯率为：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">%</span></span></span></span> anti-dive front <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mfrac><mrow><mi mathvariant="normal">m</mi><mrow><mo fence="true">(</mo><msub><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></msub><mi mathvariant="normal">/</mi><mi mathvariant="normal">g</mi><mo fence="true">)</mo></mrow><mo>(</mo><mi mathvariant="normal">%</mi><mtext> front braking </mtext><mo>)</mo><mo>(</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">v</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">a</mi></mrow><mo>−</mo><mtext> height/susa - length </mtext><mo>)</mo></mrow><mrow><mi mathvariant="normal">m</mi><mo>×</mo><mrow><mo fence="true">(</mo><msub><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></msub><mi mathvariant="normal">/</mi><mi mathvariant="normal">g</mi><mo fence="true">)</mo></mrow><mo>×</mo><mo>(</mo><mi mathvariant="normal">h</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">e</mi><mo>)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">=\frac{\mathrm{m}\left(\mathrm{a}_{\mathrm{x}} / \mathrm{g}\right)(\% \text { front braking })(\mathrm{svsa}-\text { height/susa - length })}{\mathrm{m} \times\left(\mathrm{a}_{\mathrm{x}} / \mathrm{g}\right) \times(\mathrm{h} / \mathrm{e})}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">m</span></span><span class="mbin mtight">×</span><span class="minner mtight"><span class="mopen mtight delimcenter" style="top:0em;"><span class="mtight">(</span></span><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">a</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">x</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mord mtight">/</span><span class="mord mtight"><span class="mord mathrm mtight" style="margin-right:0.01389em;">g</span></span><span class="mclose mtight delimcenter" style="top:0em;"><span class="mtight">)</span></span></span><span class="mbin mtight">×</span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathrm mtight">h</span></span><span class="mord mtight">/</span><span class="mord mtight"><span class="mord mathrm mtight">e</span></span><span class="mclose mtight">)</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">m</span></span><span class="minner mtight"><span class="mopen mtight delimcenter" style="top:0em;"><span class="mtight">(</span></span><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">a</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">x</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mord mtight">/</span><span class="mord mtight"><span class="mord mathrm mtight" style="margin-right:0.01389em;">g</span></span><span class="mclose mtight delimcenter" style="top:0em;"><span class="mtight">)</span></span></span><span class="mopen mtight">(</span><span class="mord mtight">%</span><span class="mord text mtight"><span class="mord mtight"> front braking </span></span><span class="mclose mtight">)</span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathrm mtight">s</span><span class="mord mathrm mtight" style="margin-right:0.01389em;">v</span><span class="mord mathrm mtight">s</span><span class="mord mathrm mtight">a</span></span><span class="mbin mtight">−</span><span class="mord text mtight"><span class="mord mtight"> height/susa - length </span></span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mo>(</mo><mi mathvariant="normal">%</mi><mtext> front braking </mtext><mo>)</mo><mrow><mo fence="true">(</mo><mi>tan</mi><mo>⁡</mo><msub><mi>ϕ</mi><mi mathvariant="normal">F</mi></msub><mo fence="true">)</mo></mrow><mo>(</mo><mi>e</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">h</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">=(\% \text { front braking })\left(\tan \phi_{\mathrm{F}}\right)(e / \mathrm{h})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">%</span><span class="mord text"><span class="mord"> front braking </span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mop">tan</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">ϕ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">F</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">(</span><span class="mord mathdefault">e</span><span class="mord">/</span><span class="mord"><span class="mord mathrm">h</span></span><span class="mclose">)</span></span></span></span></p>
+<p>计算后悬架的抗前俯率时替换成后轮角度和制动分配率。</p>
+<p>        图17.13，17.14和17.15展示的是在其他情况下用适当的角度计算抗前俯率。<font color=#dd0000>如果悬架有百分之百的抗前俯率，所有的纵向力转移都必须由控制臂来承担而悬架弹簧一点都不承担，所以当加速或制动时悬架没有运动。如果悬架的抗前俯率是零，那么所有的轴荷转移都是由弹簧的反作用力产生的同时悬架的变形与车轮中心刚度成比例，没有转移的载荷需要悬架控制臂来承担</font>。抗前俯率为零的情况出现在如图所示的θ和φ为零的时候。</p>
+<p>        特殊的悬架产生的驱动和制动力矩会影响到你如何计算悬架的抵抗能力。如果控制臂上产生的反转矩不是由制动产生的或者是由驱动产生的，那抵抗效果就是用侧倾中心相对轮胎接地点的位置来计算。如果悬架不因为制动或驱动产生反力矩，只有前后的力（例如中央制动），这个时候的抵抗能力计算就是用瞬心相对于车轮中心的位置来计算</p>
+<figure data-type="image" tabindex="8"><img src="https://i.loli.net/2020/03/27/XSsd8lxia3y1Gef.png" alt="image.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="https://raw.githubusercontent.com/xioafanwu/Figurebed/master/img/20200327215304.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://i.loli.net/2020/03/27/bAc5C96Dv87sKB3.png" alt="image.png" loading="lazy"></figure>
+<ul>
+<li>
+<p>前悬架在前制动作用下，减小压缩变形的抗点头几何为图17.12和17.13，仅仅指前轮驱动车辆的前悬架和为了减小悬架在加速情况下的向下变形（向下变形的定义如图17.1）的悬架抵抗机构（如图17.14）</p>
+</li>
+<li>
+<p>后悬架为了减少在向前行驶制动时后悬架向下行程的机构，轮边制动的情况如图17.12所示，中央制动如图17.13所示。</p>
+</li>
+<li>
+<p>后悬架在向前加速时为减小后悬架压缩行程的防后蹲机构，仅仅针对后轮驱动的车辆（如图17.15）</p>
+</li>
+</ul>
+<p>        每一种上面提到的类型，它们的抵抗功能被假设为正的，所以在行驶中总是减少整车的倾斜变形。也存在一个种悬架机构可以使得纵向力增加悬架的变形。这个功能叫做增加点头，后蹲或抬头。通常来说这些在赛车中是不受欢迎和避免的。</p>
+<p>        只有在有纵向力时某种抵抗能力才会产生垂直力。因此后轮驱动的车不可能在前悬产生加速抗抬头效果。类似的，四轮驱动的车也不能从侧视图几何结构中得到看后蹲效果。</p>
+<p>        除了实际的侧视图瞬心设计高度外，我们还必须知道这个瞬心是如何随悬架跳动而移动的。对于侧视图摆臂的长度和角度的改变，我们必须清晰的知道多长和抵抗能力的变化趋势。比如说，如果你设计了百分之三十的前抗点头但是发现当悬架上跳0.75英寸是变为了零，那也许就要操心它之前所定的位置了。</p>
+<h4 id="车轮轨迹">车轮轨迹</h4>
+<p>        车轮中心在侧视图上相对簧载质量的运动轨迹是完全由瞬心的位置决定的。（为了运动学上的完美，但没有平顺性）如果瞬心是在车轮中心高度的后上方或前下方，当车轮上跳的时候会向前移动。</p>
+<ul>
+<li>如果瞬心是在车轮中心高度的后上方或前下方，当车轮上跳的时候会向前移动。</li>
+<li>如果瞬心是爱车轮中心的后下方或前上方，当车轮上跳时会向后移动。</li>
+</ul>
+<p>        轮胎中心运动轨迹在车轮上跳或下落时的曲率完全取决于摆臂的长度。在赛车上车轮的运动轨迹通常是不考虑的，不过在量产车上当车轮因撞击而上跳时车轮中心轨迹影响到车辆的隔振能力。这个情况类似于翻转九十度的磨胎半径。</p>
+<h4 id="主销后倾角变化率">主销后倾角变化率</h4>
+<p>        就像在正视图上的轮胎倾角，在侧视图上的后倾角变化是由侧视图等效摆臂的长度决定的。没什么理由要刻意的使后倾角随悬架运动而变化。这个结果通常可以被认为是由别的影响侧视图等效摆臂长度的因素所决定的。<font color=#dd0000>其中一个后倾角随悬架运动变化的结果是在这个悬架行程中很难做到上跳转向曲线线性（悬架运动对转向的影响）。</font>更对关于这个的内容在第19章传向系统集合。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#173%E7%8B%AC%E7%AB%8B%E6%82%AC%E6%9E%B6">17.3独立悬架</a>
+<ul>
+<li><a href="#%E6%AD%A3%E8%A7%86%E5%9B%BE%E6%82%AC%E6%9E%B6%E5%87%A0%E4%BD%95">正视图悬架几何</a></li>
+<li><a href="#%E4%BE%A7%E5%80%BE%E4%B8%AD%E5%BF%83">侧倾中心</a></li>
+<li><a href="#%E8%BD%A6%E8%BD%AE%E5%A4%96%E5%80%BE%E8%A7%92%E5%8F%98%E5%8C%96%E7%8E%87">车轮外倾角变化率</a></li>
+<li><a href="#%E6%AD%A3%E8%A7%86%E5%9B%BE%E6%82%AC%E6%9E%B6%E5%87%A0%E4%BD%95%E5%8F%98%E5%8C%96%E7%8E%87">正视图悬架几何变化率</a></li>
+<li><a href="#%E6%8B%96%E8%B7%9D">拖距</a></li>
+<li><a href="#%E4%BE%A7%E8%A7%86%E5%9B%BE%E6%91%86%E8%87%82%E5%87%A0%E4%BD%95">侧视图摆臂几何</a></li>
+<li><a href="#%E6%8A%B5%E6%8A%97%E8%83%BD%E5%8A%9B">抵抗能力</a></li>
+<li><a href="#%E8%BD%A6%E8%BD%AE%E8%BD%A8%E8%BF%B9">车轮轨迹</a></li>
+<li><a href="#%E4%B8%BB%E9%94%80%E5%90%8E%E5%80%BE%E8%A7%92%E5%8F%98%E5%8C%96%E7%8E%87">主销后倾角变化率</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xioafanwu.github.io/post/wen-xian-jian-suo-yu-lun-wen-xie-zuo-si-zen-yang-xie-wen-xian-zong-shu/">
+              <h3 class="post-title">
+                文献检索与论文写作（四）—怎样写文献综述
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

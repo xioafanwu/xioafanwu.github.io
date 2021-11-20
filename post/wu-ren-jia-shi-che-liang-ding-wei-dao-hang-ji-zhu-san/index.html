@@ -1,0 +1,346 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>无人驾驶车辆定位导航技术（二） | Gridea</title>
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1637374966224">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="无人驾驶车辆定位导航技术（二） | Gridea - Atom Feed" href="https://xioafanwu.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+本文主要介绍了视觉定位SLAM技术和视觉里程计技术。SLAM技术主要用来解决在未知地图上，从未知的未知出大，进行车体位置和航向的确定，同时创建环境地图实时更新。主要包括四个步骤：前段、后端优化、回环检测和建图。前段处理是为了计算图像帧之间..." />
+    <meta name="keywords" content="自动驾驶" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xioafanwu.github.io">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1637374966224" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              无人驾驶车辆定位导航技术（二）
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-12-15
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="https://xioafanwu.github.io/tag/yZVt5dCFge/" class="post-tag">
+                  # 自动驾驶
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/wu-ren-jia-shi-che-liang-ding-wei-dao-hang-ji-zhu-san.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <blockquote>
+<p>本文主要介绍了视觉定位SLAM技术和视觉里程计技术。SLAM技术主要用来解决在未知地图上，从未知的未知出大，进行车体位置和航向的确定，同时创建环境地图实时更新。主要包括四个步骤：前段、后端优化、回环检测和建图。前段处理是为了计算图像帧之间相机姿态的相对位置关系。主要包括：特征提取、特征匹配、运动估计。特征提取常用角点特征和直线特征，利用Haris、FAST等角点检测器提取特征点。特征匹配是在两张图像中找到同一特征。常用两种方法，一种是在一张图像上提取到特征点，在其他图像上遍历所有特征搜索相对于关联点，为了避免一对多加快匹配效率常采用多维搜索数和哈希表以及双向匹配。另一种方法是在分别在两个图像上检测特征点，通过某种相似性度量特征点。运动估计是预测车体的运动变化。后端优化是去除SLAM过程中的噪声，一般有两种方法滤波法和全局光束法。回环检测是解决位置飘逸问题。使车辆在回到曾经走过的道路上可以给车辆添加额外的约束。目前SLAM解决方法分为滤波器和基于优化的两个阵营。视觉里程计技术即根据图像估计相机的运动，按实现方式分为特征点法和直接方法，按照摄像头数目分为单目视觉和立体视觉</p>
+</blockquote>
+<h2 id="视觉定位技术">视觉定位技术</h2>
+<h3 id="视觉slamsimultaneous-localization-and-mapping">视觉SLAM（simultaneous localization and mapping）</h3>
+<ol>
+<li>
+<p>解决的问题</p>
+<ol>
+<li>同步的定位与地图创建</li>
+<li>无人驾驶车辆在未知环境中，从未知位置出发，在运动过程中通过环境信息，进行车体位置与航向的确定，同时创建环境地图并对地图进行实时更新</li>
+<li>或在已知环境中，通过环境信息对车体位置和航向进行确定。</li>
+</ol>
+</li>
+<li>
+<p>关键技术</p>
+<figure data-type="image" tabindex="1"><img src="https://tva3.sinaimg.cn/large/00705hvsly1g9xnlypifkj30g006bwf1.jpg" alt="image" loading="lazy"></figure>
+<ol>
+<li>
+<p>前端</p>
+<ol>
+<li>
+<p>特征提取</p>
+<ol>
+<li>
+<p>目的：获得两帧图像间相机相对位姿关系</p>
+</li>
+<li>
+<p>特征好坏评价指标</p>
+<ol>
+<li>光照不变性：任何光照条件下没有太大变化</li>
+<li>几何不变性</li>
+</ol>
+</li>
+<li>
+<p>常用特征</p>
+<figure data-type="image" tabindex="2"><img src="https://tvax1.sinaimg.cn/large/00705hvsly1g9xo2cx6s6j30c005zaak.jpg" alt="image" loading="lazy"></figure>
+<ol>
+<li>直线特征
+<ol>
+<li>直线特征容易被这笔</li>
+<li>边缘直线起始点可能不存在</li>
+</ol>
+</li>
+<li>点特征
+<ol>
+<li>角点特征：特异性较小，计算时间校</li>
+<li>块特征：颜色、纹理划分领域</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>常用角点检测器</p>
+<ol>
+<li>
+<p>Harris角点</p>
+<figure data-type="image" tabindex="3"><img src="https://tvax1.sinaimg.cn/large/00705hvsly1g9xo45vxm7j30lu07nmzr.jpg" alt="image" loading="lazy"></figure>
+</li>
+<li>
+<p>Shi-Tomasi角点</p>
+<figure data-type="image" tabindex="4"><img src="https://tvax4.sinaimg.cn/large/00705hvsly1g9xo3xtsqgj30ij09g0vc.jpg" alt="image" loading="lazy"></figure>
+</li>
+<li>
+<p>FAST角点</p>
+</li>
+<li>
+<p>DoG特征</p>
+</li>
+<li>
+<p>SIFT特征</p>
+</li>
+<li>
+<p>SURF特征</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>特征匹配</p>
+<figure data-type="image" tabindex="5"><img src="https://tva4.sinaimg.cn/large/00705hvsly1g9xnv842b3j30dm05cabp.jpg" alt="image" loading="lazy"></figure>
+<ol>
+<li>目的：在两张图像中找到同一特征</li>
+<li>方法
+<ol>
+<li>遍历所有特征点，选取某种相似度量，进行双向匹配，建立多维搜索树和哈希表提高效率</li>
+<li>在第二张图像上建立期望区域（通过建立运动模型和三维点）匹配特征点</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>运动估计</p>
+<ol>
+<li>目的：得到整体运动轨迹和当前运动状态</li>
+<li>建立二维图像坐标，通过极线约束建模求解</li>
+<li>建立三维坐标</li>
+<li>前一张用三维，后一张用二维</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>后端优化</p>
+<ol>
+<li>目的：去除噪声</li>
+<li>方法
+<ol>
+<li>滤波：将从所有图像中获得的信息按照某种概率分布融合</li>
+<li>关键帧法</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>回环检测</p>
+<ol>
+<li>解决位置漂移问题</li>
+<li>作用
+<ol>
+<li>使得车辆在回到曾经走过的道路上时可以给车辆位置添加额外的约束，由此来对之前的漂移进行校正</li>
+<li>通过检测到回环可以让计算机理解环境的拓扑结构</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>视觉SLAM发展概况</p>
+<ol>
+<li>目前关于SLAM的解决方法可以分为两个阵营
+<ol>
+<li>基于贝叶斯的滤波器方法，包括基于卡尔曼滤波（KalmanFilters，KF）、粒子滤波（Particle Filters，PF）以及最大似然估计（maximum likelihood estimation）的SLAM方法</li>
+<li>基于优化的方法，主要应用光束法平差的方法</li>
+</ol>
+</li>
+<li>Fast SLAM 2.0——基于粒子滤波和卡尔曼滤波的SLAM</li>
+<li>PTAM（Parallel Tracking And Mapping）——基于关键帧的SLAM</li>
+<li>ORB-SLAM（Oriented FAST and Rotated BRIEF SLAM）——基于关键帧的SLAM</li>
+</ol>
+</li>
+</ol>
+<h3 id="视觉里程计">视觉里程计</h3>
+<ol>
+<li>算法分类
+<ol>
+<li>离散方法和连续方法</li>
+<li>单目视觉和双目视觉</li>
+<li>普通相机和全局相机</li>
+<li>两帧方案与多帧方案</li>
+<li>纯视觉系统与混合系统</li>
+</ol>
+</li>
+<li>关键问题
+<ol>
+<li>特征的选择与匹配</li>
+<li>基于噪声数据的内数据提取</li>
+<li>从理想数据集中求解方位</li>
+</ol>
+</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%A7%86%E8%A7%89%E5%AE%9A%E4%BD%8D%E6%8A%80%E6%9C%AF">视觉定位技术</a>
+<ul>
+<li><a href="#%E8%A7%86%E8%A7%89slamsimultaneous-localization-and-mapping">视觉SLAM（simultaneous localization and mapping）</a></li>
+<li><a href="#%E8%A7%86%E8%A7%89%E9%87%8C%E7%A8%8B%E8%AE%A1">视觉里程计</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xioafanwu.github.io/post/che-liang-fang-zhen-ji-zhu-san/">
+              <h3 class="post-title">
+                车辆仿真技术（三）
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

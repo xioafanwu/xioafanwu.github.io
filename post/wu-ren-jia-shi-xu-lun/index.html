@@ -1,0 +1,284 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>无人驾驶绪论 | Gridea</title>
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1637374966224">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="无人驾驶绪论 | Gridea - Atom Feed" href="https://xioafanwu.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+本章介绍了无人驾驶车辆的应用前景，包括在未来智能交通领域的发展以及在矿区、园区等特定场景的运用和在国防事业中无人驾驶的优势和应用场景。其中介绍了无人驾驶根据监控、控制、工况和失效行为人分为0-5六个等级。另外，还介绍了经典以及扩展的无人驾..." />
+    <meta name="keywords" content="自动驾驶" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xioafanwu.github.io">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1637374966224" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              无人驾驶绪论
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-12-21
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="https://xioafanwu.github.io/tag/yZVt5dCFge/" class="post-tag">
+                  # 自动驾驶
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/wu-ren-jia-shi-xu-lun.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <blockquote>
+<p>本章介绍了无人驾驶车辆的应用前景，包括在未来智能交通领域的发展以及在矿区、园区等特定场景的运用和在国防事业中无人驾驶的优势和应用场景。其中介绍了无人驾驶根据监控、控制、工况和失效行为人分为0-5六个等级。另外，还介绍了经典以及扩展的无人驾驶车辆系统结构，经典结构包括：感知层、任务规划层、行为执行层和运动规划层。拓展的结构引入了决策层（3D高精度地图）和引入人工智能的无人驾驶车辆结构。</p>
+</blockquote>
+<h2 id="无人驾驶车辆的应用前景">无人驾驶车辆的应用前景</h2>
+<h3 id="无人驾驶车辆在智能交通中的应用">无人驾驶车辆在智能交通中的应用</h3>
+<ol>
+<li>
+<p>为什么要求只能驾驶技术</p>
+<ul>
+<li>公路等级提高</li>
+<li>车辆保有量增加</li>
+<li>车速大幅度提高</li>
+<li>对人们驾驶技术要求越来越高</li>
+</ul>
+</li>
+<li>
+<p>自动驾驶分级<br>
+<img src="https://tva2.sinaimg.cn/large/00705hvsgy1ga4dmopdarj312c0fq7gi.jpg" alt="image" loading="lazy"></p>
+<ol>
+<li>L0无自动驾驶</li>
+<li>L1辅助驾驶：驾驶员控制横向或纵向的家是任务</li>
+<li>L2部分自动驾驶：驾驶员持续检测驾驶任务和驾驶环境</li>
+<li>有条件自动驾驶：不需要持续检测驾驶任务，但是需要能够随时恢复控制，eg:ACC自适应巡航控制</li>
+<li>高度自动驾驶：一定条件下不需要驾驶员纯在</li>
+<li>完全自动驾驶</li>
+</ol>
+<blockquote>
+<p>智能网联汽车定义：搭载先进车载传感器、控制器、执行器等装置，融合现代通信和网络技术，具备复杂环境感知、智能化决策、自动化控制功能，使车辆与外部节点间实现信息共享与控制协同，实现“零伤亡、零拥堵”，达到安全、高效、经济行驶的下一代汽车</p>
+</blockquote>
+</li>
+<li>
+<p>无人驾驶和车联网</p>
+<ol>
+<li>指车与车（V2V）、车与路面基础设施（V2I）、车与人（V2P）、车与传感设备的交互，实现车辆与公众网络通信的动态移动通信系统</li>
+</ol>
+</li>
+<li>
+<p>无人驾驶与智能交通系统</p>
+<ol>
+<li>什么是只能交通系统
+<ol>
+<li>将先进信息技术、通信技术、传感技术和控制技术以及计算机技术有效集成与用于整个交通运输管理系统，从而建立起一种大范围全方位发挥作用的实时准确高效的运输和管理系统</li>
+</ol>
+</li>
+<li>作用
+<ol>
+<li>信息的收集、处理发布、交换、分析、利用，为交通参与者提供多样性服务</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="无人驾驶车辆在矿区-园区等区域的应用">无人驾驶车辆在矿区、园区等区域的应用</h3>
+<ol>
+<li>局部封闭场所，地图信息已知且环境信息相对简单，实现无人驾驶功能并不复杂</li>
+<li>停车场</li>
+<li>园区</li>
+<li>矿区</li>
+</ol>
+<h3 id="无人驾驶车辆在国防安全领域的应用">无人驾驶车辆在国防安全领域的应用</h3>
+<ol>
+<li>预警侦察、未爆弹药处理、战场救护</li>
+<li>无人作战平台</li>
+</ol>
+<h2 id="无人驾驶车辆结构组成">无人驾驶车辆结构组成</h2>
+<ol>
+<li>
+<p>总体结构</p>
+<ol>
+<li>对原有车型加装执行机构、感知设备等进行无人驾驶功能改装</li>
+<li>全抛弃原有车辆外型，从实现无人驾驶功能的角度出发设计车辆外型，从而创造出全新车型</li>
+</ol>
+</li>
+<li>
+<p>经典软件结构</p>
+<figure data-type="image" tabindex="1"><img src="https://tvax3.sinaimg.cn/large/00705hvsly1ga4cqhutbbj309606sq3f.jpg" alt="image" loading="lazy"></figure>
+<ol>
+<li>感知融合层</li>
+<li>任务规划层：形成到达下一监测点的可行路径</li>
+<li>行为执行层：根据根据规划层和感知层的信息，产生局部任务</li>
+<li>运动规划层：根据执行层的运动目标生成相应运动轨迹</li>
+</ol>
+</li>
+<li>
+<p>引入决策层的系统</p>
+<figure data-type="image" tabindex="2"><img src="https://tvax3.sinaimg.cn/large/00705hvsgy1ga4cy0bxr5j30fa0hb76f.jpg" alt="image" loading="lazy"></figure>
+<ol>
+<li>加入车联网和3D高精度地图</li>
+</ol>
+</li>
+<li>
+<p>引入人工智能的系统</p>
+<figure data-type="image" tabindex="3"><img src="https://tvax2.sinaimg.cn/large/00705hvsgy1ga4cyrcoltj30e10ew761.jpg" alt="image" loading="lazy"></figure>
+</li>
+<li>
+<p>入门结构</p>
+<figure data-type="image" tabindex="4"><img src="https://tva3.sinaimg.cn/large/00705hvsgy1ga4d7vmea2j30f30b7jsn.jpg" alt="image" loading="lazy"></figure>
+</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E8%BD%A6%E8%BE%86%E7%9A%84%E5%BA%94%E7%94%A8%E5%89%8D%E6%99%AF">无人驾驶车辆的应用前景</a>
+<ul>
+<li><a href="#%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E8%BD%A6%E8%BE%86%E5%9C%A8%E6%99%BA%E8%83%BD%E4%BA%A4%E9%80%9A%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8">无人驾驶车辆在智能交通中的应用</a></li>
+<li><a href="#%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E8%BD%A6%E8%BE%86%E5%9C%A8%E7%9F%BF%E5%8C%BA-%E5%9B%AD%E5%8C%BA%E7%AD%89%E5%8C%BA%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8">无人驾驶车辆在矿区、园区等区域的应用</a></li>
+<li><a href="#%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E8%BD%A6%E8%BE%86%E5%9C%A8%E5%9B%BD%E9%98%B2%E5%AE%89%E5%85%A8%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8">无人驾驶车辆在国防安全领域的应用</a></li>
+</ul>
+</li>
+<li><a href="#%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E8%BD%A6%E8%BE%86%E7%BB%93%E6%9E%84%E7%BB%84%E6%88%90">无人驾驶车辆结构组成</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xioafanwu.github.io/post/wu-ren-jia-shi-che-liang-lu-jing-gen-zong/">
+              <h3 class="post-title">
+                无人驾驶车辆路径跟踪
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

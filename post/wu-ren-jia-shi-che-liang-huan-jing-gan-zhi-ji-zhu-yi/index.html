@@ -1,0 +1,402 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>无人驾驶车辆环境感知技术  （一） | Gridea</title>
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1637374966224">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="无人驾驶车辆环境感知技术  （一） | Gridea - Atom Feed" href="https://xioafanwu.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+本文介绍了结构化车道线检测方法。现实生活中的道路比较复杂，需要简化道路场景，对于结构化道路检测需要有四个假设：形状假设、特征一致假设、道路平坦和宽度假设以及感兴趣区域假设。车道线检测包括两个过程：边界点搜索和边界点拟合。边界点搜索流程：首..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xioafanwu.github.io">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1637374966224" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              无人驾驶车辆环境感知技术  （一）
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-12-10
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/wu-ren-jia-shi-che-liang-huan-jing-gan-zhi-ji-zhu-yi.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <blockquote>
+<p>本文介绍了结构化车道线检测方法。现实生活中的道路比较复杂，需要简化道路场景，对于结构化道路检测需要有四个假设：形状假设、特征一致假设、道路平坦和宽度假设以及感兴趣区域假设。车道线检测包括两个过程：边界点搜索和边界点拟合。边界点搜索流程：首先将图像灰度化（计算灰度RGB），然后去除噪声进行图像滤波，滤波有线性平滑算法和非线性算法以及自适应平滑算法，线性滤波算法就是用相邻像素值的平均值代替每个点的像素值会三十图像边缘和细节。非线性算法设定一个阈值会保留细节但是边缘还是会失真。滤波后进行边缘增强，边缘增强采用梯度法，用Prewitt算子或者Sobel算子等算子进行边缘增强。边缘增强后要二值化，二值化首先设定阈值，选择阈值有固定阈值或者迭代阈值法。边界线拟合用Hough变换进行直线拟合，Hough变换即将直线变成一个参考点，平面坐标系的点变成正弦曲线。利用曲线的交点就可以得到对应直线。</p>
+</blockquote>
+<h2 id="结构化道路车道线检测">结构化道路车道线检测</h2>
+<h3 id="结构化道路常用基本假设">结构化道路常用基本假设</h3>
+<ol>
+<li>道路形状假设
+<ol>
+<li>回旋形、直线、抛物线模型</li>
+<li>一般假设：用具有梯度特征的像素组成道路轮廓</li>
+</ol>
+</li>
+<li>道路平坦和宽度假设
+<ol>
+<li>假设宽度变化缓慢</li>
+<li>假设道路平坦，利用摄像机标定信息，逆变换得到去除图像的透视效果，进行障碍物检测和道路检测</li>
+</ol>
+</li>
+<li>道路特征一致性假设
+<ol>
+<li>路面区域具有一致的特征：灰度特征、颜色特征，非区域没有这种特征</li>
+<li>聚类方法检测路面区域</li>
+</ol>
+</li>
+<li>感兴趣区域假设
+<ol>
+<li>根据物理约束和连续性约束，简化相邻帧的时间相关性</li>
+<li>前一帧已经完成感兴趣区域检测</li>
+</ol>
+</li>
+</ol>
+<h3 id="车道线检测">车道线检测</h3>
+<ol>
+<li>
+<p>动态处理措施</p>
+<ol>
+<li>图像的每一帧，搜索区域只限定在包括车道线的动态区域</li>
+<li>车道线边界点定义为灰度值变化最大超过阈值的点</li>
+<li>边界点过多采用直线你和取近似车道线</li>
+</ol>
+</li>
+<li>
+<p>车道线检测两步：边界点搜索；边界点拟合</p>
+</li>
+<li>
+<p>边界点搜索</p>
+<ol>
+<li>
+<p>算法流程</p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/12/09/AiPUHchgb2soMKl.png" alt="quicker_4ec8e19d-392c-40a2-8cd6-60331af48fba.png" loading="lazy"></figure>
+</li>
+<li>
+<p>具体实现</p>
+<ol>
+<li>
+<p>图像灰度化</p>
+<ul>
+<li>
+<p>RGB混合</p>
+</li>
+<li>
+<p>计算灰度值灰度值=0.3R+0.59G+0.11B</p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/12/09/twh8fGKqjuU1JlA.png" alt="quicker_643bfd9c-f7c5-4d16-b3a2-f372138cf058.png" loading="lazy"></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>图像滤波</p>
+<ol>
+<li>
+<p>目的：降噪</p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2019/12/09/54qyW86CY1bJIRE.png" alt="quicker_1d6d6791-586b-46bb-9642-978ddfade723.png" loading="lazy"></figure>
+</li>
+<li>
+<p>滤波算法</p>
+<ol>
+<li>
+<p>线性平滑</p>
+<ol>
+<li>
+<p>用邻值代替每个像素点的灰度值，3x3、5x5均值滤波器</p>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2019/12/09/Zm3C2wkOqhjUDMc.png" alt="quicker_687fce1d-bf42-40bb-9b91-36cd410e62d3.png" loading="lazy"></figure>
+</li>
+<li>
+<p>缺点：模糊了图像的边缘和细节</p>
+<figure data-type="image" tabindex="5"><img src="https://i.loli.net/2019/12/09/DBnVjAevHfmk9GK.png" alt="quicker_48bccddc-1713-4ad3-9aa3-9a05de6d7d41.png" loading="lazy"></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>非线性滤波</p>
+<ol>
+<li>
+<p>取一个阈值，当像素灰度值与领域平均值之间的差值大于阈值时以均值代替，小于阈值用元像素灰度值</p>
+</li>
+<li>
+<p>缺点：边缘点失真，但保留了细节</p>
+<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2019/12/09/GKLpnMhk68QPRUA.png" alt="quicker_31ef5608-14b0-4c12-a2a6-c3e87fe1e699.png" loading="lazy"></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>自适应平滑</p>
+<ol>
+<li>有一个适应的目标，目标不同自适应处理方法也不同</li>
+<li>保留了细节不模糊边缘</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>边缘增强</p>
+<ol>
+<li>
+<p>为什么要增强</p>
+<ol>
+<li>边缘信息反映形状特征</li>
+<li>边缘包含内在信息</li>
+<li>反映局部特征不连续</li>
+<li>为下一步道路检测做准备</li>
+</ol>
+</li>
+<li>
+<p>增强方法</p>
+<ol>
+<li>
+<p>Prewitt算子</p>
+<figure data-type="image" tabindex="7"><img src="https://i.loli.net/2019/12/10/oOBcjXTAMzfaVnL.png" alt="quicker_675cddd8-9aa8-4b39-bb19-b8d11e015961.png" loading="lazy"></figure>
+</li>
+<li>
+<p>Sobel算子</p>
+<figure data-type="image" tabindex="8"><img src="https://i.loli.net/2019/12/10/rVQPgwBpCb46vkG.png" alt="quicker_0e65fcd4-f54f-48d7-9c13-bd7adb65207e.png" loading="lazy"></figure>
+</li>
+<li>
+<p>Laplace算子</p>
+<figure data-type="image" tabindex="9"><img src="https://i.loli.net/2019/12/10/aE82pQAkZgmLXHd.png" alt="quicker_e238ac5f-f392-41ff-92a9-87e4784c8cfe.png" loading="lazy"></figure>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>图像二值化</p>
+<ol>
+<li>
+<p>目的：利用图像某些特征定量定性分析</p>
+</li>
+<li>
+<p>灰度值二值化方法</p>
+<ol>
+<li>
+<p>设定二值化阈值</p>
+</li>
+<li>
+<p>大于阈值灰度值设为255，小于设为0</p>
+</li>
+<li>
+<p>阈值选择方法</p>
+<ol>
+<li>
+<p>固定阈值法</p>
+<figure data-type="image" tabindex="10"><img src="https://i.loli.net/2019/12/10/CABVZLtzqhfvP5J.png" alt="quicker_83a23184-a686-4aa0-9291-06506dccca6b.png" loading="lazy"></figure>
+</li>
+<li>
+<p>迭代阈值法</p>
+<ol>
+<li>计算出图像中像素的最大值记为Zmax，图像中像素中的最小值记为Zmin。</li>
+<li>求取Zmax和Zmin的平均值，T0=（Zmax+Zmin）/2。</li>
+<li>计算图像中像素值小于T0的像素的平均值，记为Z0。计算图像中像素值大于T0的像素的平均值，记为Zb.</li>
+<li>求取Z0和Zb的平均值T</li>
+<li>若|T0-T|=0，则最终阈值为T，否则令T=T0，回到第2步</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>边缘搜索流程</p>
+<figure data-type="image" tabindex="11"><img src="https://i.loli.net/2019/12/10/3s8LNMAfyUOZl9d.png" alt="quicker_62a2e78e-065c-4f4f-8ecd-e6b354fcc0b5.png" loading="lazy"></figure>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>边缘线拟合</p>
+<ol>
+<li>
+<p>Hough变换</p>
+<ol>
+<li>
+<p>将研究对象从空间中的图像空间转化为参数空间的对应的参考点</p>
+<figure data-type="image" tabindex="12"><img src="https://i.loli.net/2019/12/10/iN3o8lbs2EIKdMU.png" alt="quicker_48231600-2813-4174-bc84-8d96a8be8660.png" loading="lazy"></figure>
+</li>
+<li>
+<p>一个点变化为一条正弦曲线</p>
+<figure data-type="image" tabindex="13"><img src="https://i.loli.net/2019/12/10/IPrFJgKRy6vXSzj.png" alt="quicker_8a32fd66-94e0-4274-9c13-61f7570aafaf.png" loading="lazy"></figure>
+</li>
+<li>
+<p>曲线交点对应直线</p>
+<figure data-type="image" tabindex="14"><img src="https://i.loli.net/2019/12/10/PVkKYfWum1SDiry.png" alt="quicker_e557b4d7-2242-495d-b5fe-c7d006668aeb.png" loading="lazy"></figure>
+</li>
+<li>
+<p>投票统计</p>
+<figure data-type="image" tabindex="15"><img src="https://i.loli.net/2019/12/10/w1YNVeJ2lHmkGgy.png" alt="quicker_002c5fb3-e907-4424-acae-7e48151a9faf.png" loading="lazy"></figure>
+</li>
+<li>
+<p>融合先验知识</p>
+<ol>
+<li>ROI区域：只对感兴趣区域做Hough变换</li>
+<li>限定<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>范围</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%BB%93%E6%9E%84%E5%8C%96%E9%81%93%E8%B7%AF%E8%BD%A6%E9%81%93%E7%BA%BF%E6%A3%80%E6%B5%8B">结构化道路车道线检测</a>
+<ul>
+<li><a href="#%E7%BB%93%E6%9E%84%E5%8C%96%E9%81%93%E8%B7%AF%E5%B8%B8%E7%94%A8%E5%9F%BA%E6%9C%AC%E5%81%87%E8%AE%BE">结构化道路常用基本假设</a></li>
+<li><a href="#%E8%BD%A6%E9%81%93%E7%BA%BF%E6%A3%80%E6%B5%8B">车道线检测</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xioafanwu.github.io/post/xin-neng-yuan-qi-che-da-shu-ju-fen-xi-yi/">
+              <h3 class="post-title">
+                新能源汽车大数据分析 （一）
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

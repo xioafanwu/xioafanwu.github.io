@@ -1,0 +1,469 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>无人驾驶环境感知技术（二） | Gridea</title>
+<link rel="shortcut icon" href="https://xioafanwu.github.io/favicon.ico?v=1637374966224">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="无人驾驶环境感知技术（二） | Gridea - Atom Feed" href="https://xioafanwu.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+本文介绍了交通信号灯和交通标志的检测。交通信号灯的识别主要有基于色彩、基于形状和模板匹配三种方法，但是每种方法都具有局限性，一般利用多方法融合。交通灯信号的系统机构分为：图像采集、图像预处理（彩色空间转换、彩色分割、噪声去除和区域标记）、..." />
+    <meta name="keywords" content="自动驾驶" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xioafanwu.github.io">
+  <img class="avatar" src="https://xioafanwu.github.io/images/avatar.png?v=1637374966224" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              无人驾驶环境感知技术（二）
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-12-11
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+                <a href="https://xioafanwu.github.io/tag/yZVt5dCFge/" class="post-tag">
+                  # 自动驾驶
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://xioafanwu.github.io/post-images/wu-ren-jia-shi-huan-jing-gan-zhi-ji-zhu-er.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <blockquote>
+<p>本文介绍了交通信号灯和交通标志的检测。交通信号灯的识别主要有基于色彩、基于形状和模板匹配三种方法，但是每种方法都具有局限性，一般利用多方法融合。交通灯信号的系统机构分为：图像采集、图像预处理（彩色空间转换、彩色分割、噪声去除和区域标记）、分类器识别和跟踪模块。基于色彩的识别方法：彩色空间转换是把RGB空间转化为HSV空间，彩色分割利用阈值将信号灯从图像中提取出来，二值化后进行形态学处理（腐蚀和膨胀）去除噪声影响。交通标志检测主要利用机器学习深度学习的方法，利用神经网络训练。卷积神经网络的组成：输入层、卷积层、池化层、全链接层和输出层。</p>
+</blockquote>
+<h2 id="交通信号灯与交通标志检测">交通信号灯与交通标志检测</h2>
+<h3 id="识别方法">识别方法</h3>
+<ol>
+<li>基于色彩特征
+<ul>
+<li>适用于背景简单场景，环境复杂，虚警率高</li>
+</ul>
+</li>
+<li>基于形状特征
+<ul>
+<li>需要建立形状特征规则，不灵活</li>
+</ul>
+</li>
+<li>基于模板匹配
+<ul>
+<li>建立不同样式的交通信号灯模板</li>
+</ul>
+</li>
+</ol>
+<h3 id="交通灯识别系统结构">交通灯识别系统结构</h3>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/12/11/Sq8UNDMQFBjzIle.png" alt="quicker_78d915fa-9456-4d0c-b2da-6fa0d0ccf9f4.png" loading="lazy"></figure>
+<ol>
+<li>图像采集模块</li>
+<li>图像预处理模块
+<ol>
+<li>彩色空间转换</li>
+<li>彩色分割</li>
+<li>噪声去除</li>
+<li>区域标记</li>
+</ol>
+</li>
+<li>识别模块
+<ol>
+<li>离线训练样本得到分类器</li>
+<li>在线识别</li>
+</ol>
+</li>
+<li>跟踪模块</li>
+</ol>
+<h3 id="识别算法">识别算法</h3>
+<ol>
+<li>
+<p>RGB颜色空间到HSV颜色空间的转化</p>
+<ul>
+<li>RGB空间三个彩色分量具有相关性，不利于彩色分割</li>
+<li>HSV空间包含三个分分量（色调、饱和度、明度）<br>
+<img src="https://tvax2.sinaimg.cn/large/00705hvsly1ga4ojfh7rgj30jn07ijug.jpg" alt="image" loading="lazy"></li>
+</ul>
+</li>
+<li>
+<p>阈值分割法</p>
+<ol>
+<li>
+<p>在HSV彩色空间设定阈值，与图像像素HSV各个分量进行比较</p>
+</li>
+<li>
+<p>阈值的选取</p>
+<ol>
+<li>大量数据统计</li>
+<li>考虑到不同气候环境、光线下会影响交通信号灯HSV各分量，进行微调</li>
+</ol>
+</li>
+<li>
+<p>检测结果</p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/12/11/lTdownzGDa3m957.png" alt="quicker_64b00038-0b14-4a76-adda-20e642277fe8.png" loading="lazy"></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="形态学处理">形态学处理</h3>
+<ol>
+<li>
+<p>目的：去除二值化图像的噪声影响，方便感兴趣区域的建立和目标识别后的校验</p>
+</li>
+<li>
+<p>方法：腐蚀和膨胀运算</p>
+</li>
+<li>
+<p>腐蚀</p>
+<ul>
+<li>
+<p>使用一个宽m,高n的矩形作为模板，像素x置于模板的中心，根据模板的大小，遍历所有被模板覆盖的其他像素，修改像素x的值为所有像素中最小的值。从而将图像外围的突出点加以腐蚀。表现在图像上为黑色区域增大，白色区域减少。</p>
+</li>
+<li>
+<p>腐蚀结果</p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2019/12/11/kY5iIufd1emgTqv.png" alt="quicker_871efc36-f123-45b3-9db2-7dce412a5f51.png" loading="lazy"></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>膨胀</p>
+<ul>
+<li>
+<p>膨胀操作与腐蚀操作相反，是将图像的轮廓加以膨胀。操作方法与腐蚀操作类似，也是拿一个矩形模板，对图像的每个像素做遍历处理。不同之处在于修改像素的值不是所有像素中最小的值，而是最大的值。</p>
+</li>
+<li>
+<p>结果</p>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2019/12/11/2c8L3PtMwYiq1oH.png" alt="quicker_7f0207b9-b237-4d43-a9a9-522e5604a6b8.png" loading="lazy"></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>形态学处理结果</p>
+<figure data-type="image" tabindex="5"><img src="https://i.loli.net/2019/12/11/xnbzV7GcEA2MZDm.png" alt="quicker_b9386d84-796e-4e61-9e3c-5dac06695337.png" loading="lazy"></figure>
+</li>
+</ol>
+<h3 id="基于几何形状检测">基于几何形状检测</h3>
+<ul>
+<li>阈值分割，不满足阈值要求设为0</li>
+<li>轮廓查找，计算轮廓点集最外的矩形框</li>
+<li>采用矩形框的细长比特征筛选矩形框</li>
+</ul>
+<h3 id="基于颜色和形状检测">基于颜色和形状检测</h3>
+<ul>
+<li>通过对交通信号灯面积和长宽比的统计，获得交通信号灯灯泡的面积的上限为50，下限为10，交通灯的圆形度≥0.6。</li>
+<li>在对图像进行颜色分割处理后，用交通灯的面积和交通灯的圆形度进一步筛选，并将符合阈值要求的交通灯区域采用矩形框形式画出来</li>
+</ul>
+<h2 id="交通标志检测">交通标志检测</h2>
+<h3 id="深度学习方法介绍">深度学习方法介绍</h3>
+<ol>
+<li>
+<p>人工神经网络</p>
+<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2019/12/11/7grQKdE8TISjpeN.png" alt="quicker_0e370b92-be41-49d0-a95c-9ad60b20d2eb.png" loading="lazy"></figure>
+<ol>
+<li>
+<p>分布式并行信息处理算法数学模型</p>
+</li>
+<li>
+<p>节点相互连接</p>
+</li>
+<li>
+<p>节点代表一种输出函数——激励函数</p>
+</li>
+<li>
+<p>节点之间的连接代表对于通过该连接信号的加权值——权重</p>
+</li>
+<li>
+<p>网络本身是一种对自然界某种算法或函数的逼近</p>
+</li>
+<li>
+<p>神经网络的训练</p>
+<figure data-type="image" tabindex="7"><img src="https://i.loli.net/2019/12/11/CMTyoFj31XdYPi8.png" alt="quicker_93245e0c-f3d0-4dcc-b82d-50a1bf36504f.png" loading="lazy"></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>深度学习</p>
+<ol>
+<li>多级非线性变换层级机器学习方法</li>
+<li>多种深度学习框架
+<ol>
+<li>深度神经网络</li>
+<li>卷积神经网络</li>
+<li>深度置信网络</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>卷积神经网络（CNN）</p>
+<ol>
+<li>
+<p>构成</p>
+<figure data-type="image" tabindex="8"><img src="https://i.loli.net/2019/12/11/KTWnbv3C74FMSsx.png" alt="quicker_2819300b-998a-41c0-ac1f-9fd199c6865a.png" loading="lazy"></figure>
+</li>
+<li>
+<p>卷积层</p>
+<ol>
+<li>
+<p>卷积核大小</p>
+</li>
+<li>
+<p>卷积核数量</p>
+<ol>
+<li>一个卷积核提取某一种特征</li>
+<li>多个卷积核提取多重特征</li>
+<li>不同卷积核将提取到不同的特征数据</li>
+</ol>
+</li>
+<li>
+<p>步长</p>
+<ol>
+<li>
+<p>卷积核在输入数据上每次滑动的像素数</p>
+<figure data-type="image" tabindex="9"><img src="https://i.loli.net/2019/12/11/3WvosJip2cKV7u8.png" alt="quicker_dcf4a879-aea0-4a44-99ed-7c3982872af0.png" loading="lazy"></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>补零</p>
+<ol>
+<li>由于卷积核的大小不一定被输入数据的维度大小所整除，因此卷积核可能不能完全覆盖边界元素，采用补零操作防止信息丢失。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>池化层</p>
+<ol>
+<li>通常在两个相邻的卷积层之间插入池化层操作</li>
+<li>减少参数量，防止过拟合；</li>
+<li>保持局部线性变换的不变性</li>
+</ol>
+</li>
+<li>
+<p>全连接层</p>
+<ol>
+<li>卷积层提取了细化的特征，细到人眼看不出来的程度，全连接层就是将学习到的特征整合起来，形成可以实现分类的数据。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="基于深度学习的交通限速标志检测">基于深度学习的交通限速标志检测</h3>
+<ol>
+<li>
+<p>输入输出</p>
+<ol>
+<li>输入就是交通限速标志图片</li>
+<li>输出就是类别标签</li>
+</ol>
+</li>
+<li>
+<p>数据预处理</p>
+<ol>
+<li>数据获取</li>
+<li>数据标记</li>
+<li>数据增强
+<ol>
+<li>对原图像裁剪，放大，变形，翻转，调整色调，增加数据量，提高模型泛化能力，避免过拟合</li>
+</ol>
+</li>
+<li>数据划分
+<ol>
+<li>划分为训练集和测试集</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>建立模型</p>
+<figure data-type="image" tabindex="10"><img src="https://i.loli.net/2019/12/11/PUiYexaEgJbLNy2.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>训练模型</p>
+<ol>
+<li>
+<p>初始化所有的参数（卷积核的参数和偏置，全连接层的权重和偏置）</p>
+</li>
+<li>
+<p>手动设置超参数（学习率，迭代次数，迭代轮数等）开始训练</p>
+</li>
+<li>
+<p>若最终模型不收敛或精度不够，调整超参数设置，重新训练</p>
+</li>
+<li>
+<p>前向传播</p>
+<ol>
+<li>
+<p>定义损失函数</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>J</mi><mo>(</mo><mi>W</mi><mo separator="true">,</mo><mi>b</mi><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><mn>50</mn></mfrac><msubsup><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mn>50</mn></msubsup><msup><mrow><mo fence="true">(</mo><msub><mi>y</mi><mtext>predicted</mtext></msub><mo>−</mo><mi>y</mi><mo fence="true">)</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">J(W, b)=\frac{1}{50} \sum_{n=1}^{50}\left(y_{\text {predicted}}-y\right)^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.299008em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">predicted</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+</ol>
+</li>
+<li>
+<p>反向传播</p>
+<ol>
+<li>BP算法</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BA%A4%E9%80%9A%E4%BF%A1%E5%8F%B7%E7%81%AF%E4%B8%8E%E4%BA%A4%E9%80%9A%E6%A0%87%E5%BF%97%E6%A3%80%E6%B5%8B">交通信号灯与交通标志检测</a>
+<ul>
+<li><a href="#%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95">识别方法</a></li>
+<li><a href="#%E4%BA%A4%E9%80%9A%E7%81%AF%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84">交通灯识别系统结构</a></li>
+<li><a href="#%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95">识别算法</a></li>
+<li><a href="#%E5%BD%A2%E6%80%81%E5%AD%A6%E5%A4%84%E7%90%86">形态学处理</a></li>
+<li><a href="#%E5%9F%BA%E4%BA%8E%E5%87%A0%E4%BD%95%E5%BD%A2%E7%8A%B6%E6%A3%80%E6%B5%8B">基于几何形状检测</a></li>
+<li><a href="#%E5%9F%BA%E4%BA%8E%E9%A2%9C%E8%89%B2%E5%92%8C%E5%BD%A2%E7%8A%B6%E6%A3%80%E6%B5%8B">基于颜色和形状检测</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%A4%E9%80%9A%E6%A0%87%E5%BF%97%E6%A3%80%E6%B5%8B">交通标志检测</a>
+<ul>
+<li><a href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E4%BB%8B%E7%BB%8D">深度学习方法介绍</a></li>
+<li><a href="#%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%BA%A4%E9%80%9A%E9%99%90%E9%80%9F%E6%A0%87%E5%BF%97%E6%A3%80%E6%B5%8B">基于深度学习的交通限速标志检测</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xioafanwu.github.io/post/word-tian-jia-can-kao-wen-xian-yin-yong/">
+              <h3 class="post-title">
+                Word添加参考文献引用
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://xioafanwu.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
