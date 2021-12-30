@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<meta HTTP-EQUIV="expires" CONTENT="0"> 
+<title>060-Lithium-ion batteries remaining useful life prediction based on a mixture of empiricalmode decomposition and ARIMA model | Gridea</title>	
+
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<8:00)
+
+            display = "https://xioafanwu.github.io/media/css/night.css";
+
+       else if (thehour>21:00)
+
+            display = "https://xioafanwu.github.io/media/css/night.css";   
+
+        else if (thehour>8:00)
+           
+            display = "https://xioafanwu.github.io/media/css/day.css";
+
+        else if (thehour<21:00)
+
+            display = "https://xioafanwu.github.io/media/css/day.css";
+      
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap" rel="stylesheet">
+<link href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<script type='text/javascript' src='https://xioafanwu.github.io/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+
+
+ 	
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+        
+			
+		<header id="header" class="site-header" 
+		
+		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(https://d3i71xaburhd42.cloudfront.net/9c48ddcb4f80e3d3ddb0bbb1e7687733ba51448e/250px/3-Figure3-1.png)"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://xioafanwu.github.io" rel="home">Gridea</a></h1>
+										
+					<h2 class="site-description">温故而知新</h2>
+										
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+     			
+<li>
+	 
+	<a  href="/"> 首页</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/archives"> 归档</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/tags"> 标签</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/post/about"> 关于</a></li>
+	
+    
+
+</ul>
+</li>		
+		
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+				
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+	
+	                      
+		<div class="entry-content">
+			<h1 class="wow swing entry-title">060-Lithium-ion batteries remaining useful life prediction based on a mixture of empiricalmode decomposition and ARIMA model</h1>
+<div class="entry-meta">
+<div class="wow bounce">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2021-12-30 20:34:52" itemprop="datePublished" pubdate="">2021-12-30</time></i>
+	          </div>
+			
+</span>
+													 
+		</div>
+                  
+			<div class="wow slideInLeft entry-summary song">
+				<h1 id="翻译">翻译</h1>
+<h2 id="摘要">摘要</h2>
+<p>锂离子电池剩余使用寿命 (RUL) 的预测在电动汽车中使用的电池管理系统 (BMS) 中起着重要作用。本文提出了一种结合经验模式分解 (EMD) 和自回归积分移动平均 (ARIMA) 模型的新方法用于 RUL 预测。首先，EMD 用于将全球恶化趋势和容量再生与健康状态（SOH）时间序列分离，然后在 ARIMA 模型中分别用于预测全球恶化趋势和容量再生。接下来，将所有单独的预测结果相加以获得综合的 SOH 预测，从中获取 RUL。通过锂离子电池老化测试数据验证了所提出的方法。与相关向量机、单调回波状态网络和ARIMA方法相比，EMD-ARIMA方法给出了更令人满意和准确的预测结果。</p>
+<h2 id="1-引言">1.  引言</h2>
+<p>与铅酸或镍氢电池相比，锂离子电池具有重量轻、能量密度高、电势高、寿命长等优点[1]，已广泛应用于航天器、飞机和电动汽车等领域。 （电动汽车）。尽管如此，锂离子电池的性能会随着时间的推移而逐渐恶化。由于电池的性能故障可能会导致极大的不便、昂贵的维护成本甚至灾难性故障，因此这些应用需要对锂离子电池的剩余使用寿命 (RUL) 进行准确预测 [2]。要预测锂离子电池的 RUL，首先需要健康状态 (SOH)。 SOH 描述了电池与新电池相比的健康状况。当前循环的最大容量与额定容量的比率通常用于定量定义 SOH。建议电池失效阈值在额定容量的 80% 左右，因为容量劣化在超过 80% 阈值后呈现指数衰减趋势[3]。因此，当 SOH 低于 80% 后，电池的性能会迅速下降。因此，功能故障总是发生在 SOH 低于故障阈值之后。也就是说，一旦 SOH 小于预设的失效阈值，锂离子电池就被认为是不健康的。值得一提的是，RUL 是 SOH 低于故障阈值之前的剩余周期数。</p>
+<p>近年来，人们对锂离子电池的 RUL 预测进行了广泛的研究工作。大量算法已被用于预测锂离子电池的 RUL，例如粒子滤波器 (PF) [2]、高斯过程回归 (GPR) [4]、神经网络 (NNs) [5]、支持向量机 (SVM) [6] 和相关向量机 (RVM) [7, 8] 等。 Saha 等人。 [9,10] 用经典的 PF 算法研究了 RUL 预测和不确定性表示和管理。他们还使用 GPR 方法进行了 RUL 预测 [4]。赛琳娜等人。 [11] 提出了一种朴素贝叶斯 (NB) 模型，用于不同操作条件下的 RUL 预测。刘等人。 [12] 采用集成回声状态网络（En_MONESN）进行 RUL 预测。他等人。 [13] 使用小波分析方法去耦合 SOH 系列中的全局恶化、局部再生和波动，然后使用系统的多尺度 GPR 建模方法来解决准确的 SOH 估计问题。王等人。 [3] 利用 RVM 找到代表性的训练向量，然后将其用于开发有条件的三参数容量恶化模型来预测 RUL。</p>
+<p>值得注意的是，PF 受到样本退化和贫困的严重影响。为了克服这个弱点，胡等人。 [14] 提出了一种基于收缩和扰动的核平滑方法来分别控制粒子参数的移动方向和所需的方差。此外，董等人。 [15]采用支持向量回归，一种新的重采样算法，用于重建后验分布，以保持粒子的多样性。此外，Wang 等人。 [16] 使用基于球体积积分的卡尔曼滤波器推导出重要函数来优化粒子分布。 PF 的另一个缺点是它没有充分利用多个电池的历史数据，因此 Liu 等人。 [17] 提出了一种名为基于范例的条件 PF 的方法，该方法考虑了其他电池的历史数据来计算每个粒子的权重。然而，对于上述PF和改进的PF方法，预测是通过推断已建立的系统状态转换模型完成的，没有新的测量来更新模型参数。因此，Liao et al. [18]提出了一种基于相似性的数据驱动方法，通过使用历史数据集为模型更新生成新的测量。除了这些问题，Miao等人[19]提出了一种无痕PF算法，该算法利用无痕Kalman ﬁlter生成一个提议分布，以便在考虑最新观测的情况下获得一个更好的后验概率。Hu等人[20]使用Gauss-Hermite Kalman ﬁlter来生成一个基于最近观测和状态估计的综合重要性密度，以提高PF性能。所有这些改进的PF方法都提高了标准PF方法的预测精度。然而，除了上述PF的缺点外，所有基于经典PF的方法的预测精度都很大程度上取决于所投的状态空间模型。一个更好的状态空间模型可以做出一个好的预测结果，否则就会做出一个坏的预测 更重要的是，一个既定的模型并不适用于所有类型的电池，甚至同一电池在不同的操作模式下也不适用。</p>
+<p>由于只有一种方法不能完全满足非常准确的预测目标，将至少两种简单的预测方法相结合的混合预测方法已成为提高锂离子电池RUL预测性能的主要研究方向。李等人。 [21] 提出了一种基于 GPR 模型和 PF 混合的新型集成方法，用于锂离子电池的 SOH 估计。科兹洛夫斯基等人。 [22] 通过结合自回归和移动平均 (ARMA) 模型、NN 和模糊逻辑，提出了一种数据驱动的 RUL 预测方法。邢等人。 [23]通过结合融合经验指数模型、多项式回归模型和PF算法，提出了一种用于预测RUL的集成模型。刘等人。 [24] 提出了一种结合 PF 和非线性退化自回归 (AR) 模型的集成方法，用于 SOH 估计。所有这些预后方法的优缺点见表 1。</p>
+<p>锂离子电池会遭受突然的、短暂的、偶尔相当大的容量再生。这种现象已表现为记录器中的自充电，其中可用容量的突然增加发生在下一个周期 [25]。容量再生与充放电循环期间的物理化学方面、温度和负载条件有关，尤其重要，因为它经常改变 SOH 曲线的趋势，从而影响 SOH 估计和预测的性能 [26] .因此，我们需要一种考虑到 SOH 和 RUL 预测的容量再生的方法。</p>
+<p>请注意，将 SOH 系列视为具有多尺度分量的混合信号是合理的，其中全局恶化和容量再生应该具有不同的尺度 [13]。因此，将全局劣化部分和容量再生部分与原始 SOH 序列解耦非常重要，通过它可以保存所有有价值的信息。那么全局退化部分可以用来做SOH预测，反映全局退化趋势，而容量再生部分可以用来做预测，反映容量再生。**在本文中，我们首先利用 EMD 将全球恶化趋势和容量再生与原始 SOH 系列分离。然后我们采用 ARIMA 模型来预测全球恶化趋势和局部容量再生。**最后，将所有单独的预测结果相加得到全面真实的 SOH 预测，从中获得 RUL。此外，将 EMD-ARIMA 获得的 RUL 预测结果与 ARIMA、RVM 和 MONESN 方法获得的结果进行比较，以证明我们提出的预测方法的良好性能。</p>
+<h2 id="2-相关算法">2. 相关算法</h2>
+<h3 id="21-emd分解">2.1 EMD分解</h3>
+<p>经验模式分解 (EMD) 是科学家 N. E. Huang 等人提出的数学时域分解方法。在 1998 年 [27]，它可以将一组时间序列转换为局部窄带分量，称为本征模式函数（IMF）。与小波分解和小波包分解都需要手动选择分解参数不同，EMD 分解的计算过程是自适应的和自动的[28]。</p>
+<p>尽管 EMD 非常适用于非线性和非平稳信号的分析，但它缺乏坚实的理论框架并存在许多缺点[29]。例如，末端效应是主要缺陷之一。提出了包括神经网络扩展方法、镜像极值扩展方法和自回归模型扩展方法在内的某些技术来解决EMD的末端效应[30]。在本文中，我们在信号被EMD分解之前使用SVM来预测两侧的信号以处理末端效应，这在[31]中被提出。</p>
+<h3 id="22-自回归综合移动平均模型">2.2 自回归综合移动平均模型</h3>
+<h4 id="221-arima模型原则">2.2.1 ARIMA模型原则</h4>
+<p>自回归积分移动平均 (ARIMA) 方法可用于识别数据中的复杂模式并生成预测 [32]。 ARIMA模型是目前研究时间序列分析的最重要的方法之一。 ARIMA 模型将时间序列中的未来值预测为它自己过去值的线性组合。 ARIMA 模型涉及三类过程的组合：(1) 自回归 (AR) 过程，(​​2) 差分剥离积分 (I)，以及 (3) 移动平均 (MA) 过程 [33 ]。 ARIMA(p,d,q)模型的一般形式如下：、</p>
+<h4 id="222-box-jenkins-方法论">2.2.2 Box-Jenkins 方法论</h4>
+<p>提出了 Box-Jenkins 方法来建立合适的时间序列模型 [34,35]。它包括三个建模内容：模型识别、模型阶数的选择和参数估计[36]，详细解释如下：<br>
+（1）模型识别<br>
+在模型识别的步骤中，我们使用自相关函数（ACF）和偏自相关函数（PACF）来决定是否应该包括 AR 分量或 MA 分量。但是，在模型识别之前，我们应该判断时间序列是否平稳，如果不是，则执行 DC 使时间序列平稳。<br>
+（2）模型阶数选择<br>
+在模型阶数选择步骤中，通过相关分析图分别观察ACF和PACF的拖尾和截断特征[32,34,37]。然后，确定 ARIMA 模型的阶数。<br>
+（3）参数估计<br>
+在参数估计的步骤中，将利用一些方法（例如，最小二乘估计（LSE）[35]、Yule-Walker 估计等）来计算识别出的 ARIMA 模型的最佳参数。在本研究中，我们使用 LSE 来获取参数。</p>
+<h4 id="223-arima模型预测程序">2.2.3 ARIMA模型预测程序</h4>
+<p>如 2.2.1 节所述，基于 Box-Jenkins 方法，ARIMA 构建和 SOH 预测的过程如图 1 所示。在图 1 中我们可以看到第一步是确定训练数据序列是静止的。如果不是，请使用 DC 使其静止。在第2.2.1节中提到，我们利用ACF和PACF相关分析图，分别为AR和MA选择合适的模型和相应的阶数。接下来，利用LSE来获得参数{jp}和{θq}。到目前为止，ARIMA模型已经建立，我们用它来预测SOH。当预测的SOH达到故障阈值时，程序就结束了。然后，我们可以通过计算预测起始周期和预测SOH达到故障阈值的周期之间的差异来获得RUL。</p>
+<h2 id="3-预测实验">3. 预测实验</h2>
+<h3 id="31-实验数据">3.1 实验数据</h3>
+<p>我们论文中使用的数据来自美国宇航局艾姆斯预测卓越中心 (PCoE) [9] 的数据存储库。在电池试验台上对 18,650 块大小的锂离子电池进行了生命周期测试。试验台包含电源、可编程直流电子负载、电压表、热电偶传感器、环境室、电化学阻抗谱、基于数据采集的仪器机箱的 PCI 扩展和实验控制条件。电池正负极材料主要分别为MAG-10石墨和LiN0.8iCo0.15Al0.05O2。锂离子电池经历了三种不同的操作模式：充电、放电和阻抗，描述如下：</p>
+<ul>
+<li>充电步骤：首先以1.5 A 的恒流(CC) 进行充电，直到充电电压达到4.2 V。然后，充电变为恒压(CV) 模式，直到充电电流降至20 mA。</li>
+<li>放电步骤：放电在CC 模式下进行，直到放电电压达到预定的截止电压。</li>
+<li>阻抗测量：通过电化学阻抗谱频率扫描从 0.1 Hz 到 5 kHz 进行测量。</li>
+<li></li>
+</ul>
+<p>重复的充电和放电循环导致电池加速老化。当电池在额定容量衰减30%（从2到1.4 Ah）的情况下达到寿命终点时，停止试验。蓄电池5、6和7的截止电压分别为2.7、2.5和2.2 V。我们使用5-7号电池的数据来证明我们提出的RUL预测方法的性能。如第1节所述，我们可以得到如图2所示的SOH曲线。我们可以看到，出现了明显的下降趋势，这意味着全球恶化和大量产能再生。</p>
+<p>为了证明EMD的有效性，我们在图3中展示了电池5的分解结果（通过SVM在两边预测后）。我们可以看到，有3个IMF（即C1、C2、C3）和一个残留物。C1和C2都有高频率的波动，相应地反映了高频率的容量再生。C3的频率波动相对较低。一般来说，C1、C2和C3一起显示了SOH系列的容量再生现象。因此，我们可以用IMF来描述容量再生现象。残余物与原始SOH系列绘制在图3的顶部。皮尔逊相关分析[38]可用于定量验证原始SOH系列和衍生残余物之间的线性关系。它们之间的皮尔逊相关系数和均方根误差（RMSE）分别为0.9974和0.0069，表明残留物足以准确地描述电池的恶化趋势。因此，我们可以把残留物作为电池老化的宏观描述。</p>
+<p>预测起点之前的数据称为训练数据。我们用 EMD 做的是我们用它来分解这些训练数据。我们在图 4 中的第 5-7 号电池组中展示了残差与其相应训练数据之间的 Pearson 相关系数。从图 4 中我们可以看到所有 Pearson 相关系数都接近于 1，这表明残差和训练 SOH系列具有较高的线性相关性。因此，残留物足以描述锂离子电池的全球退化。另一方面，我们可以得出结论，尽管存在模式混合问题，EMD 在分解 SOH 系列方面是有效的。</p>
+<h3 id="32-soh-预测程序-每个电池的详细-soh-预测步骤">3.2. SOH 预测程序 每个电池的详细 SOH 预测步骤</h3>
+<p>每个电池的详细 SOH 预测步骤如图 5 所示。 步骤 1：获取原始 SOH 系列。步骤 2：执行 EMD 将原始 SOH 系列解耦为多个 SOH 子层，其中包含全局恶化趋势 rn 和容量再生 {cn}。第 3 步：首先，将解耦数据分离为训练数据和测试数据。每个电池的实验在不同的启动周期进行五次。接下来，我们分别使用 ARIMA 对这些解耦子层进行预测。 Step 4：将所有单独的预测结果相加得到综合的SOH预测，然后计算RUL。</p>
+<h3 id="33-预测结果和分析">3.3 预测结果和分析</h3>
+<h4 id="331-评价标准">3.3.1 评价标准</h4>
+<p>在RUL预测之前，我们定义了绝对误差（AE）和均方根误差（RMSE）作为评价预测性能的评价标准，如下所示：</p>
+<h4 id="332-预测结果">3.3.2 预测结果</h4>
+<p>根据第 3.2 节中列出的程序进行预测。在这里，我们首先使用带有原始 SOH 系列的 ARIMA 模型在每个电池的五个不同起点进行 RUL 预测。然后，还采用 EMD-ARIMA 方法对三个电池进行 RUL 预测。 ARIMA 模型和 EMD-ARIMA 模型中使用的参数 (p, d, q) 列于表 2 中。预测结果如图 1 和图 2 所示。 6-8。更重要的是，根据方程。 (8) 和方程。 (9)，我们可以得到表 3 中给出的预测结果的性能。我们也有通过重新训练 RVM (R-RVM) [8] 获得的 RUL 预测结果。此外，我们还列出了单调回声状态网络（MONESN）[39] 获得的 RUL 预测结果。值得注意的是，本文中 RUL 预测的失败阈值为 70%。</p>
+<h4 id="333-结果分析">3.3.3 结果分析</h4>
+<p>从图 6-8 和表 3 可以看出，ARIMA 的 RUL 的所有绝对误差都大于 EMD-ARIMA。我们还可以发现 EMD-ARIMA 的最大、最小和平均 AE 分别为 15、0 和 4.4 个周期，而 ARIMA 的值分别为 167、7 和 26 个周期。因此，我们可以得出结论，EMD 显着提高了 RUL 预测的精度。 EMD-ARIMA 方法得到的所有预测的 SOH 都非常接近真实的 SOH，如图 1 和图 3 所示。 6-8。在表 3 中，我们可以看到 EMD-ARIMA 方法的最大、最小和平均 RMSE 分别为 0.0504、0.0075 和 0.0186。这三个数字都很小，这验证了长期 SOH 预测的准确性。因此，我们可以得出结论，我们提出的方法在进行长期 SOH 预测方面是有效的，从而有利于 RUL 预后。根据表 3，我们可以计算出 R-RVM 方法和 MONESN 方法的 AE 平均值，分别为 5.75 和 7.5 个周期。我们知道 EMD-ARIMA 方法的平均 AE 是 4.4 个周期。因此，我们提出的方法优于 R-RVM 和 MONESN 的方法。基于以上讨论，可以合理地得出结论，所提出的 EMD-ARIMA 方法无疑具有突出的性能，具有较高的准确性和有效性，并且能够提供准确的长期 SOH 预测，辅助 RUL 预测。</p>
+<h1 id="总结">总结</h1>
+<ul>
+<li>容量再生和容量衰减分离，使用EMD方法</li>
+<li>ARMA回归预测模型</li>
+</ul>
+
+							</div>
+	<div class="wow bounceInDown vt-post-tags">
+ 
+				<a href="https://xioafanwu.github.io/tag/NkDTLK-0h/" rel="tag">经验模式分解</a>	
+				 
+				<a href="https://xioafanwu.github.io/tag/2QwBnzlAd/" rel="tag">电池健康状态估计</a>	
+				 
+					</div>						
+<nav class="navigation3 post-navigation3" role="navigation">
+		
+		<div class="nav-links3">
+      
+		 
+		<div class="wow bounceInRight nav-next3"><a href="https://xioafanwu.github.io/post/test/" rel="next"> 059-Developing a real-time data-driven battery health diagnosis method, using time and frequency domain condition indicators</a></div>
+		
+		</div>
+	</nav>
+	<div class="wow rollIn author-info" style="visibility: visible; animation-name: rollIn;">
+	<div class="author-avatar pull-left"><img src="https://xioafanwu.github.io/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">LSG</div></div>
+
+
+	<p class="author-bio">To be what you want to be</p></div></div>
+	
+		</div>
+		
+ 
+		
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow bounceInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+		
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://xioafanwu.github.io/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+            av: AV, 
+            el: '.comment',
+            lang: 'zh-cn',
+            
+            admin_email:'xiaofanwu2018@gmail.com',
+            
+            
+            emoticon_url: 'C:\Users\xiaofan\OneDrive - bit.edu.cn\Documents\Gridea\images\avatar.png',
+             
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     	
+      	
+          
+        });
+    </script> 
+
+
+   
+  
+ 
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+	
+        <div class="toc-widget">
+			
+            <div class="toc-title"></div>
+			
+            <div id="toc-content">
+			
+			
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>										 
+
+ 
+       
+
+
+			</div>
+		</div>
+
+		
+		 	<footer id="colophon" class="site-footer">
+
+			<div class="container">
+	
+				<div class="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div>
+		
+		</footer>
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://xioafanwu.github.io/media/scripts/marlin-scripts.js'></script>
+ <script src="//tokinx.github.io/lately/lately.min.js"></script>
+  <script>jQuery(document).ready(function(){$.lately({'target':'.lately-a,.lately-b,.lately-c'})});</script>
+  <style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+		<script data-no-instant>
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $('.navigation:eq(0)').remove();
+                $("").attr("rel" , "external");
+                $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+                $("a.vi").attr("rel" , "");
+                $.viewImage({
+                    'target'  : 'img',
+                    'exclude' : '.vsmile-icons img,.gallery img',
+                    'delay'   : 300
+                });
+                $.lately({
+                    'target' : '.commentmetadata a,.infos time,.post-list time'
+                });
+                prettyPrint();
+                
+                $('ul.links li a').each(function(){
+                    if($(this).parent().find('.bg').length==0){
+                        $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+                    }
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>
