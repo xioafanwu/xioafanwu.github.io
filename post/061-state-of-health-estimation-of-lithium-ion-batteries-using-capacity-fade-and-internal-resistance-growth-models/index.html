@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<meta HTTP-EQUIV="expires" CONTENT="0"> 
+<title>061-State of Health estimation of lithium-ion batteries using capacity fade and internal resistance growth models | Gridea</title>	
+
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<8:00)
+
+            display = "https://xioafanwu.github.io/media/css/night.css";
+
+       else if (thehour>21:00)
+
+            display = "https://xioafanwu.github.io/media/css/night.css";   
+
+        else if (thehour>8:00)
+           
+            display = "https://xioafanwu.github.io/media/css/day.css";
+
+        else if (thehour<21:00)
+
+            display = "https://xioafanwu.github.io/media/css/day.css";
+      
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap" rel="stylesheet">
+<link href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<script type='text/javascript' src='https://xioafanwu.github.io/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+
+
+ 	
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+        
+			
+		<header id="header" class="site-header" 
+		
+		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(data:image/png;base64,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)"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://xioafanwu.github.io" rel="home">Gridea</a></h1>
+										
+					<h2 class="site-description">温故而知新</h2>
+										
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+     			
+<li>
+	 
+	<a  href="/"> 首页</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/archives"> 归档</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/tags"> 标签</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/post/about"> 关于</a></li>
+	
+    
+
+</ul>
+</li>		
+		
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+				
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+	
+	                      
+		<div class="entry-content">
+			<h1 class="wow swing entry-title">061-State of Health estimation of lithium-ion batteries using capacity fade and internal resistance growth models</h1>
+<div class="entry-meta">
+<div class="wow bounce">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2022-01-02 16:41:18" itemprop="datePublished" pubdate="">2022-01-02</time></i>
+	          </div>
+			
+</span>
+													 
+		</div>
+                  
+			<div class="wow slideInLeft entry-summary song">
+				<h1 id="翻译">翻译</h1>
+<h2 id="退化模型">退化模型</h2>
+<h3 id="融合电池模型">融合电池模型</h3>
+<p>为了准确评估电池的健康状态，必须连续监测两个退化参数（容量和内阻）中的每一个，如图 2（a）所示。但是每次根据各自的退化模型单独监控这些参数可能会导致歧义。根据[45]，从许多空间和物理上不同的来源收集的信息的融合可能有利于减少不确定性和获得更完整的自然状态知识。因此，结合各个退化模型的影响的统一决策有助于评估电池在其生命周期开始时间 (BOL) 的健康状态。作者通过实验分析观察到，当电池容量下降到其标称值（BOL值）的80%时，其内阻增加了其标称值（BOL值）的33%左右。</p>
+<p>根据文献，[36]和[21, 37]中提出的融合模型分别由（5）和（6）给出。</p>
+<p>在由 (5) 给出的模型 I 的情况下，电池的内阻表示为两个指数项的总和，包括电池的电解电阻和电荷转移电阻。然后根据可用的测试数据推导出电池容量和内阻之间的线性关系。此外，在由 (6) 给出的模型 II 的情况下，已经考虑了类似的方法，其中电池容量 Q 表示为电池内部阻抗参数的指数增长模型的总和。在这项工作中，图 8（a）给出的电池容量与其内阻之间的关系不是线性的。由于电池是一个非线性系统，因此容量和内阻之间可能并不总是呈线性关系。</p>
+<p>因此，由（2）和（3）给出的电池退化模型<strong>可以融合在一起定义一个健康指标F，它表示电池的整体健康状态。所以对应于 F 的阈值限制被定义为当 Q 接近 Qref 时，Rint 也接近 Rref 。因此，考虑到 Q 和 Rint 的阈值由（4）给出，可以开发以下可能的模型，如（7）和（8）给出的，其中权重参数 α 在 0.1 到 0.9 之间变化。</strong></p>
+<p>在由（7）给出的模型 III 的情况下，两个参数 Q 和 Rint 的权重属性遵循线性趋势，因此 F 的值变化固定量，因此权重差异很小。而在由（8）给出的模型 IV 的情况下，参数 Q 和 Rint 的权重属性遵循指数趋势，导致 F 值以固定速率变化。由于这一事实，模型 IV 与模型 III 相比具有很大的差异，从而使其更有利于确定电池的 SoH。</p>
+<p>它们对应的阈值由(4)给出，F达到统一值，其定义为从非零初始值开始的阈值。根据模型 III 和模型 IV 的曲线拟合精度，观察到它们的 R2 值分别为 0.9891 和 0.9895，非常接近。但是，它们的 RMSE 值分别为 0.0298 和 0.0179。因此，基于两种融合模型的准确性比较，模型 IV 被认为是最适合用作电池健康指标的模型。</p>
+<h2 id="粒子滤波模型升级">粒子滤波模型升级</h2>
+<p>粒子滤波器属于非线性滤波器类别，它利用贝叶斯学习方法和重要性采样来提供理想的状态跟踪性能，同时保持最小的计算需求 [6]、[15]、[38]。概率密度函数 (pdfs) 用于表示由一组粒子逼近的系统状态，以表示来自未知状态空间的采样值。每个粒子都与表示离散概率质量的权重相关联。根据状态 pdf 的先验估计，使用过程模型生成粒子并随时间传播。然后使用测量模型基于可用测量递归地更新粒子的权重。使用 PF 的优点是可以将模型参数扩充为要跟踪的状态向量中的状态，以便同时进行模型识别和状态估计。在调整模型以匹配被跟踪的特定系统的动态行为后，它可用于将粒子传播到预定义的故障（例如，EOL）阈值限制以生成 RUL pdf [36]。</p>
+<p>两个回归模型的参数可以根据贝叶斯规则更新，在确定它们的初始值之后，然后收集容量和 EIS 数据。为了对与容量退化模型相关的不确定性进行建模，假设老化参数：a1、b1、c1、a2、b2 和 c2 以及回归模型中的误差遵循均值为零的高斯分布 [40] 由下式给出：</p>
+<h3 id="a-基于容量退化的-rul-估计">A. 基于容量退化的 RUL 估计</h3>
+<p>在第 k 个周期的每个投影的 h 步提前预测的表达式可以得到为 [40]：</p>
+<h3 id="b-基于内阻增长的-rul-估计">B. 基于内阻增长的 RUL 估计</h3>
+<h2 id="结果">结果</h2>
+<p>为了开发和实验验证第 II 节中讨论的电池退化模型，对四个新的可充电锂离子纽扣电池 (LIR2032) 进行了测试，每个电池的额定容量为 35 mAh。从三个电池获得的数据的平均值用于开发退化模型，从第四个电池获得的数据用于验证它们。电池的充放电使用ARBIN BT2000电池测试设备完成，通道电压范围为0 V至40 V，电流范围为-5A至5A，室温（250℃）。在恒流（CC）模式下对电池的充电在 17 mA 下进行，直到电池的端电压达到上限 4.2 V，然后是恒压（CV）模式，直到充电电流减小到2.3 毫安。在放电阶段，电池承受17 mA的恒流（CC）负载，直到电池的端电压降至2 V。由于重复循环过程，电池容量随着老化而逐渐衰减。这项工作中的所有计算都是在 MATLAB 环境中进行的（ver. 2013a）。 PF 框架中的模型参数基于从三个相同容量（35 mAh）电池收集的数据的平均值的曲线拟合进行初始化。在这项工作中，容量退化的 EOL 阈值被认为是电池 BOL 容量的 80%。</p>
+<p>离线 EIS 测试是使用恒电位 EIS 设备（Gamry Instruments 600）进行的。频率范围为 0.1 Hz 至 100 kHz 内的 5 mV rms 交流输入电压已用于 EIS 测试。随着电池的老化，包括欧姆电阻和电荷转移电阻在内的内阻逐渐增加。使用非线性最小二乘估计技术来估计电路参数。类似地，基于内部阻抗变化的电池 EOL 阈值限制在我们的工作中被认为是电池 BOL 内部阻抗的 1.33 倍。</p>
+<p>为了分析所提出的方法，平均EOL预测的误差和EOL预测的标准偏差被用作周期数方面的两个指标来评估预测精度。标准差值越小，RUL pdf 越窄，这表明预测具有更高的置信度。第 30 个周期的预测结果如图 7（a）所示，其中仅使用与前 30 个周期对应的数据来更新模型。同样，第 100 次循环和第 170 次循环的预测结果如图 7(b)-(c) 所示。如图 7(a)-(c) 所示，容量退化的阈值被选择为其标称值的 80%，这在数字上等于 0.96 并且不完全等于 1（在 BOL 处）。因此，阈值限制在 0.768 (0.8*0.96 = 0.768) 的值上，而不是恰好在 0.8 标记处。从表三可以看出，随着预测时间向电池的EOL阈值推进，我们得到的预测误差及其标准偏差的绝对值越来越小。</p>
+<p>图7(d)-(f)分别给出了基于内阻增长模型的电池EOL预测结果，分别对应第30次循环、第100次循环和第170次循环。在表IV中已经表明，随着预测时间向阈值限制前进，预测的准确性提高。基于融合退化模型对应的第30、100和170次循环的EOL预测结果如图8（a）-（c）所示。**从表 V 中可以看出，与单个退化模型相比，融合模型的 EOL 预测的标准偏差相对较小，这意味着融合导致的预测不确定性水平降低。**然而，由于融合模型结合了两种退化模型的影响，它们相对于各自的参考值具有不同程度的不准确度，因此融合模型的预测误差介于各个模型之间。这可能是表 IV 和 V 所示内阻增长模型的预测误差小于融合退化模型的预测误差的可能原因。此外，从表 V 中可以指出一个有趣的事实，即标准在融合模型的情况下，第 30 个循环的偏差小于或与表 III 和 IV 中显示的第 170 个循环的单个模型的标准偏差相同。因此，在这方面，融合模型可能比内阻模型更有用。在电池的整个老化过程中，其容量下降与其内部阻抗的变化有关。从图 9（a）可以看出，电池的容量随着其内阻的增加而逐渐减小，但呈非线性关系。将测量的容量与电池内阻的归一化值与基于表 I 和表 II 中的数据获得的拟合模型进行比较。这项工作中的所有 EIS 测试都是在电池完全充电的条件下 (100% SoC) 完成的。图 9(b) 显示了电池在反复充放电后因老化而内阻增加的趋势。</p>
+<p>此外，为了检查算法在参数变化方面的收敛性，对 PF 框架内的容量退化模型（由（9）表示）和内阻增长模型（由（11）表示）的初始参数进行了到 10% 和 - 10% 的变化。结果分别如图10(a)-(c)和图11(a)-(c)所示。从表 VI 和表 VII 可以看出，扰动模型的预测统计量是相当合理的，与标称融合模型相当。因此，基于这些结果，可以观察到 PF 仍然收敛到最优模型参数。表 III、IV 和 V 中所示的实际 EOL 分别对应于同一循环瞬间的容量退化、内阻增长和标称熔断模型，而表 VI 和 VII 中所示的实际 EOL 对应于电池的扰动熔断模型.从这些结果可以看出，由于初始参数值中考虑的变化，扰动融合模型的实际 EOL 与标称融合模型的实际 EOL 不同。</p>
+<h2 id="结论">结论</h2>
+<p>容量的下降和内部阻抗的增加可以指示锂离子电池的健康状态 (SoH)。电池剩余使用寿命 (RUL) 估计的准确性取决于用于表示电池内退化现象的退化模型的准确性。在我们的工作中，开发了一个容量退化模型来模拟从连续完全充电和放电循环中获得的容量退化数据。为了研究容量退化对电池内阻的影响，还开发了内阻增长模型，以从电化学阻抗谱描述电池内阻（包括欧姆电阻和电荷转移电阻）的变化(EIS) 测试。</p>
+<p>为了研究基于多个退化参数监测电池健康状态的系统方法，本工作还通过结合获得的容量退化和内阻增长模型的影响，开发了融合退化模型。基于这项工作，已经观察到使用融合退化模型比单独的退化模型有一些优势。**首先，与使用单个退化模型获得的标准偏差相比，EOL 预测的标准偏差更小。其次，从非常早的预测阶段来看，融合模型的标准偏差小于或与最终阶段单个模型的标准偏差相同。因此，融合模型可能比单个模型更有益于从健康退化的非常早期阶段减少预测的不确定性。最后，可以基于单个融合退化模型而不是使用多个退化模型来监控电池的 SoH。**为了对锂离子电池进行有效的 RUL 预测，本文提出了一种基于 PF 框架的算法。发现得到的预测结果是相当合理的；虽然还有进一步改进的余地。 RUL 预测是通过 PF 算法基于其容量退化和内阻增长估计获得的。从模拟获得的 RUL 预测得到了从实验测试数据测量的 RUL 的验证。本工作中的所有容量衰减测试均在相同的放电速率下进行。还使用 PF 算法获得了基于融合退化模型的进一步 RUL 预测，其中预测的 RUL 已针对根据实验测试数据获得的计算 RUL 进行验证。</p>
+<p>这项工作的主要贡献如下：通过融合最近开发的容量退化模型和内阻增长模型，提出了一种新的锂离子电池 SoH 估计模型。此后，PF框架中的融合模型进行了错误的参数初始化，以检查算法的收敛性。各个模型在模拟由于老化导致的容量退化和内阻增长的非线性趋势方面相当不错。还讨论了融合模型相对于单个退化模型的一些优势。在提议的 PF 框架中使用这些模型，可以从电池寿命的任何早期阶段获得精确的 RUL 预测。通过考虑现实充放电循环、环境温度变化、放电深度变化等各种因素的影响，可以进一步提高模型的准确性。 进一步的理论分析和电池行为的实验研究需要为此目的而进行。</p>
+
+							</div>
+	<div class="wow bounceInDown vt-post-tags">
+ 
+				<a href="https://xioafanwu.github.io/tag/L9Mnu4ppx/" rel="tag">粒子滤波</a>	
+				 
+				<a href="https://xioafanwu.github.io/tag/2QwBnzlAd/" rel="tag">电池健康状态估计</a>	
+				 
+					</div>						
+<nav class="navigation3 post-navigation3" role="navigation">
+		
+		<div class="nav-links3">
+      
+		 
+		<div class="wow bounceInRight nav-next3"><a href="https://xioafanwu.github.io/post/060-lithium-ion-batteries-remaining-useful-life-prediction-based-on-a-mixture-of-empiricalmode-decomposition-and-arima-model/" rel="next"> 060-Lithium-ion batteries remaining useful life prediction based on a mixture of empiricalmode decomposition and ARIMA model</a></div>
+		
+		</div>
+	</nav>
+	<div class="wow rollIn author-info" style="visibility: visible; animation-name: rollIn;">
+	<div class="author-avatar pull-left"><img src="https://xioafanwu.github.io/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">LSG</div></div>
+
+
+	<p class="author-bio">To be what you want to be</p></div></div>
+	
+		</div>
+		
+ 
+		
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow bounceInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+		
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://xioafanwu.github.io/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+            av: AV, 
+            el: '.comment',
+            lang: 'zh-cn',
+            
+            admin_email:'xiaofanwu2018@gmail.com',
+            
+            
+            emoticon_url: 'C:\Users\xiaofan\OneDrive - bit.edu.cn\Documents\Gridea\images\avatar.png',
+             
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     	
+      	
+          
+        });
+    </script> 
+
+
+   
+  
+ 
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+	
+        <div class="toc-widget">
+			
+            <div class="toc-title"></div>
+			
+            <div id="toc-content">
+			
+			
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>										 
+
+ 
+       
+
+
+			</div>
+		</div>
+
+		
+		 	<footer id="colophon" class="site-footer">
+
+			<div class="container">
+	
+				<div class="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div>
+		
+		</footer>
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://xioafanwu.github.io/media/scripts/marlin-scripts.js'></script>
+ <script src="//tokinx.github.io/lately/lately.min.js"></script>
+  <script>jQuery(document).ready(function(){$.lately({'target':'.lately-a,.lately-b,.lately-c'})});</script>
+  <style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+		<script data-no-instant>
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $('.navigation:eq(0)').remove();
+                $("").attr("rel" , "external");
+                $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+                $("a.vi").attr("rel" , "");
+                $.viewImage({
+                    'target'  : 'img',
+                    'exclude' : '.vsmile-icons img,.gallery img',
+                    'delay'   : 300
+                });
+                $.lately({
+                    'target' : '.commentmetadata a,.infos time,.post-list time'
+                });
+                prettyPrint();
+                
+                $('ul.links li a').each(function(){
+                    if($(this).parent().find('.bg').length==0){
+                        $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+                    }
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>
