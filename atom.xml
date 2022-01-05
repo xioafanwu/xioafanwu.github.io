@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xioafanwu.github.io</id>
     <title>Gridea</title>
-    <updated>2022-01-05T14:32:41.074Z</updated>
+    <updated>2022-01-05T14:33:25.130Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xioafanwu.github.io"/>
     <link rel="self" href="https://xioafanwu.github.io/atom.xml"/>
@@ -382,9 +382,9 @@ collapse: open
 </ul>
 <h2 id="问题">❓问题</h2>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5477324"><label class="task-list-item-label" for="task-item-5477324"> 高斯过程核函数的性质，学习数学理论</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2309972"><label class="task-list-item-label" for="task-item-2309972"> 高斯过程核函数的超参数的意义，学习数学理论</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9309116"><label class="task-list-item-label" for="task-item-9309116"> 老化因素的路径依赖性</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8441195"><label class="task-list-item-label" for="task-item-8441195"> 高斯过程核函数的性质，学习数学理论</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9576241"><label class="task-list-item-label" for="task-item-9576241"> 高斯过程核函数的超参数的意义，学习数学理论</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8061964"><label class="task-list-item-label" for="task-item-8061964"> 老化因素的路径依赖性</label></li>
 </ul>
 <h2 id="进一步研究">⏩进一步研究</h2>
 <h3 id="是否基于前人研究">是否基于前人研究</h3>
