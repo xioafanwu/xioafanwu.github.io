@@ -1,0 +1,483 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<meta HTTP-EQUIV="expires" CONTENT="0"> 
+<title>065-A new suitable feature selection and regression procedure for lithium-ion battery prognostics | Gridea</title>	
+
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<8:00)
+
+            display = "https://xioafanwu.github.io/media/css/night.css";
+
+       else if (thehour>21:00)
+
+            display = "https://xioafanwu.github.io/media/css/night.css";   
+
+        else if (thehour>8:00)
+           
+            display = "https://xioafanwu.github.io/media/css/day.css";
+
+        else if (thehour<21:00)
+
+            display = "https://xioafanwu.github.io/media/css/day.css";
+      
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap" rel="stylesheet">
+<link href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<script type='text/javascript' src='https://xioafanwu.github.io/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+
+
+ 	
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+        
+			
+		<header id="header" class="site-header" 
+		
+		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(https://www.researchgate.net/profile/Lotfi-Saidi/publication/327390390/figure/fig2/AS:666504873918466@1535918553438/General-synoptic-of-the-proposed-approach.png)"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://xioafanwu.github.io" rel="home">Gridea</a></h1>
+										
+					<h2 class="site-description">温故而知新</h2>
+										
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+     			
+<li>
+	 
+	<a  href="/"> 首页</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/archives"> 归档</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/tags"> 标签</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/post/about"> 关于</a></li>
+	
+    
+
+</ul>
+</li>		
+		
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+				
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+	
+	                      
+		<div class="entry-content">
+			<h1 class="wow swing entry-title">065-A new suitable feature selection and regression procedure for lithium-ion battery prognostics</h1>
+<div class="entry-meta">
+<div class="wow bounce">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2022-01-10 20:37:38" itemprop="datePublished" pubdate="">2022-01-10</time></i>
+	          </div>
+			
+</span>
+													 
+		</div>
+                  
+			<div class="wow slideInLeft entry-summary song">
+				<h1 id="翻译">翻译</h1>
+<h2 id="摘要">摘要</h2>
+<p>对锂离子电池的剩余使用寿命(RUL)的准确预测是 安全和寿命优化操作不可缺少的。因此，监测这一点至关重要 组件是计划维修工作和减少意外电力的 断供期然而，对内部电池参数的研究和调查显示了几个问题 电池寿命内的值变化，受环境和负载的高度影响 环境因此，本文提出了一种新的在线电池预测方法 基于等距特征映射技术(ISOMAP)和增量支持 向量回归(ISVR)。ISOMAP用于减少从锂离子中提取的一些特征 电池具有不同的健康状态，两种充放电模式，ISVR用于 在线返回选定的功能。实验结果表明，该方法是可行的 为电池RUL的预测提供了一个新的合适的趋势参数。</p>
+<h2 id="引言">引言</h2>
+<p>最近，预测与健康管理(PHM) 成为智能维护的中心活动。法 与传统的维护形式相比，它有几个优势吗 （纠正的和系统的），如确保可靠性 并增加了工业系统的可用性 成本更低(BenAli等人，2015a)。</p>
+<p>锂离子（锂离子）电池是一个非常重要的电池 组成部分为许多机器，它是至关重要的 特定系统的性能(Liuetal.，2012)。它已有在电子系统中扮演着更重要的角色 能源供应，因此它已经开始被广泛使用 用于军事电子、医疗设备、航空航天 航空电子设备、便携式设备和其他汽车车辆 （扇和九平，2015年）。因此，我们预测了这个问题 重要的部件是计划维修的最必要条件工作和尽量减少意外停电。一个目前面临的基本问题是在现代工业中定义一个趋势参数准确地呈现了锂离子电池目前的健康状况电池：现在已成为一个热门问题。换句话说，如何估算电池在不同复杂工况下的总放电（或充电）时间。</p>
+<p>文献中还使用了其他几种技术。剩下的问题总是出现：即使在高度变化和极端条件下，什么是最可靠和最好的技术？一般来说，选择适当的技术取决于几个因素，如电池的材料特性和制造组件（Zhang和Lee，2011）、环境温度、充放电电流、放电深度（Zhang和Lee，2011；Rezvanizaniani等人，2014），因此它取决于所研究的健康指数的特点。在此原则下，Hess（2002）将功能主成分分析（FPCA）和贝叶斯方法相结合，构建了锂离子电池的非参数退化模型。残余寿命和相应的置信区间被评估，以评价所提出的预言方法。在之前引用的所有作品中，Hess（2002）的最后一篇论文提出了更准确的预测结果和更精确的置信区间。事实上，作者提出了一种基于实时更新退化模型并同时确定剩余寿命分布的智能预知方法。</p>
+<p>正如我们所提到的，<font color="#7B68EE">基于数据驱动的预测方法的主要问题是波动区域</font>（Ben Ali等人，2015a；Liu等人，2012；Fan和Jiuping，2015；Liu等人，2015；Liu等人，2013；Coble和Hines，2009；Long等人，2013；Ben Ali等人，2015b；秦等人，2015）。这些区域呈现出一种奇怪的行为，影响了提取的特征，并阻碍了学习分类器。为了克服这个问题，我们建议使用非线性未来还原技术作为提取特征（健康指数）的融合技术。通过这种方式，我们提出了一个新的电池预知健康指数。因此，本文使用ISOmetric特征MAPping技术（ISOMAP）来减少从可变工作条件下的电池中提取的一些原始特征。实验结果令人惊叹，并显示了它们在调查非线性预言方面的重要性。选择了最敏感的参数并进行了回归，以作为预测的趋势参数。其次，我们建议根据文献选择一种最方便的回归算法用于预测。因此，我们提出了增量支持向量回归（ISVR），也叫在线SVR。</p>
+<p>在专业文献中，对诊断性和预后性提出了几个定义。在Cheng等人（2015）中，给出了一个很好的定义；&quot;诊断是为了调查或分析一个条件、情况或问题的原因或性质而进行的，而预言则是作为对现有相关数据进行合理研究和分析的结果而计算或预测未来的。&quot; 就诊断和预知之间的关系而言，诊断是检测和识别系统或子系统内的故障模式的过程；而预知是对剩余使用寿命（RUL）和/或剩余性能寿命产生合理估计的过程，直到完全故障发生。预测，以其最简单的形式，就是监测和检测一个部件退化的最初迹象，并能够持续做出准确的预测（Cheng等人，2015）。</p>
+<p>总之，诊断可以总结为检测、隔离和评估故障的严重程度，尽管预知主要是对RUL的估计。预测的主要功能是帮助维护人员了解被监控系统的未来健康状况。这项任务主要由两个不同的步骤组成。(1) 第一步与当前健康状态的评估有关（即退化检测和严重程度），这也可以被视为检测和诊断，(2) 第二步旨在预测（或预报）退化趋势以估计RUL。 然而，现代的预知概念是一个挑战。事实上，即使不能检测到故障，RUL也应该被预测。作为一个优势，RUL的预测与故障是否存在没有必然联系。它只取决于预测时间或预测行动将被执行的时间。这个新概念非常有优势，因为它消除了预测对诊断的依赖性（这通常是一个痛苦的任务），它允许从第一个操作时间开始进行预测，即使被监测机器处于健康状态。</p>
+<p>本研究中预测的主要目标是建立一个有效模型，该模型能够预测预期操作条件下退化特征（或变量）的演变，并准确估计机械的 RUL。然而，RUL 的估计通常很难执行。近年来，研究人员旨在建立准确的预后模型已经受到欢迎，因为它们呈现了一些进步，尤其是在数据驱动的方法方面。根据文献讨论，我们将基于数据驱动方法的 RUL 估计策略分为三组：</p>
+<ol>
+<li>基于不变的退化建模</li>
+<li>直接RUL预测</li>
+<li>多变量衰退建模</li>
+</ol>
+<p>PHM 方法直接从来自机械（或过程）的常规监控操作数据中获得有用的特征。随着时间的变化，机械磨损会增加，并观察到温度过高、振动或声发射等现象（Kumar 和 Pecht，2010 年）。数据驱动的方法假定特征是恒定的，直到一个部件或系统发生故障。然而，真实的系统是在动态环境中运行的，机械的快速变化可能在早期阶段就发生了。<font color="#7B68EE">尽管特征提取过程将冗余数据转化为显示机械行为的特征，但由于高变异性现象，我们不能确定提取的特征是否正确反映了故障的发展，是否能满足预知建模的需要。</font></p>
+<h2 id="3-方法">3 方法</h2>
+<p>为了加强对复杂数据的存储、处理和操作，建议通过特征提取来获得最紧凑、信息量最大和可利用的数据。在过去的几十年里，在软计算、统计学、机器学习、知识发现和非线性分析等领域做出了令人印象深刻的努力，以定义信息特征。在这个意义上，多个领域都受到影响，如生物医学、机械、电气和土木工程。由于计算机令人印象深刻的发展（存储能力，接口之间的快速通信，在较短的时间内实现复杂的算法），也由于创新的现代技术的侵入性和非侵入性传感器，基于特征提取的方法学在学术界和工业界受到青睐。 因此，最近在传感器技术和机器学习技术方面取得的进展使得设计识别系统成为可能，这些系统能够完成过去无法完成的任务（Guyon等人，2006）。</p>
+<h3 id="31-isomap">3.1 ISOMAP</h3>
+<p>与其他技术相比，ISOMAP的优点是非线性、非迭代，并能给出全局最优解（Hess，2002）。此外，它通过保留测地流形的点间距离，找到了保留数据的全局性、非线性几何的地图。此外，它确保了连接两点的沿流形的最短曲线。同时，它在第一时间近似了测地线的点间距离，并在第二时间进行多维缩放以找到保留这些距离的投影。总而言之，它是一种基于高维数据得出的成对距离的流形学习算法，具体如下（Tenenbaum等人，2000；Benkedjouh等人，2013）。</p>
+<p>在本文中，ISOMAP算法将被用作降维方法的代表性融合，以提出基于一些从电池中提取的HI的优化的HI。ISOMAP作为一种无监督的算法，它促进了计算效率，并提高了预测精度（Shao和Deng，2016）。在文献中现有的几种算法中，选择这种算法的判断标准是：</p>
+<ol>
+<li>非线性的无监督的</li>
+<li>通过最大化距离来保证低维嵌入</li>
+</ol>
+<h3 id="32-pca">3.2 PCA</h3>
+<p>在文献中，主成分分析（PCA）是用于特征减少的最常用技术，这意味着将原始功能转化为较低的尺寸空间。作为线性技术的PCA是用于实现提取特征的数据维度降低的定量严格的方法。此方法生成一组新的变量，称为主组件（PC），最大化投影向量的方差。每个PC是原始变量的线性组合。所有PC都彼此正交，因此没有冗余信息。 PC为数据空间的整体正交基础。因此，第一PC由高变异性组成;第二台PC由下一个最高的变异性等于其他方向。首先少数组件保存，丢弃较差较小的其他组件（Widodo等，2007）。在这项工作中，PCA算法将用作融合技术，以基于来自电池的一些提取的HI呈现优化的HI。然后，<font color=#dd0000>将比较ISOMAP和PCA的性能以突出与电池预测的线性技术相比的非线性技术。</font>&gt;</p>
+<p>增量支持向量回归（ISVR，也称为在线SVR）是一个扩展的SVR算法，用于更灵活的超参数在线估算。</p>
+<p>一般来说，SVR使用与支持向量机（SVM）相同的原理进行分类，只有一些小的区别。首先，因为输出是一个实数，所以预测手头的信息变得非常困难，这有无限的可能性。在回归的情况下，在近似于SVM的情况下设置了一个容差，而SVM已经会从问题中要求（Parrella, 2007）。虽然容差很小，但它提高了回归的效果，也增加了计算的复杂性。 简而言之，其主要思想是通过个性化的超平面来减少容许误差，从而使余量最大化。</p>
+<h3 id="33-增量svr技术简述">3.3 增量SVR技术简述</h3>
+<ul>
+<li>介绍了[[SVM]]的原理</li>
+</ul>
+<h3 id="34-电池诊断方法">3.4 电池诊断方法</h3>
+<p>此后，对原始的健康指数和那些由特征减少技术产生的健康指数进行了评估。 评价标准和最佳性能的定义将在下一节详细说明。事实上，这项工作建议选择最容易遵循的HI，以减少回归步骤的计算复杂性。 这项工作的第一个挑战是如何定义具有最佳趋势性的HI。事实上，识别一个合适的预测参数是将预测模型应用于系统的关键（Liu等人，2013）。本工作中对每个候选HI的适用性进行了描述。</p>
+<p>离线步骤还旨在生成适当的模型，以良好地描述电池容量的劣化。 具体地，该步骤的目标是通过使用ISVR算法来构建回归模型。 这一步骤被认为非常重要，因为对于实际工程实施，需要准确的模型来获得更好的健康评估。 通常，在此步骤中未讨论计算时间，因为它已脱机完成。</p>
+<p>第二步在线完成，利用第一步生成的模型去连续评估电池健康状态，并且预测未来的容量，以计算RUL。该步骤可以基于例如FPGA技术应用于实际应用。因此提出的方法可以适应现代行业的挑战。</p>
+<h2 id="实验结果">实验结果</h2>
+<h3 id="41-原始数据">4.1 原始数据</h3>
+<p>本论文设计的实验数据是[[NASA]]数据，锂离子电池通过三种不同的操作文件进行操作（充电、放电和阻抗谱）。一直重复充电放电知道达到寿命终止，容量衰退达到30%。本工作只是用5号电池数据，只使用ISOMAP技术研究充电模式作为一个非线性降维技术对于RUL估计。对于充电和放电两种模式，端电压、电流、温度等信息可以被物理测量。</p>
+<p>5号和18号电池使用先恒流再恒压的方式充电，然后恒流放电，图三现实了衰退结果，可以看到是非线性的。尽管操作条件一样但是衰退结果表现出不一样的模式。第二，尽管两个电池都是一个类型，EOL也不一样。图3证实了基于物理学的模型，需要对退化进行必要的数学建模，这远远不是这个问题的实际解决方案。基于物理学的模型方法由于缺乏足够的故障和退化的物理学知识以及无法获得公式中的参数值而受到影响（Eker等人，2012）。因此，这项工作中提出的方法是基于数据驱动的方法，包括简单的预测模型，其优点是计算简单，可以在可编程的计算器上进行（Ben Ali等人，2015a）。</p>
+<h3 id="42-特征提取和降维">4.2 特征提取和降维</h3>
+<p>对于每个测量量，考虑表中的几个特征：偏度、均方根和峰度。在实际中，很多特征可以考虑和提取。传统的统计学特征是一个强有力的工具，简单计算快。为了展示，让我们考虑NASA数据库中的5号电池（称为B0005，包含168个周期）在充电模式下，图4显示了第一个周期（有789个测量值）的终端电压。</p>
+<p>总的来看，NASA数据包含33个电池具有两种操作条件。每个电池都展现出一定的循环次数。每个循环都有6个量，每个量都计算这6种统计量。计算得到总共的特征数。特征降维意味着将原始特征降维到低维空间。在本文中，基于ISOMAP和PCA提出了降维方法，接下来评估这两种方法。</p>
+<p>对于5号电池组，一个有特征空间为（168，36）。首先特征正则化，然后，[[最大似然估计]]和PCA用于估计新空间的维度。新空间的估计尺寸分别为3.3366和3，这就是为什么我们建议将原始特征矩阵减少到（168，3）。然后，通过应用PCA和ISOMAP技术，找到新的空间并消除不重要的特征。在这项工作中，只有新空间中的第一个特征（PCA和ISOMAP的第一个分量）被认为是跟随在线电池退化的，因为它们呈现出最高的特征值。图5显示了从第5号电池中提取的六个特征的演变，尽管图6和图7分别显示了第一个ISOMAP分量和PCA分量的演变，这些分量可以作为电池预测的趋势参数。下一个小节将专门评估所定义的组件的性能，以选择最合适的组件作为健康指数使用。由于文献中定义的一些指标，将讨论评估和确定最佳预知参数。</p>
+<h3 id="43-特征演变">4.3 特征演变</h3>
+<p>识别合适的趋势参数是将预测模型应用于系统的关键。传统的基于个体的预言涉及确定一个适当的退化措施，以描述系统向故障的发展过程（Coble和Hines，2009）。Ben Ali等人（2015a）报告说，趋势参数一般会受到一些波动区域的影响，使参数质量下降。这一现象在从NASA电池数据集中提取特征时得到了说明。通常情况下，将几种退化的措施结合起来制定一个单一的参数是有益的（Coble 和 Hines，2009）。</p>
+<p>与图6所示的第一个ISOMAP分量相比，图5和图7中分别显示的第一个原始的六个特征和PCA特征呈现出几个波动区域，而且很难为所有这些特征建立相同的模型。因此，使用第一个ISOMAP组件来跟踪在线电池退化是比较可取的。在文献中，有一套正式的指标来描述特征的适用性。下面讨论的这些指标对于自动识别合适的预测参数非常有帮助。</p>
+<p>为了选择最佳的趋势性诊断参数，有学者提出了一种[[单调性指标]]。单调性越好，越能更好地估计RUL。但是在本文的研究中发现好像不是这样，根据这个指标选出来的特征不能很好地用于预测。为了解决这个问题有学者提出另一种[[趋势性指标]]。它与提取的特征的功能形式及其与时间的关联性有关。也就是说，一个变量的状态是如何随时间变化的。当然，一个恒定的函数（的特征）将与时间的相关性为零，而一个线性函数将有一个重要的相关性。以类似的方式，相关性会随着非线性的增加而变化（非线性会导致低相关性）（Javed等人，2013）。以下公式（8）定义了趋势性指标，其中x是时间指数，y是要评估的选定特征，n是这些向量的大小。<font color=#dd0000>其实就是线性相关系数</font>&gt;。根据相关系数，对PCA方法和ISOMAP方法选出来的特征进行评估。</p>
+<p>总而言之，本节介绍了如何通过考虑文献中存在的一些最新的特征适配度来进行特征选择。事实上，我们考虑了两种特征减少方法（PCA和ISOMAP），第一种是线性的，第二种是非线性的。这种考虑强调了通过评估调查特征的特点来进一步减少多维数据。其基本思想是，预测学应该考虑到从业人员（或其模型）进行长期预测的能力。因此，所提出的方法强调了后选阶段，旨在表明它应该根据特征的增强来进行，因为保留难以预测的特征是没有意义的。</p>
+<h3 id="44-结合isomao和isvr的在线预测">4.4 结合ISOMAO和ISVR的在线预测</h3>
+<p>在使用ISOMAP技术时，在输入参数k的定义方面存在一个实际问题。通常，这个参数由用户指定。事实上，k必须是高的，以避免在高表面曲率区域附近的线性捷径。在本贡献中，这个参数是使用Samko等人（2006）提出的优化策略自动选择的。然而，基于这种优化，周期数从168个减少到135个，这对预言来说是不可取的。为了搁置相同的周期数，我们可以设置：knumber of cycles。另一方面，如果我们采用最后一个属性，ISOMAP技术的非线性效应将被部分隐藏，因此ISOMAP特征的性能将受到影响。因此，在选择参数k时，有一个折中的办法。</p>
+<p>让我们更进一步，即使周期数不守恒，也不是一个问题，因为我们知道将被添加到估计的RUL中的隐藏周期数。事实上，在所提出的方法的离线阶段，隐藏的周期始终存在。在本文中，周期的数量，即168个，被减少到135个。因此，由于在ISOMAP计算中整合了k-means算法，有33个周期是隐藏的。在应用所提出的在线预知方法时，这个问题可以简单地得到解决。例如，如果我们将使用前40个周期来计算（离线）ISOMAP，如果新空间的生成将提供30个周期，我们可以简单地得出结论，10个周期是隐藏的。因此，当应用拟议方法的在线阶段时，由于ISVR算法进一步增加了隐藏的10个周期，RUL（或总退化前剩余的有用周期）将是估计的RUL。</p>
+<p>在特征选择和评估阶段之后，第一个ISOMAP组件被选为趋势参数，以跟踪真实的电池退化情况。为了估计被监测电池的健康状态，提出了ISVR。如果需要的话，当数据更新时，批量SVR会对模型进行重新训练。由于每次都要重新训练SVR，在新的样本增加时，会带来操作速度低和效率低的问题。在线SVR在数据集更新时采用增量算法和减量算法进行训练。作为一种优势，在线SVR的结构可以动态调整以满足KKT条件（Ben Ali等人，2015b）。</p>
+<p>在这项工作中，为了选择核回归函数的参数C、ε和γ的最佳组合，采用了Storn和Price（1997）中解释的差分进化（DE）算法。使用DE算法的预定义参数被作为猜测参数保存在账户中。 然后，做了几个测试，根据经验提高这些参数的值，以便在更长的范围内进行不那么平滑的预测。高斯径向基函数（GRBF）被用来建立ISVR模型，并定义超平面参数，,C。</p>
+<p>通过优化ISVR参数，我们证明了预测的显著准确性。所提出的方法有几个优点，如准确性和自动选择要遵循的趋势参数。此后，实验结果证明了所提出的方法在一般预测任务和特别是电池健康状态估计方面的能力。</p>
+<h3 id="45-和前人的研究比较">4.5 和前人的研究比较</h3>
+<p>在文献中，有几种类型的测量数据被用于电池的预知，如负载集合、充电时的电流、温度、电压等。电池容量很容易获得，而且它有明确的物理意义，这就是为什么它成为最常用的电池预知健康指标。然而，由容量再生、意外波动、测量误差和其他因素产生的容量时间序列的不确定性，是电池预知的一个大问题（He等人，2015）。到目前为止，在选择和统一处理的健康指数方面还没有科学的共识。真的，根据不同的应用，科研人员选择具有最佳特性的适当的，以避免回归的困难。 我们可以从文献中得出的唯一结论是，容量是最常用的一种。甚至在最近的搜索中，也有倾向于定义新的健康指数，更适合于预知任务。例如，Zhou等人（2016）定义了平均电压衰减和容量之间的线性相关关系，作为电池退化建模和RUL预测的新健康指数。新的健康指数的提出是由于容量的不完全充放电的在线测量和极其昂贵的内阻成本。<font color="#7B68EE">在本文中，我们提出了一个新的健康指数，以避免引起波动的问题，并提出一个准确的电池健康状态估计。</font>在这个意义上，本节介绍了所提出的方法与以前一些工作的比较。为了进行有意义的评估，本节介绍的所有工作都是基于NASA的电池基准，特别是第5号电池。这些工作在表4中进行了总结。与其他算法相比，基于SVR的方法以较少的复杂计算呈现出鲁棒性的改善（Hannan等人，2017；Sidaoui和Sadouni，2017；Zhu和Zhao，2016）。表4中给出的实验结果验证了这一结论。事实上，优化的SVR确保了更好的概括结果，因此，真实的电池退化和估计值变得越来越叠加。因此，在Mokhtari等人（2017）详述的融合优势的激励下，所提出的ISVR方法显示出良好的回归模型，它们只需要对其参数进行精细的经验调整，就可以实现在线实际应用。</p>
+<h2 id="结论和未来展望">结论和未来展望</h2>
+<p>在本文中，提出了一项关于电池退化预测的研究。该研究的创新之处在于：1）我们在ISOMAP算法的基础上试验了几个输入（特征）的组合，以定义一个新的趋势参数，该参数具有更好的特性，如单调性和趋势性，可以提高回归技术的预测能力；2）提出了ISVR技术，以更新数据集的增量算法来模拟动态行为电池的退化。 与以往工作的比较表明，所提出的方法可以有效地实现锂离子电池RUL的准确预测，并且误差最小。</p>
+<p>作为未来的工作，我们建议在不同的充电和放电周期中研究更多的特征减少技术，这被认为是在实际应用中需要解决的一个挑战性问题，如电动汽车。</p>
+<h1 id="总结">总结</h1>
+<p>在本文中，我们提出了一个新的健康指数，以避免引起波动的问题，并提出一个准确的电池健康状态估计。</p>
+<ul>
+<li>[[ISOMAP技术]]：基于等距特征映射技术,非线性特征降维方法</li>
+<li>与线性降维方法PCA做比较</li>
+<li>构造特征:偏度计算、峰度、熵值等六个统计量</li>
+<li>[[特征比较指标]]：单调性指标、趋势性指标</li>
+<li>SVR：支持向量机技术</li>
+<li>[[差分进化算法]]：优化SVR参数</li>
+<li>ISVR：增量支持向量机</li>
+</ul>
+
+							</div>
+	<div class="wow bounceInDown vt-post-tags">
+ 
+				<a href="https://xioafanwu.github.io/tag/M_CfN1SXj/" rel="tag">特征构造</a>	
+				 
+				<a href="https://xioafanwu.github.io/tag/DRn4SFJijV/" rel="tag">支持向量机</a>	
+				 
+				<a href="https://xioafanwu.github.io/tag/2QwBnzlAd/" rel="tag">电池健康状态估计</a>	
+				 
+					</div>						
+<nav class="navigation3 post-navigation3" role="navigation">
+		
+		<div class="nav-links3">
+      
+		 
+		<div class="wow bounceInRight nav-next3"><a href="https://xioafanwu.github.io/post/064-state-of-health-estimation-based-on-real-data-of-electric-vehicles-concerning-user-behavior/" rel="next"> 064-State-of-health estimation based on real data of electric vehicles concerning  user behavior </a></div>
+		
+		</div>
+	</nav>
+	<div class="wow rollIn author-info" style="visibility: visible; animation-name: rollIn;">
+	<div class="author-avatar pull-left"><img src="https://xioafanwu.github.io/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">LSG</div></div>
+
+
+	<p class="author-bio">To be what you want to be</p></div></div>
+	
+		</div>
+		
+ 
+		
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow bounceInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+		
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://xioafanwu.github.io/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+            av: AV, 
+            el: '.comment',
+            lang: 'zh-cn',
+            
+            admin_email:'xiaofanwu2018@gmail.com',
+            
+            
+            emoticon_url: 'C:\Users\xiaofan\OneDrive - bit.edu.cn\Documents\Gridea\images\avatar.png',
+             
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     	
+      	
+          
+        });
+    </script> 
+
+
+   
+  
+ 
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+	
+        <div class="toc-widget">
+			
+            <div class="toc-title"></div>
+			
+            <div id="toc-content">
+			
+			
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>										 
+
+ 
+       
+
+
+			</div>
+		</div>
+
+		
+		 	<footer id="colophon" class="site-footer">
+
+			<div class="container">
+	
+				<div class="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div>
+		
+		</footer>
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://xioafanwu.github.io/media/scripts/marlin-scripts.js'></script>
+ <script src="//tokinx.github.io/lately/lately.min.js"></script>
+  <script>jQuery(document).ready(function(){$.lately({'target':'.lately-a,.lately-b,.lately-c'})});</script>
+  <style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+		<script data-no-instant>
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $('.navigation:eq(0)').remove();
+                $("").attr("rel" , "external");
+                $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+                $("a.vi").attr("rel" , "");
+                $.viewImage({
+                    'target'  : 'img',
+                    'exclude' : '.vsmile-icons img,.gallery img',
+                    'delay'   : 300
+                });
+                $.lately({
+                    'target' : '.commentmetadata a,.infos time,.post-list time'
+                });
+                prettyPrint();
+                
+                $('ul.links li a').each(function(){
+                    if($(this).parent().find('.bg').length==0){
+                        $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+                    }
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>
