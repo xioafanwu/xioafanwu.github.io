@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<meta HTTP-EQUIV="expires" CONTENT="0"> 
+<title>016-Battery life estimation based on cloud data for electric vehicles | Gridea</title>	
+
+<link rel="stylesheet" href="https://xioafanwu.github.io/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<8:00)
+
+            display = "https://xioafanwu.github.io/media/css/night.css";
+
+       else if (thehour>21:00)
+
+            display = "https://xioafanwu.github.io/media/css/night.css";   
+
+        else if (thehour>8:00)
+           
+            display = "https://xioafanwu.github.io/media/css/day.css";
+
+        else if (thehour<21:00)
+
+            display = "https://xioafanwu.github.io/media/css/day.css";
+      
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap" rel="stylesheet">
+<link href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<script type='text/javascript' src='https://xioafanwu.github.io/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+
+
+ 	
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+        
+			
+		<header id="header" class="site-header" 
+		
+		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(https://ars.els-cdn.com/content/image/1-s2.0-S037877532030495X-gr2.jpg)"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://xioafanwu.github.io" rel="home">Gridea</a></h1>
+										
+					<h2 class="site-description">温故而知新</h2>
+										
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+     			
+<li>
+	 
+	<a  href="/"> 首页</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/archives"> 归档</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/tags"> 标签</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/post/about"> 关于</a></li>
+	
+    
+
+</ul>
+</li>		
+		
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+				
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+	
+	                      
+		<div class="entry-content">
+			<h1 class="wow swing entry-title">016-Battery life estimation based on cloud data for electric vehicles</h1>
+<div class="entry-meta">
+<div class="wow bounce">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2022-01-21 17:05:23" itemprop="datePublished" pubdate="">2022-01-21</time></i>
+	          </div>
+			
+</span>
+													 
+		</div>
+                  
+			<div class="wow slideInLeft entry-summary song">
+				<h1 id="翻译">翻译</h1>
+<h2 id="摘要">摘要</h2>
+<p>为了评估电动汽车（EVs）的安全性和生命周期，汽车公司通常将电动汽车的驾驶数据保留在云端进行监控和管理。目前，云数据的记录周期一般为10-30秒，因此云数据很难揭示电动汽车的动态行驶状况。但是充电数据是稳定的，这使得基于充电云数据的电池寿命估算成为可能。电池寿命的估算包括容量估算和内阻估算。在本文中，容量是通过安培小时积分法直接估算的。估算结果根据温度数据进行修改，并通过卡尔曼滤波器（KF）进行优化。我们进一步提出了模糊逻辑（FL）来控制观测噪声，有效地提高了估计结果的准确性。然后，通过Arrhenius经验模型对电池寿命进行预测。充电数据中电压和电流的突然变化被用来估计内阻。内阻预测是通过与容量预测类似的过程实现的。抽样测试表明，电池寿命估计方法的误差小于4%。</p>
+<h2 id="引言">引言</h2>
+<p>随着许多国家政府和知名汽车制造商达成了推动汽车电气化的共识，电动汽车的数量不断增加[1]。随着锂离子电池的功率密度和能量密度的不断提高，以及它的高放电率和无记忆效应等优点，以锂离子电池组为动力源的电动汽车受到广泛关注[2-6]。电池的老化限制了其储能和功率输出能力，也限制了电动车的性能，包括成本和寿命[7]。如何处理动力电池的寿命管理和资产评估已经成为电动车行业的一个关键问题。为了更好地检测和评估动力电池应用于电动汽车后的性能，找到一种有效的电池组寿命评估方法至关重要。</p>
+<p>电池寿命评估包括容量评估和内阻评估。容量是电池健康状态（SOH）估算的一个重要指标，用于评估电池的老化程度[8-10]。当容量衰减到一定程度时，电池就达到了寿命终点（EOL），不能继续正常工作。 电池寿命评估方法可以分为基于经验的模型和数据驱动的方法[11,12]。基于经验模型的方法不考虑电池内部复杂的物理和化学反应，而是根据实验数据来估计和预测容量[13]。因为一般的经验模型是一个开环模型，很难保证估计结果的准确性。数据驱动的方法通常是建立模型来描述电池的退化过程[14-16] 。但需要特点的工作环境。</p>
+<p>内阻可以通过电化学阻抗光谱（EIS）分析得到[18]，但由于记录频率低，这种方法很难应用于云数据[19]。内阻也可以通过直接的电压响应来直接计算。此外，还有基于电化学模型、等效电路模型、神经网络模型[20-22]等方法。</p>
+<p>近年来，利用云数据的先进电池管理引起了人们的兴趣。Li等人[23]利用车辆云数据结合SDAE-ELM算法建立了电池温度模型，并提出了电池大数据处理和质量评估的新方法。然而，该模型还没有在大范围的温度中进行测试，模型的准确性有待提高。Tao等人[24]通过综合分析云上1000辆电动车的数据，建立了电动车在时间维度上的调度模型。通过分析用户的充电习惯，他们为用户提供了一个有序的充电策略，以满足用户对充电功率的需求。 Michele等人[25]提出了NCM-LMO容量衰减模型，并基于16263辆电动车的云数据分析了220种动力电池容量衰减情况。由于电动车驾驶条件的复杂性，他们通过一些假设使模型和电动车驾驶数据共存，这影响了模型的准确性。Zhao等人[26]提出了一种基于大数据统计方法的电动汽车电池系统的新型故障诊断方法。根据神经网络算法，将故障和缺陷诊断结果与大数据统计调控相结合，构建了一个比较完整的电池系统故障诊断模型。Hong等[27] 提出了基于大数据平台和熵方法的电动汽车电池系统热失控预判方案。该方案通过监测车辆运行过程中的电池温度，同时实现了对温度故障引起的热失控的诊断和预判。</p>
+<p>对于电池管理系统（BMS）的有限内存空间，减少记录频率显然会增加总的记录时间[28]。因此，汽车公司通常将电动汽车的驾驶数据保留在云端，用于监测和管理。一般来说，很难保证云数据的质量，这对基于模型的寿命估计方法是一个巨大的挑战。虽然电动汽车的数据采样频率很高，但由于网络带宽和数据存储容量的原因，目前云数据的记录周期可能长达 10-30 秒。因此，电动车的动态驾驶状况很难通过云数据显示出来。但是，与动态驾驶状态相比，充电数据是稳定的，这使得估算电动汽车的电池寿命成为可能，并为相同类型和类似使用历史的电动汽车提供先验知识。</p>
+<p>针对上述问题，本文提出了一种基于云数据的电动汽车电池组的寿命估算方法。利用大量的历史充电数据，通过安培小时积分法直接估算容量。然后根据温度数据修改估计结果，得到初步的容量估计结果。然后采用KF算法对估算结果进行优化，并通过FL算法实时控制KF算法的观测噪声，以提高估算结果的准确性。基于容量估算结果，通过阿伦纽斯经验老化模型预测电池寿命。充电数据中电压和电流的突然变化被用来估计电池组的内阻。内阻的预测是通过与容量预测类似的过程实现的。 这种方法为电池组的预防性维护、电动汽车的剩余价值评估以及二次使用前的快速分类提供了数据支持。</p>
+<p>本文的后续章节安排如下。第二节和第三节分别介绍了基于云数据的容量和内阻估计方法。第4节介绍了所提方法的结果和验证。第5节对所提方法进行总结。</p>
+<h2 id="容量估计">容量估计</h2>
+<p>电池容量是衡量电池性能的一个重要指标。 锂离子电池的性能在工作环境和使用时间的影响下会逐渐退化，表现为电池容量的退化和内阻的增加[29]。电池容量通常呈现线性或指数降解规律[30]。一般认为，当电池的电流容量退化到额定容量的70%-80%时，电池就达到了寿命终点（EOL）[31,32]。</p>
+<p>与新电池相比，SOH量化了电池的物理健康状况，通常用容量或阻抗来计算。在本文中，我们将SOH定义为当前最大可用容量与额定容量的比率。其公式如下。</p>
+<p>图1展示了容量估计的流程图</p>
+<ul>
+<li>
+<p>步骤1. 对云数据进行预处理，以获得电流、电压、充电状态（SOC）和充电期间的里程数，用于容量估算。</p>
+</li>
+<li>
+<p>第二步。用安培小时积分法初步估计容量；结果用Cn表示。</p>
+</li>
+<li>
+<p>第三步。考虑到温度的影响，根据温度数据对Cn进行修改，结果用CT表示。</p>
+</li>
+<li>
+<p>第四步。用基于模糊逻辑控制的卡尔曼滤波器（KF þ FL）对CT进行优化，得到容量估计的最终结果，结果用CE表示。</p>
+</li>
+<li>
+<p>第5步。通过Arrhenius经验老化模型来预测容量，结果用CP表示。</p>
+</li>
+</ul>
+<h3 id="21-初步容量估计">2.1 初步容量估计</h3>
+<p>安培小时积分法是一种常见的方法。SOC是通过积累充电或放电过程中的电量来估计的。如果充电或放电的起始SOC是SOC0，那么当前的SOC就是。</p>
+<p>因此，可以使用安培小时积分法来估计基于充电数据的容量。当估计容量时，第i个充电数据的开始SOC和结束SOC分别被记录为SOCmin和SOCmax，并且ΔSOC ¼ SOCmax�SOCmin。QnðiÞ是第i个充电数据的电量变化。根据参考文献[34]中给出的容量计算公式，容量Cn的计算方法如下 [34]，容量CnðiÞ可以得到如下结果。</p>
+<h3 id="22-温度修正">2.2 温度修正</h3>
+<p>锂离子电池在实际车辆行驶状态下，由于放电率和工作环境的不同，会导致电池内部参数的变化。温度是一个对电池性能有很大影响的因素。当锂离子电池在高温环境下工作时，电极之间的反应速度较快；当工作温度较低时，锂离子的活性较低。当温度变化时，电池的可用容量和内阻会有很大波动[35]。</p>
+<p>根据电池的温度特性测试，电池的放电容量在低温环境下明显下降，而在高温环境下则明显上升。图1（e）显示了可用放电深度（DOD）和温度之间的关系，这是基于电池的可使用容量。这个结果是在不同温度下进行的容量测试取得的，在25摄氏度时，可用的DOD是100%。 因此，25摄氏度被设定为温度校正的标准温度，并根据温度数据对Cn进行校正，以获得标准容量（CT）。</p>
+<h3 id="23-容量估计和预测方法">2.3 容量估计和预测方法</h3>
+<p>采用KF算法对CT进行优化，得到最终的容量估计结果CE。考虑到电池容量的缓慢变化，在建立EKF状态方程时，认为时间iþ1的容量等于时间i的容量，但模型中存在系统噪声。电池容量的状态方程为。</p>
+<p>图1（b）显示了KF算法的过程，其中包括时间更新（预测）和测量更新（修正）。在图1（b）中，bx0和P0是初始值。bxþi�1是前一个状态的最优估计结果。bx�i等于前一个状态的估计结果，bxþi是当前状态的最优估计结果。Pbx�i是bx�i的协方差矩阵。Pbxþi�1是bxþi�1的协方差矩阵，而Pb x þi是更新当前状态后的协方差矩阵。Ki是当前状态的卡尔曼增益。Q和R分别是系统噪声ωi和观测噪声υi的协方差矩阵。</p>
+<p>模糊逻辑通过模仿人脑的不确定性概念判断和推理思维模式实现模糊综合判断，包括模糊化、模糊规则算法和去模糊化三个部分[36]。图1（c）显示了KF þ FL算法的过程，CTðiÞ是状态i的容量观测，CEði�1Þ是状态i�1的容量估计结果，容量估计结果CEðiÞ通过KF þ FL算法得到。CEðiÞ继续参与状态i þ 1的滤波过程，通过闭环修正提高容量估计的精度。</p>
+<p>FL算法的输入参数包括SOCmin、SOCmax和容量观测的相对误差eQ。如公式（3）所示，SOCmin和SOCmax对电池容量估计结果的准确性有很大影响，所以SOC的估计精度是决定KF算法的观测噪声υi的重要因素。 例如，当电池充电到截止电压时，电池管理系统（BMS）显示电池的SOC为100%，具有很高的可靠性。因此，当SOCmax接近100%时，υi被设置为一个小值。图1（d）显示了开路电压（OCV）和SOC之间的关系，这是用混合脉冲功率特性测试（HPPC）实现的，OCV在低SOC范围内下降较快。当BMS估计SOC时，在低SOC范围内，dSOC=dOCV较小，因为电压下降较快。SOC估计结果经常根据电压进行修改，而且SOC估计结果具有很高的可靠性。因此，当SOCmin达到一个低的SOC范围时，υi也可以被设置为一个小值。误差eQ可以代表容量观测的准确性。误差越小，精度越高。它也影响到FL算法的输出。</p>
+<p>模糊规则的主要原理是：SOCmin和eQ越小，α越小。当SOCmin和eQ的任何一个值都很大时，α 也很大。 由于BMS估计的SOCmax偏离100%后可靠性迅速下降，因此对SOCmax采用了二值化。当SOCmax达到99%时，SOC估计结果的准确性会更高。图1(h)下部的模糊规则图将被使用。当SOCmax&lt;99%时，意味着SOC估计结果的准确性较差，将使用图1(h)上部的模糊规则图来生成系数α。由于BMS估计的SOC在低范围内精度较高，在中范围内精度较低，因此在低SOC下，SOCmin的可靠性会增加。本文将SOCmin¼ 50%作为边界。当SOCmin&gt;50%时，由于SOC估计的精度较低，对KF算法设置较大的υi。当0 &lt; SOCmin&lt; 50%时，对SOCmin进行模糊处理。成员函数如图1（f）所示，SOC被分为五个置信区间。 NB(Negative Big)、NS(Negative Small)、ZO(Zero)、PS(Positive Small)和PB(Positive Big)代表不同区间内与SOCmin对应的成员函数。从NB到PB，SOCmin的可靠性依次降低。误差eQ越大，表明容量观测的可靠性越低。在本文中，我们将eQ¼ 0:15设为边界。 当eQ&gt;0:15时，容量观测的可靠性很低，直接为KF算法设置较大的υi。当0&lt;eQ�0:15时，对eQ进行模糊处理。成员函数如图1（g）所示。eQ被分为三个置信区间。NB、ZO和PB代表不同区间内eQ对应的成员函数。从NB到PB，eQ的可靠性依次降低。SOCmin、SOCmax和eQ的模糊处理的输出结果α如图1（h）所示。KF算法的观察噪声υi¼ eαυ0是用上述FL算法控制的。</p>
+<p>基于容量估算结果，电池寿命的预测是基于阿伦纽斯经验老化模型。阿伦纽斯经验老化模型公式为[37,38]。其中ξðnÞ是n次循环后的相对容量衰减，A是预指数因子，Ea是活化能，R是气体常数，T是绝对温度，z是指数。</p>
+<p>由于在容量估计过程中，温度已经被修正为25摄氏度，阿伦纽斯经验老化模型被简化为如下。有两个参数（η和z）需要用估计的结果来确定。然后可以用公式（7）来预测剩余使用寿命。</p>
+<h2 id="3-内阻估计">3 内阻估计</h2>
+<p>电池的内阻是由欧姆内阻和极化内阻组成。随着循环次数的增加，电池的内阻逐渐增加[39]。图2（b）显示了在25摄氏度时内阻和SOC之间的关系，这是用HPPC测试实现的。尽管测试中使用的电池的容量比车辆中的电池小得多，但由于它们的材料系统非常相似，所以它们的内阻特性也很相似。根据HPPC测试，由30s脉冲获得的内阻可以被视为电池的全部内阻。当SOC&gt;20%且温度恒定时，内阻不会随着SOC的变化而发生很大变化。 当SOC&lt;20%且温度恒定时，内阻随着SOC的降低而显著增加。参考文献中提到。[40]提到，电池在低温下有明显的极化现象，极化内阻增加，特别是在高SOC和低SOC范围内。</p>
+<p>参考文献[41]显示，当锂离子电池SOC在30%到80%之间，且工作温度恒定时，电池的欧姆内阻是稳定的，受外部环境影响较小。因此，我们可以用在30-80%范围内的任何SOC下测得的内阻来普遍代表电池电阻。</p>
+<p>电动汽车电池组的充电过程大多是多阶段恒流充电。而从图2（g）中可以看出，在多级恒流充电协议中，当前开关点的SOC通常在50-80%之间。因此，在我们的算法中，我们计算图2（g）中的这个 &quot;电阻 &quot;来代表内阻。本文使用充电数据中间的电压和电流变化来估计电池组的内部电阻。</p>
+<p>图二表示了这个流程：</p>
+<ol>
+<li>
+<p>步骤1. 通过对云数据进行预处理，获得电流、电压、SOC和其他数据。</p>
+</li>
+<li>
+<p>第二步。对充电数据进行分析以估计内阻。如图2（g）所示，电池组的充电过程主要是多阶段的恒流充电。内阻可以通过两种充电模式中产生的电流差和电压差来估计。</p>
+</li>
+<li>
+<p>步骤3. 初步的内阻估计结果用r表示，根据温度数据进一步修正为rT。</p>
+</li>
+<li>
+<p>第四步。使用KF þ FL算法来优化rT，得到内阻(rE)的最终估计结果。</p>
+</li>
+<li>
+<p>内阻基于线性模型估计</p>
+</li>
+</ol>
+<h3 id="31-内阻初步估计">3.1 内阻初步估计</h3>
+<p>如图2(g)所示，通过处理云数据，首先找到时间刻度k与充电数据中间的电流变化。Ik和Uk分别是时间点k的电流和电压。Ikþ1和Ukþ1分别是时间刻度kþ1时的电流和电压。内阻由电流变化前后的电压差与电流差之比计算，如公式（8）所示。</p>
+<p>应该注意的是，计算出来的内阻不是真正的欧姆电阻，也不是包括内阻和极化及扩散部分的全部内阻。由于充电电流继续进行，OCV与之前相比略有增加。从公式（8）中计算出的电阻比全内阻略小。但是，由于OCV的增加很小，因为周期很短，我们可以粗略地认为方程（8）计算的电阻是全内阻，这对云计算应用来说是可以接受的。</p>
+<h3 id="32-内阻温度修正">3.2 内阻温度修正</h3>
+<p>图2（c）显示了描述内阻、温度和SOC之间关系的地图，它来自另一种类似材料系统的电池类型。温度对电池的内阻有很大的影响，在低温环境下，内阻迅速增加。rT是根据温度数据和地图修改r而实现的。</p>
+<h3 id="33-内阻估计">3.3 内阻估计</h3>
+<p>EKF状态方程，与公式(4)-(5)相同，也是由于单次充电间隔内阻变化小而建立的。观测噪声υi被设定为一个变量。在内阻估计的过程中，我们设定υi¼ eβυ0，其中β由FL算法确定，υ0是观察误差最小的观察噪声。</p>
+<p>FL算法的输入参数包括电流差（ΔI）和温差（ΔT），其中ΔI ¼ Ik�Ikþ1, ΔT ¼ Tk�25�C。根据公式（8），电流对内阻估计结果有很大影响。如果ΔI较小，内阻估计结果会较大。因此，ΔI被选为FL算法的输入参数。从图2（c）可以看出，温度对电池的内阻有很大影响。一个大的ΔT将导致内阻估计结果的巨大差异。因此，我们选择ΔT作为FL算法的输入参数。</p>
+<p>模糊规则的主要原理是：当ΔI较大，ΔT较小时，β较小。根据FL算法的过程，ΔI和ΔT被模糊化为三个置信区间，如图2（d）和（e）所示。输出结果β如图2（f）所示。KF算法的观测噪声υi¼ eβυ0是用上述FL算法控制的。</p>
+<h2 id="4-实车数据验证">4 实车数据验证</h2>
+<h3 id="41-实车数据概述">4.1 实车数据概述</h3>
+<p>数据源A共提供47辆电动汽车的云数据，最大数据采样天数为345天。数据采样间隔为30s，数据内容包括车辆数据（车速、里程、电机转速等）和动力电池数据（总电流、总电压、SOC、温度等）。没有电池电压数据。在数据中只观察到电池电压的极端值数据。数据源B提供了总共100辆电动汽车的云数据，最大数据采样天数为469天。数据采样间隔为1s，数据内容包括车辆数据（车速、里程、电机转速等）和动力电池数据（总电流、总电压、SOC、温度等），包括所有电池电压数据。</p>
+<p>为了显示数据的概况，随机选择并显示数据源A中的一辆电动车。该电动车已经运行了315天，从该电动车的云数据中获得了319次充电。图3（a）显示了319次充电的充电时间和充电深度（DOC）ΔSOC。 图3（b）显示了充电时间的频率分布直方图，红色曲线是概率密度曲线。95%的电动车充电时间分布在0-2小时内，平均为1.7小时。图3（c）是319次充电的ΔSOC分布，平均DOC为41%。DOC大多集中在40%-60%的范围内，整体分布从中间向两边递减。图3（d）显示了319个电荷的起始电荷（SOCmin）的分布。图3（e）显示了319次充电的终点（SOCmax）分布。充电开始时间主要在30%到50%之间，还有很大一部分充电结束时间大于90%。图3（f）显示了电动车的温度数据。电动车运行期间的最大温差为43℃。</p>
+<p>在数据源B中，一个电动车的云数据也被随机选择和显示。该电动车已经运行了416天，从该电动车的云数据中获得了307次充电。图3（g）显示了307次充电的充电时间和ΔSOC。图3（h）显示了充电时间的频率分布直方图，红色曲线是概率密度曲线。电动车的平均充电时间为0.95小时，比数据源A中的电动车快得多。图3（i）显示了307次充电的ΔSOC分布，平均DOC为59%。DOC大多集中在60%-80%的范围内。与数据源A中的EV相比，DOC更深。图3（j）和（k）分别显示了307次充电的SOCmin和SOCmax分布。充电开始时间主要在10%到50%之间，也有很大一部分是充电结束时间大于90%。图3（l）显示了电动车的温度数据。电动车运行期间的最大温差为27摄氏度。</p>
+<h3 id="42-容量估计结果和预测">4.2 容量估计结果和预测</h3>
+<p>从数据源A中随机抽出一辆车，作为容量估计和预测的例子。用第2节中的方法估计容量，初步估计结果如图4（a）所示。蓝色的交叉点代表直接从Qn和ΔSOC的比率中得到的容量估计结果。虽然电池的退化趋势明显，但估算结果不稳定，部分误差较大，使得整体估算结果的规律性较差。图4（a）中的红色圆点代表CT。考虑到温度对容量估算结果的影响后，低温区间容量估算的结果增加，高温区间容量估算的结果减少，使得估算结果更接近真实值。</p>
+<p>图4（b）分别是用KF算法和KF þ FL算法进行CT优化的结果，蓝色圆点代表用KF算法进行CT优化的结果。KF算法的初始值如下：bx0¼ 130Ah，P0¼ 1，Q ¼ 0：032，R ¼ 0：052。 虽然估计结果趋于收敛，但由于一些CT值的误差较大，容量估计结果不能收敛。</p>
+<p>黑色的圆点代表用KF þ FL算法进行CT优化的结果。KF þ FL算法的初始值如下：bx0¼ 130Ah, P0¼ 1, Q ¼ 0:032。R由2.3节介绍的FL算法实时控制。结果表明，尽管CT存在一些估计误差，但通过FL算法实时控制CT的权重，容量估计结果可以收敛，并且符合动力电池容量的真实退化趋势。KF þ FL算法的一个优点是，初始容量并不关键，因为估计结果会收敛到真实值。图4（b）中的红色圆点代表了KF þ FL算法设置为bx0¼ C0¼ 110Ah时的容量估计结果。虽然算法的初始值与真实值有很大差别，但算法仍能将结果修正为真实值。</p>
+<p>电动车的电池容量是根据Arrhenius经验性老化模型预测的。预测结果如图4（c）所示，其中红色的点代表容量估计结果。绿色曲线代表基于CE的阿伦纽斯经验老化模型的预测曲线，预测间隔为315天-700天。 蓝点代表电池在使用后第700天的预测容量。由云数据提供的SOC估计的系统误差将在很大程度上影响容量结果。此外，温度和容量之间的关联性也会影响到容量估算的结果。</p>
+<p>图5显示了数据源A提供的所有电动汽车的容量估计结果。图5（a）显示了Cn，其中相同颜色的点代表同一电动汽车的容量估计结果。从初步估算结果可以看出，由于云数据的庞大和复杂，部分容量估算结果存在较大误差，但大部分估算结果是准确的。可以观察到动力电池容量的退化趋势，这为容量估算提供了依据。图5(b)显示了47辆电动车的温度数据，其中相同颜色的点代表同一电动车的温度数据。</p>
+<p>图5（c）显示了CT的情况。由于数据量大，温度校正的效果无法在图5（c）中清楚显示。 因此，从47个电动车中随机选择4个电动车。这四个电动车的温度校正前后的估计结果显示在图5（e）中。蓝色的点代表Cn，橙色的点代表CT。图5（d）显示了由KF þ FL算法得到的CE。 KF þ FL算法的初始值设置如下：bx0¼ 130Ah。</p>
+<p>基于容量估算结果，根据阿伦尼乌斯经验老化模型，对数据源A提供的47辆电动汽车的容量进行了预测。预测结果如图6（a）所示。虚线代表每个电动车的容量预测结果，黑色实线代表所有电动车的平均预测结果，红点代表第700天时的平均预测容量。</p>
+<p>数据源B中20辆电动车的估算结果如图6(b)所示。考虑到不同的电动车在数据记录之初就陆续投入使用，零里程所对应的SOH并不是100%。此外，数据源B被分为两个部分B1和B2，以便从数据到数据进行初步验证。</p>
+<p>图6(b)中的蓝色点代表基于数据B1的SOH估计结果（SEðB1Þ）。棕色的竖线是数据B1中每个电动车的行驶里程，大多数电动车的行驶里程在20,000公里到60,000公里之间，大多数是40,000公里。SEðB1Þ基于Arrhenius经验老化模型进行拟合，得到红色预测曲线。此外，数据B2被用来验证基于数据B1的SOH估计结果。绿色的点代表基于数据B2得到的SOH估计结果（SEðB2Þ）。可以看出，SEðB2Þ在红色预测曲线附近波动。估计结果可以收敛到预测曲线上，这说明该方法本身是可靠的。黑色虚线表示基于所有数据（B1þ B2）得到的预测曲线。在数据B2期间，编号为7、8、13和20的EV较少使用，这意味着从数据到数据对这些EV的验证意义不大。第9个EV在数据B1中使用较少，所以两个预测结果有很大不同。对于其他的EV，黑色虚线与红色曲线很吻合，这说明基于数据B1的预测结果与基于数据B1þ B2的预测结果基本相同。图中显示了基于数据B1的预测结果（红色数字）和基于数据B1þ B2的预测结果（黑色数字），分别为每辆电动车在0和12万公里时的预测结果。当达到12万公里时，每辆电动车的SOH仍为85%左右。</p>
+<p>为了验证该方法的容量估计的准确性，从数据源B提供的100辆电动车中随机选择了4辆电动车来测试其现场容量。 v1, v2, v3, v4。测试时间为获得数据B2后的几周，被抽样的电动车的基本信息见表2。</p>
+<p>4种电动车的容量预测结果如图7所示。纵坐标是容量，横坐标是里程数。蓝色的点代表基于数据B1的容量估计结果（CEðB1Þ）。红色预测曲线是根据Arrhenius经验老化模型对CEðB1Þ进行拟合得到的。红色的点代表基于数据B1预测的0和12万公里处的容量。棕色竖线是容量测试的位置，蓝色竖线是数据B1的里程。绿色点代表基于数据B2的运力估计结果（CEðB2Þ），绿色竖线是数据B2的里程。黑色虚线是基于数据B1þ B2的预测曲线。黑点代表基于数据B1þ B2预测的0和120,000公里处的容量。</p>
+<p>对于基于数据B1þB2的运力预测结果，V2和V4在运力测试中的里程数分别与上次运力估算的里程数接近，这可以视为运力估算结果的验证。而V1和V3在运力测试中的里程数分别与上次运力估算的里程数相差甚远，因此应将其视为预测的结果。基于数据B1的容量预测结果与基于数据B1þ B2的容量预测结果非常相似。对于基于数据B1的预测结果，从最后一次运力估算到运力测试的预测长度约为40,000公里。表3显示了4辆电动汽车的容量预测结果和误差。表中的测试容量是使用完全充电后的安培小时积分计算的。可以看出，不管是基于数据B1的预测结果还是基于数据B1þ B2的预测结果，误差都小于4%。误差来源可能包括预测模型和容量估计方法，但总的来说，该方法具有良好的容量预测精度，可用于云计算的容量估计和寿命预测。</p>
+<h3 id="43">4.3</h3>
+<p>从数据源B中随机选择一辆电动车进行内阻估计。该电动车已经运行了201天，运行期间的温度数据如图8（a）所示。季节性变化是导致图8（a）中温度上升的原因。随着环境温度的增加，电动车中的电池温度也在增加。在电动车运行期间的最大温差为34摄氏度。图8（b）是内阻的估计结果。电动车中的电池组包含85个电池。图中相同颜色的点代表同一电池的内阻。 蓝色的交叉点代表85个电池的内阻的平均值（rm）。一般来说，电池的内阻会随着循环增加。由于温度变化的影响，图中的内阻rm呈现出随时间下降的趋势，这与内阻的老化规律不相符。所以有必要根据温度数据来修改估算结果。根据温度与内阻的关系，根据温度数据将rm进一步修正为rT。图8（b）中的黄色三角形代表rT。经过温度校正后，rT随着使用时间的增加而略微增加，整体变化稳定，这符合内阻的变化规律。</p>
+<p>虽然图8(b)中的rT能够反映出内阻的变化趋势，但由于云数据的复杂性，温度、电流等变量的影响，rT仍有较强的分歧。所以我们进一步使用KF þ FL算法来优化rT。在图8（c）中，黄色三角形代表rT，黑色圆点代表用KF þ FL算法优化rT的结果。KF þ FL算法的初始值如下：bx0¼ 4:5 � 10� 4Ω，P0¼ 1，Q ¼ 0:032，R由FL算法实时控制，如3.3节所介绍的。 估算结果表明，尽管rT存在一些较大的估算误差，但通过FL算法对rT权重的实时控制可以使估算结果收敛到内阻的真实趋势。蓝线代表内阻的预测曲线，绿点代表第400天的预测内阻。从内阻估计和预测结果来看，该方法得到的内阻估计结果收敛，符合电池内阻变化的趋势，可以用于云上的内阻估计和预测。由于使用所提出的滤波器消除了随机误差和数据故障，因此认为内阻估计结果的误差主要来自温度和内阻之间的相关性。</p>
+<h2 id="5-结论">5 结论</h2>
+<p>为了评估电动汽车的安全性和生命周期，汽车公司通常将电动汽车的驾驶数据保留在云端进行监控和管理。由于充电数据与动态驾驶条件相比是稳定的，我们提出了一种新的基于充电云数据的电动汽车电池寿命估算方法。电池寿命估计包括容量估计和内阻估计。</p>
+<p>首先，讨论了电动汽车电池组的容量估算方法。对电动汽车云的数据进行处理，并使用安培小时积分法估算容量。然后，根据温度数据对估算结果进行修改。最后，根据Arrhenius经验老化模型来预测电池组的容量。</p>
+<p>对于内阻的估计和预测，多阶段充电数据中电压和电流的突然变化被用来估计电池组的内阻。内阻预测是通过一个与容量预测类似的过程实现的。</p>
+<p>考虑到温度对容量和内阻估算结果的影响，根据温度数据对估算结果进行修正，使容量和内阻的估算结果与动力电池的真实变化更加一致。此外，由于初步估算后不可避免地存在较大的噪声，因此采用FL算法实时控制KF算法的观测噪声，使估算结果向真实趋势收敛。</p>
+<p>由两个数据源提供的总共147个车辆数据被用来验证所提出的方法。结果表明，该方法得到的容量和内阻的估计结果逐渐收敛于真实趋势。由采样的真实电动车验证的容量的最大估计误差小于4%。基于当前的云数据，该估算方法可以准确估算出电动汽车动力电池的容量，实现寿命预测。</p>
+<h1 id="总结">总结</h1>
+<ul>
+<li>实车数据的容量和内阻估计，根据Arrhenius经验老化模型来预测电池组的容量</li>
+<li>温度修正，模糊算法</li>
+<li>问题：为啥要用卡尔曼再估计一遍容量？</li>
+<li>阶跃内阻不是欧姆内阻，直接用电压差和电流计算得来的</li>
+</ul>
+
+							</div>
+	<div class="wow bounceInDown vt-post-tags">
+ 
+				<a href="https://xioafanwu.github.io/tag/C1JPhwKa3/" rel="tag">卡尔曼滤波</a>	
+				 
+				<a href="https://xioafanwu.github.io/tag/68EqiUMEjR/" rel="tag">阿伦乌尼斯公式</a>	
+				 
+				<a href="https://xioafanwu.github.io/tag/J3S6mV-e9/" rel="tag">实车数据</a>	
+				 
+				<a href="https://xioafanwu.github.io/tag/2QwBnzlAd/" rel="tag">电池健康状态估计</a>	
+				 
+					</div>						
+<nav class="navigation3 post-navigation3" role="navigation">
+		
+		<div class="nav-links3">
+      
+		 
+		<div class="wow bounceInRight nav-next3"><a href="https://xioafanwu.github.io/post/bayesian-network-based-state-of-health-estimation-for-battery-on-electric-vehicle-application-and-its-validation-through-real-world-data/" rel="next"> 066-Bayesian Network Based State-of-Health Estimation for Battery on Electric Vehicle Application and Its Validation Through Real-World Data</a></div>
+		
+		</div>
+	</nav>
+	<div class="wow rollIn author-info" style="visibility: visible; animation-name: rollIn;">
+	<div class="author-avatar pull-left"><img src="https://xioafanwu.github.io/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">LSG</div></div>
+
+
+	<p class="author-bio">To be what you want to be</p></div></div>
+	
+		</div>
+		
+ 
+		
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow bounceInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+		
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://xioafanwu.github.io/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+            av: AV, 
+            el: '.comment',
+            lang: 'zh-cn',
+            
+            admin_email:'xiaofanwu2018@gmail.com',
+            
+            
+            emoticon_url: 'C:\Users\xiaofan\OneDrive - bit.edu.cn\Documents\Gridea\images\avatar.png',
+             
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     	
+      	
+          
+        });
+    </script> 
+
+
+   
+  
+ 
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+	
+        <div class="toc-widget">
+			
+            <div class="toc-title"></div>
+			
+            <div id="toc-content">
+			
+			
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>										 
+
+ 
+       
+
+
+			</div>
+		</div>
+
+		
+		 	<footer id="colophon" class="site-footer">
+
+			<div class="container">
+	
+				<div class="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div>
+		
+		</footer>
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://xioafanwu.github.io/media/scripts/marlin-scripts.js'></script>
+ <script src="//tokinx.github.io/lately/lately.min.js"></script>
+  <script>jQuery(document).ready(function(){$.lately({'target':'.lately-a,.lately-b,.lately-c'})});</script>
+  <style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+		<script data-no-instant>
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $('.navigation:eq(0)').remove();
+                $("").attr("rel" , "external");
+                $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+                $("a.vi").attr("rel" , "");
+                $.viewImage({
+                    'target'  : 'img',
+                    'exclude' : '.vsmile-icons img,.gallery img',
+                    'delay'   : 300
+                });
+                $.lately({
+                    'target' : '.commentmetadata a,.infos time,.post-list time'
+                });
+                prettyPrint();
+                
+                $('ul.links li a').each(function(){
+                    if($(this).parent().find('.bg').length==0){
+                        $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+                    }
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>
